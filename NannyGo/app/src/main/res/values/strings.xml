@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Nanny Go</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_registro">Faça seu Registro</string>
+    <string name="title_activity_avaliacao">Babás próximas a você</string>
+    <string name="title_activity_contratacao">Contratação</string>
+    <string name="title_activity_detalhes_baba">Detalhes da Babá</string>
+    <string name="title_activity_verificacao">Menu</string>
+    <string name="title_activity_area_baba">Area da Babá</string>
+    <string name="title_activity_registro_baba">Registro de Babá</string>
+</resources>

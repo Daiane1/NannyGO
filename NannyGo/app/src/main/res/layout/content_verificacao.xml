@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_verificacao"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="br.com.nannygo.app.VerificacaoActivity"
+    tools:showIn="@layout/activity_verificacao"
+    android:orientation="vertical"
+    >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bem vindo"
+        android:textSize="12pt"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textAllCaps="true"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bem vindo"
+        android:textSize="12pt"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textAllCaps="true"
+        android:id="@+id/text_view_nome"
+        />
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="75dp"
+        android:text="Quero Contratar"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/rosa"
+        android:textColor="#fff"
+        android:onClick="abrirTelaBabas"
+        />
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="75dp"
+        android:text="Sou uma babá"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#fff"
+        android:backgroundTint="@color/azul"
+        android:onClick="abrirTelaAreaBabas"
+        />
+
+
+</LinearLayout>

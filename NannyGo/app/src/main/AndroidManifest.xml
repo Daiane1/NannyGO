@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="br.com.nannygo.app">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".RegistroActivity"
+            android:label="@string/title_activity_registro"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.nannygo.app.MainActivity"/>
+        </activity>
+        <activity
+            android:name=".BabasActivity"
+            android:label="@string/title_activity_avaliacao"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.nannygo.app.MainActivity"/>
+        </activity>
+        <activity
+            android:name=".ContratacaoActivity"
+            android:label="@string/title_activity_contratacao"
+            android:parentActivityName=".BabasActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.nannygo.app.BabasActivity"/>
+        </activity>
+        <activity
+            android:name=".DetalhesBabaActivity"
+            android:label="@string/title_activity_detalhes_baba"
+            android:parentActivityName=".BabasActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.nannygo.app.AvaliacaoActivity"/>
+        </activity>
+        <activity
+            android:name=".VerificacaoActivity"
+            android:label="@string/title_activity_verificacao"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.nannygo.app.MainActivity"/>
+        </activity>
+        <activity
+            android:name=".AreaBabaActivity"
+            android:label="@string/title_activity_area_baba"
+            android:parentActivityName=".VerificacaoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.nannygo.app.VerificacaoActivity"/>
+        </activity>
+        <activity
+            android:name=".RegistroBabaActivity"
+            android:label="@string/title_activity_registro_baba"
+            android:parentActivityName=".AreaBabaActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.nannygo.app.AreaBabaActivity"/>
+        </activity>
+    </application>
+
+</manifest>
