@@ -9,6 +9,8 @@ public class Usuario {
     private  String login;
     private  String senha;
     private  String dataNascimento;
+    private String idCidade;
+    private String imagem;
 
 
     public String getNome() {
@@ -37,6 +39,15 @@ public class Usuario {
 
     public String getDataNascimento() {
         return dataNascimento;
+    }
+
+
+    public String getIdCidade() {
+        return idCidade;
+    }
+
+    public String getImagem() {
+        return imagem;
     }
 }
 

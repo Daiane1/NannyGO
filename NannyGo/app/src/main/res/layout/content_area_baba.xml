@@ -22,6 +22,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:src="@drawable/baba"
+                android:id="@+id/img_baba"
                 />
             <TableLayout>
                 <TableRow>

@@ -33,16 +33,18 @@ public class BabaAdapter extends ArrayAdapter<Baba> {
         Baba baba = getItem(position);
 
         ImageView img_baba = (ImageView) v.findViewById(R.id.img_item_baba);
-        TextView nome_baba = (TextView) v.findViewById(R.id.nome_item_baba);
-        TextView avaliacao_baba = (TextView) v.findViewById(R.id.avaliacao_item_baba);
-        TextView preco_baba = (TextView) v.findViewById(R.id.preco_item_baba);
-        TextView hora_baba = (TextView) v.findViewById(R.id.hora_item_baba);
+        TextView hora_inicial_baba = (TextView) v.findViewById(R.id.hora_inicial_baba);
+        TextView hora_final_baba = (TextView) v.findViewById(R.id.hora_final_baba);
+        TextView dia_semana_baba = (TextView) v.findViewById(R.id.dia_semana_baba);
+        TextView id_baba = (TextView) v.findViewById(R.id.id_baba);
+        TextView preco_hora_baba = (TextView) v.findViewById(R.id.preco_hora_baba);
 
-        nome_baba.setText(baba.getNome());
         img_baba.setImageResource(baba.getImagem());
-        avaliacao_baba.setText(baba.getAvaliacao());
-        preco_baba.setText(baba.getPreco());
-        hora_baba.setText(baba.getHora());
+        hora_inicial_baba.setText(baba.getHoraInicio());
+        hora_final_baba.setText(baba.getHoraFim());
+        dia_semana_baba.setText(baba.getDiasDisponiveis());
+        //id_baba.setText(baba.getIdBaba());
+        preco_hora_baba.setText(baba.getPreco());
 
         /**Picasso.with(getContext())
                 .load(baba.getImagem())

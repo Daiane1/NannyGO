@@ -18,7 +18,9 @@
 			"email"=>$rs['email'],
 			"login"=>$rs['login'],
 			"senha"=>$rs['senha'],
-			"dataNascimento"=>$rs['data_nascimento']);
+			"dataNascimento"=>$rs['data_nascimento'],
+			"idCidade"=>$rs['id_cidade'],
+			"imagem"=>$rs['imagem']);
 			
 		$usuarioJSON = json_encode($usuario);
 		

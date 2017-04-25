@@ -8,7 +8,8 @@ public class UsuarioFinal {
     private static String login;
     private static String senha;
     private static String dataNascimento;
-    private static String idade;
+    private static String idCidade;
+    private static String imagem;
 
 
     public static String getNome() {
@@ -67,6 +68,8 @@ public class UsuarioFinal {
         UsuarioFinal.dataNascimento = dataNascimento;
     }
 
+
+
     public static String getIdade()
     {
         String dataNascimento[] = getDataNascimento().split("-");
@@ -78,4 +81,19 @@ public class UsuarioFinal {
         return viewIdade;
     }
 
+    public static String getIdCidade() {
+        return idCidade;
+    }
+
+    public static void setIdCidade(String idCidade) {
+        UsuarioFinal.idCidade = idCidade;
+    }
+
+    public static String getImagem() {
+        return imagem;
+    }
+
+    public static void setImagem(String imagem) {
+        UsuarioFinal.imagem = imagem;
+    }
 }

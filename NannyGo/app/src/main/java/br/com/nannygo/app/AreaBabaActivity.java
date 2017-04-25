@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class AreaBabaActivity extends AppCompatActivity
 {
 
     TextView text_view_nome, text_view_sexo, text_view_telefone, text_view_email, text_view_idade;
+    ImageView img_baba;
     Intent intent;
     String jsonUsuario;
 
@@ -35,6 +37,7 @@ public class AreaBabaActivity extends AppCompatActivity
         text_view_telefone = (TextView) findViewById(R.id.text_view_telefone);
         text_view_email = (TextView) findViewById(R.id.text_view_email);
         text_view_idade = (TextView) findViewById(R.id.text_view_idade);
+        img_baba = (ImageView) findViewById(R.id.img_baba);
     }
 
     private void inserirCampos()
@@ -50,6 +53,8 @@ public class AreaBabaActivity extends AppCompatActivity
         text_view_telefone.setText(UsuarioFinal.getTelefone());
         text_view_email.setText(UsuarioFinal.getEmail());
         text_view_idade.setText(UsuarioFinal.getIdade());
+
+        //img_baba.setImageDrawable();
     }
 
 

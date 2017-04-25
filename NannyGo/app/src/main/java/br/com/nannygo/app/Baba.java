@@ -4,55 +4,43 @@ public class Baba {
 
     private int imagem;
     private String nome;
-    private String avaliacao;
     private String preco;
-    private String hora;
+    private String horaInicio;
+    private String horaFim;
+    private String diasDisponiveis;
+    private int idBaba;
+    private int idUsuario;
 
-    public Baba(int imagem, String nome, String avalicao, String preco, String hora){
-        this.imagem = imagem;
-        this.nome = nome;
-        this.avaliacao = avalicao;
-        this.preco = preco;
-        this.hora = hora;
-    }
 
     public int getImagem() {
         return imagem;
-    }
-
-    public void setImagem(int imagem) {
-        this.imagem = imagem;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getAvaliacao() {
-        return avaliacao;
-    }
-
-    public void setAvaliacao(String avaliacao) {
-        this.avaliacao = avaliacao;
-    }
-
     public String getPreco() {
         return preco;
     }
 
-    public void setPreco(String preco) {
-        this.preco = preco;
+    public String getHoraInicio() {
+        return horaInicio;
     }
 
-    public String getHora() {
-        return hora;
+    public String getHoraFim() {
+        return horaFim;
     }
 
-    public void setHora(String hora) {
-        this.hora = hora;
+    public String getDiasDisponiveis() {
+        return diasDisponiveis;
+    }
+
+    public int getIdBaba() {
+        return idBaba;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
     }
 }

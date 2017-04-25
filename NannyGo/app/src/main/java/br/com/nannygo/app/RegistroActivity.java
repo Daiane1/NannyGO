@@ -80,7 +80,6 @@ public class RegistroActivity extends AppCompatActivity
 
         String data_nascimento[] = text_view_data_nascimento.getText().toString().split("-");
         data_nascimento_mysql = String.format("%s-%s-%s", data_nascimento[2], data_nascimento[1], data_nascimento[0]);
-        Log.d("data", data_nascimento_mysql);
 
         nome = nome.replaceAll(" ", "_");
 
