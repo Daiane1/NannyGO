@@ -11,48 +11,66 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class BabaAdapter extends ArrayAdapter<Baba> {
-
+public class BabaAdapter extends ArrayAdapter<Baba>
+{
     int resource;
-    public BabaAdapter(Context context, int resource, List<Baba> objects) {
+    View v;
+    ImageView img_baba;
+    TextView hora_baba, dia_semana_baba, preco_hora_baba, id_baba, nome_item_baba;
+    String hora, preco;
+    Baba baba;
+
+    public BabaAdapter(Context context, int resource, List<Baba> objects)
+    {
         super(context, resource, objects);
         this.resource = resource;
     }
 
     @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-
-        View v = convertView;
-
-        if(v==null){
+    public View getView(int position, View convertView, ViewGroup parent)
+    {
+        v = convertView;
+        if (v == null)
+        {
             v = LayoutInflater.from(getContext())
                     .inflate(resource, null);
         }
 
-        Baba baba = getItem(position);
-
-        ImageView img_baba = (ImageView) v.findViewById(R.id.img_item_baba);
-        TextView hora_inicial_baba = (TextView) v.findViewById(R.id.hora_inicial_baba);
-        TextView hora_final_baba = (TextView) v.findViewById(R.id.hora_final_baba);
-        TextView dia_semana_baba = (TextView) v.findViewById(R.id.dia_semana_baba);
-        TextView id_baba = (TextView) v.findViewById(R.id.id_baba);
-        TextView preco_hora_baba = (TextView) v.findViewById(R.id.preco_hora_baba);
-
-        img_baba.setImageResource(baba.getImagem());
-        hora_inicial_baba.setText(baba.getHoraInicio());
-        hora_final_baba.setText(baba.getHoraFim());
-        dia_semana_baba.setText(baba.getDiasDisponiveis());
-        //id_baba.setText(baba.getIdBaba());
-        preco_hora_baba.setText(baba.getPreco());
-
-        /**Picasso.with(getContext())
-                .load(baba.getImagem())
-                .transform(new CircleTransform())
-                .into(img_contato);**/
+        baba = getItem(position);
+        pegarView();
+        formatarStrings();
+        inserirCamposLayout();
 
         return v;
-
     }
+
+    private void inserirCamposLayout()
+    {
+        hora_baba.setText(hora);
+        dia_semana_baba.setText(baba.getDiasDisponiveis());
+        id_baba.setText(baba.getIdBaba().toString());
+        preco_hora_baba.setText(preco);
+        nome_item_baba.setText(baba.getNome());
+        img_baba.setImageResource(R.drawable.babym);
+    }
+
+    // Método formata as horas iniciais e finais em um só campo, e também coloca a moeda no preço.
+    private void formatarStrings()
+    {
+        hora = String.format("%s-%s", baba.getHoraInicio(), baba.getHoraFim());
+        preco = String.format("R$ %s", baba.getPreco());
+    }
+
+    public void pegarView()
+    {
+        img_baba = (ImageView) v.findViewById(R.id.img_item_baba);
+        hora_baba = (TextView) v.findViewById(R.id.hora_baba);
+        dia_semana_baba = (TextView) v.findViewById(R.id.dia_semana_baba);
+        preco_hora_baba = (TextView) v.findViewById(R.id.preco_hora_baba);
+        id_baba = (TextView) v.findViewById(R.id.id_baba);
+        nome_item_baba = (TextView) v.findViewById(R.id.nome_item_baba);
+    }
+
 }
 

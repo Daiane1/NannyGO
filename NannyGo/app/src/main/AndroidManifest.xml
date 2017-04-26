@@ -34,12 +34,12 @@
         <activity
             android:name=".BabasActivity"
             android:label="@string/title_activity_avaliacao"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".VerificacaoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="br.com.nannygo.app.MainActivity"/>
+                android:value="br.com.nannygo.app.VerificacaoActivity"/>
         </activity>
         <activity
             android:name=".ContratacaoActivity"
@@ -64,12 +64,8 @@
         <activity
             android:name=".VerificacaoActivity"
             android:label="@string/title_activity_verificacao"
-            android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="br.com.nannygo.app.MainActivity"/>
         </activity>
         <activity
             android:name=".AreaBabaActivity"
