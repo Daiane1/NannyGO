@@ -2,17 +2,17 @@ package br.com.nannygo.app;
 
 public class Baba {
 
-    private int imagem;
+    private String imagem;
     private String nome;
     private String preco;
     private String horaInicio;
     private String horaFim;
     private String diasDisponiveis;
-    private int idBaba;
-    private int idUsuario;
+    private Integer idBaba;
+    private Integer idUsuario;
 
 
-    public int getImagem() {
+    public String getImagem() {
         return imagem;
     }
 
@@ -36,11 +36,11 @@ public class Baba {
         return diasDisponiveis;
     }
 
-    public int getIdBaba() {
+    public Integer getIdBaba() {
         return idBaba;
     }
 
-    public int getIdUsuario() {
+    public Integer getIdUsuario() {
         return idUsuario;
     }
 }

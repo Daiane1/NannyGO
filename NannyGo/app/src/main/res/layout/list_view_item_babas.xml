@@ -18,22 +18,17 @@
         <TableRow>
             <TextView
                 android:id="@+id/nome_item_baba"
-                android:layout_width="150dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nome"
                 android:textStyle="bold" />
         </TableRow>
         <TableRow>
             <TextView
-                android:id="@+id/hora_inicial_baba"
+                android:id="@+id/hora_baba"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="18:00" />
-            <TextView
-                android:id="@+id/hora_final_baba"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="00:00" />
         </TableRow>
         <TableRow>
             <TextView
@@ -45,7 +40,7 @@
         <TableRow>
             <TextView
                 android:id="@+id/id_baba"
-                android:layout_width="wrap_content"
+                android:layout_width="175dp"
                 android:layout_height="wrap_content"
                 android:text="R$ 100,00"
                 android:layout_gravity="end"
@@ -55,7 +50,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="R$ 100,00"
-                android:layout_gravity="end"/>
+                android:layout_gravity="end"
+
+                android:gravity="end"/>
         </TableRow>
     </TableLayout>
     </LinearLayout>

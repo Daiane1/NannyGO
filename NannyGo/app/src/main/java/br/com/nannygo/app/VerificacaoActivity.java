@@ -20,7 +20,7 @@ public class VerificacaoActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         text_view_nome = (TextView) findViewById(R.id.text_view_nome);
 

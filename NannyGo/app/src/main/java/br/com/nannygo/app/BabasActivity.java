@@ -1,7 +1,6 @@
 package br.com.nannygo.app;
 
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -22,16 +21,17 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BabasActivity extends AppCompatActivity {
+public class BabasActivity extends AppCompatActivity
+{
 
     ListView list_view_babas;
-    List<Baba> lstBabas = new ArrayList<>();
+    static List<Baba> lstBabas = new ArrayList<>();
     Context context;
-    ProgressDialog progressDialog;
     String retornoJson;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_baba);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -43,52 +43,62 @@ public class BabasActivity extends AppCompatActivity {
         context = this;
 
 
-
-
-        list_view_babas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(context, DetalhesBabaActivity.class));
-            }
-        });
-
+        abrirDetalhesBaba();
         new ConfigurarListaBabasTask().execute();
     }
 
-    private void configurarAdapter() {
-        BabaAdapter adapter = new BabaAdapter(this, R.layout.list_view_item_babas, lstBabas);
+    private void abrirDetalhesBaba()
+    {
+        list_view_babas.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                Intent intent = new Intent(context, DetalhesBabaActivity.class);
+                
+            }
+        });
+    }
 
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        configurarAdapter();
+    }
+
+    private void configurarAdapter()
+    {
+        BabaAdapter adapter = new BabaAdapter(this, R.layout.list_view_item_babas, lstBabas);
         list_view_babas.setAdapter(adapter);
     }
 
     private class ConfigurarListaBabasTask extends AsyncTask<Void, Void, Void>
     {
         @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            progressDialog = ProgressDialog.show(context, "Aguarde", "Mostrando as babás mais próximas a você!");
-        }
-
-        @Override
-        protected Void doInBackground(Void... params) {
+        protected Void doInBackground(Void... params)
+        {
             String link = "http://10.0.2.2/20171sem/NannyGO/configurarListaBaba.php";
             retornoJson = HttpConnection.get(link);
             return null;
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
+        protected void onPostExecute(Void aVoid)
+        {
             super.onPostExecute(aVoid);
-            progressDialog.dismiss();
             Gson gson = new GsonBuilder().excludeFieldsWithModifiers(Modifier.VOLATILE).create();
 
             if (retornoJson.isEmpty())
             {
+                //Alert Dialog caso o acesso a lista de babás não foi bem sucedido
                 new AlertDialog.Builder(context)
                         .setTitle("Erro")
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener()
+                        {
                             @Override
-                            public void onClick(DialogInterface dialog, int which) {
+                            public void onClick(DialogInterface dialog, int which)
+                            {
                                 startActivity(new Intent(context, VerificacaoActivity.class));
                             }
                         })
@@ -99,11 +109,9 @@ public class BabasActivity extends AppCompatActivity {
             else
             {
                 Log.d("json", retornoJson);
-                lstBabas = gson.fromJson(retornoJson, new TypeToken<List<Baba>>(){}.getType());
-
+                lstBabas = gson.fromJson(retornoJson, new TypeToken<List<Baba>>() {}.getType());
                 configurarAdapter();
             }
         }
     }
-
 }

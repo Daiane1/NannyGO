@@ -1,5 +1,5 @@
 <?php
-	$sql = "SELECT * FROM tbl_babas;";
+	$sql = "SELECT * FROM tbl_usuarios as a, tbl_babas as b WHERE a.id_usuario = b.id_usuario;";
 	
 	$conexao = mysql_connect('localhost', 'root', 'bcd127');
 	mysql_select_db('db_nannygo');
@@ -15,7 +15,8 @@
 			"preco"=>$resultado['preco'],
 			"horaInicio"=>$resultado['horaInicio'],
 			"horaFim"=>$resultado['horaFim'],
-			"diasDisponiveis"=>$resultado['diasDisponiveis']);
+			"diasDisponiveis"=>$resultado['diasDisponiveis'],
+			"imagem"=>$resultado['imagem']);
 		$array[] = $baba;
 	}
 	
