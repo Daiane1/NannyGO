@@ -23,7 +23,7 @@ import java.util.Calendar;
 public class RegistroActivity extends AppCompatActivity
 {
     EditText edit_text_nome, edit_text_login, edit_text_senha, edit_text_confirmar, edit_text_telefone, edit_text_email;
-    TextView text_view_data_nascimento;
+    static TextView text_view_data_nascimento;
     RadioButton radio_masculino, radio_feminino;
     String nome, login, telefone, email, sexo, dataNascimentoBanco;
     String senha = "";
@@ -167,7 +167,6 @@ public class RegistroActivity extends AppCompatActivity
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth)
         {
             String dataSelecionada = String.format("%02d-%02d-%d", dayOfMonth, ++month, year);
-            TextView text_view_data_nascimento = (TextView)getView().findViewById(R.id.text_view_data_nascimento);
             text_view_data_nascimento.setText(dataSelecionada);
         }
     }

@@ -12,6 +12,7 @@
 	if ($rs=mysql_fetch_array($select))
 	{
 		$usuario = array(
+			"idUsuario"=>$rs['id_usuario'],
 			"nome"=>$rs['nome'],
 			"sexo"=>$rs['sexo'],
 			"telefone"=>$rs['telefone'],
@@ -19,7 +20,8 @@
 			"login"=>$rs['login'],
 			"senha"=>$rs['senha'],
 			"dataNascimento"=>$rs['data_nascimento'],
-			"imagem"=>$rs['imagem']);
+			"imagem"=>$rs['imagem'],
+			"statusBaba"=>$rs['statusBaba']);
 			
 		$usuarioJSON = json_encode($usuario);
 		

@@ -12,6 +12,7 @@
 		$baba = array(
 			"idBaba"=>$resultado['id_baba'],
 			"idUsuario"=>$resultado['id_usuario'],
+			"nome"=>$resultado['nome'],
 			"preco"=>$resultado['preco'],
 			"horaInicio"=>$resultado['horaInicio'],
 			"horaFim"=>$resultado['horaFim'],

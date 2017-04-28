@@ -27,7 +27,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp">
+        <TableRow
+            android:layout_marginTop="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Preço/hora"
+                android:textSize="8pt"
+                android:textColor="@color/rosa"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="10,00"
+                android:gravity="end"
+                android:layout_marginEnd="25dp"
+                android:inputType="numberDecimal"
+                android:digits="0123456789.,"
+                android:id="@+id/edit_text_preco"
+                />
 
+        </TableRow>
         <TableRow
             android:layout_marginTop="5dp">
             <TextView

@@ -110,4 +110,14 @@
         android:textColor="#fff"
         android:layout_gravity="center_horizontal"
         android:onClick="abrirTelaRegistroBaba"/>
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="-75dp"
+        android:text="Não estou mais disponível!"
+        android:backgroundTint="@color/rosa"
+        android:textColor="#fff"
+        android:layout_gravity="center_horizontal"
+        android:onClick="removerRegistro"
+        android:visibility="invisible"/>
 </LinearLayout>

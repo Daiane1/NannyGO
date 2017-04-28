@@ -1,7 +1,9 @@
 package br.com.nannygo.app;
 
-public class Usuario {
+public class Usuario
+{
 
+    private String idUsuario;
     private String nome;
     private String sexo;
     private String telefone;
@@ -11,43 +13,72 @@ public class Usuario {
     private String dataNascimento;
     private String idCidade;
     private String imagem;
+    private boolean statusBaba;
 
 
-    public String getNome() {
+    public String getNome()
+    {
         return nome;
     }
 
-    public String getSexo() {
+    public String getSexo()
+    {
         return sexo;
     }
 
-    public String getTelefone() {
+    public String getTelefone()
+    {
         return telefone;
     }
 
-    public String getEmail() {
+    public String getEmail()
+    {
         return email;
     }
 
-    public String getLogin() {
+    public String getLogin()
+    {
         return login;
     }
 
-    public String getSenha() {
+    public String getSenha()
+    {
         return senha;
     }
 
-    public String getDataNascimento() {
+    public String getDataNascimento()
+    {
         return dataNascimento;
     }
 
-
-    public String getIdCidade() {
+    public String getIdCidade()
+    {
         return idCidade;
     }
 
-    public String getImagem() {
+    public String getImagem()
+    {
         return imagem;
+    }
+
+    public String getIdUsuario()
+    {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(String idUsuario)
+    {
+        this.idUsuario = idUsuario;
+    }
+
+    public boolean getStatusBaba()
+    {
+        return statusBaba;
+    }
+
+    public void setStatusBaba(boolean statusBaba)
+    {
+        this.statusBaba = statusBaba;
     }
 }
 

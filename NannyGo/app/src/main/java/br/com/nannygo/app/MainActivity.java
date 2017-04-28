@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
             }
             else
             {
+                Log.d("login", retornoJson);
                 Usuario usuario = gson.fromJson(retornoJson, Usuario.class);
                 criarUsuarioFinal(usuario);
                 Intent intent = new Intent(context, VerificacaoActivity.class);
@@ -87,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
     //no aplicativo sejam iguais, uma vez que a classe implementada pelo Gson não implementa campos
     //estáticos.
     private void criarUsuarioFinal(Usuario usuario) {
+        UsuarioFinal.setIdUsuario(usuario.getIdUsuario());
         UsuarioFinal.setNome(usuario.getNome());
         UsuarioFinal.setSexo(usuario.getSexo());
         UsuarioFinal.setTelefone(usuario.getTelefone());
@@ -94,5 +97,6 @@ public class MainActivity extends AppCompatActivity {
         UsuarioFinal.setLogin(usuario.getLogin());
         UsuarioFinal.setSenha(usuario.getSenha());
         UsuarioFinal.setDataNascimento(usuario.getDataNascimento());
+        UsuarioFinal.setStatusBaba(usuario.getStatusBaba());
     }
 }

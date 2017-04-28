@@ -31,6 +31,7 @@ public class ContratacaoActivity extends AppCompatActivity
     Spinner spinner_forma_pagamento;
     List<String> lstFormaPagamento = new ArrayList();
     static int condicaoHora = 0;
+    static TextView text_view_hora_fim, text_view_hora_inicio, text_view_data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -144,7 +145,6 @@ public class ContratacaoActivity extends AppCompatActivity
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth)
         {
             String dataSelecionada = String.format("%02d/%02d/%d", dayOfMonth, ++month, year);
-            TextView text_view_data = (TextView) getView().findViewById(R.id.text_view_data);
             text_view_data.setText(dataSelecionada);
         }
     }
@@ -163,12 +163,10 @@ public class ContratacaoActivity extends AppCompatActivity
             String text_hora = String.format("%02d:%02d", hourOfDay, minute);
             if (condicaoHora == 0)
             {
-                TextView text_view_hora_inicio = (TextView) getView().findViewById(R.id.text_view_hora_inicio);
                 text_view_hora_inicio.setText(text_hora);
             }
             else if (condicaoHora == 1)
             {
-                TextView text_view_hora_fim = (TextView) getView().findViewById(R.id.text_view_hora_fim);
                 text_view_hora_fim.setText(text_hora);
             }
         }

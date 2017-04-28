@@ -2,6 +2,7 @@ package br.com.nannygo.app;
 
 public class UsuarioFinal
 {
+    private static String idUsuario;
     private static String nome;
     private static String sexo;
     private static String telefone;
@@ -11,6 +12,7 @@ public class UsuarioFinal
     private static String dataNascimento;
     private static String idCidade;
     private static String imagem;
+    private static boolean statusBaba;
 
 
     public static String getNome()
@@ -112,5 +114,25 @@ public class UsuarioFinal
     public static void setImagem(String imagem)
     {
         UsuarioFinal.imagem = imagem;
+    }
+
+    public static String getIdUsuario()
+    {
+        return idUsuario;
+    }
+
+    public static void setIdUsuario(String idUsuario)
+    {
+        UsuarioFinal.idUsuario = idUsuario;
+    }
+
+    public static boolean getStatusBaba()
+    {
+        return statusBaba;
+    }
+
+    public static void setStatusBaba(boolean statusBaba)
+    {
+        UsuarioFinal.statusBaba = statusBaba;
     }
 }

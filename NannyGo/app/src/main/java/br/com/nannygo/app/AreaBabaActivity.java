@@ -59,4 +59,8 @@ public class AreaBabaActivity extends AppCompatActivity
     {
         startActivity(new Intent(this, RegistroBabaActivity.class));
     }
+
+    public void removerRegistro(View view)
+    {
+    }
 }

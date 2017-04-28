@@ -1,10 +1,10 @@
 CREATE DATABASE  IF NOT EXISTS `db_nannygo` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `db_nannygo`;
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
 --
 -- Host: localhost    Database: db_nannygo
 -- ------------------------------------------------------
--- Server version	5.7.10-log
+-- Server version	5.6.10-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -34,7 +34,7 @@ CREATE TABLE `tbl_babas` (
   PRIMARY KEY (`id_baba`),
   UNIQUE KEY `id_usuario_UNIQUE` (`id_usuario`),
   CONSTRAINT `fk_baba_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `tbl_usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `tbl_babas` (
 
 LOCK TABLES `tbl_babas` WRITE;
 /*!40000 ALTER TABLE `tbl_babas` DISABLE KEYS */;
-INSERT INTO `tbl_babas` VALUES (1,1,100.00,'18:00','23:59','Semana'),(2,31,5.00,'00:00','23:59','Sempre'),(3,37,50.00,'19:00','23:59','Semana');
+INSERT INTO `tbl_babas` VALUES (1,1,100.00,'18:00','23:59','Semana'),(2,31,5.00,'00:00','23:59','Sempre'),(3,37,50.00,'19:00','23:59','Semana'),(6,40,2.50,'23:59','00:00','Sempre');
 /*!40000 ALTER TABLE `tbl_babas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,6 +143,7 @@ CREATE TABLE `tbl_usuarios` (
   `email` varchar(50) NOT NULL,
   `data_nascimento` date NOT NULL,
   `imagem` varchar(200) NOT NULL,
+  `statusBaba` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `login_UNIQUE` (`login`),
   UNIQUE KEY `email_UNIQUE` (`email`)
@@ -155,7 +156,7 @@ CREATE TABLE `tbl_usuarios` (
 
 LOCK TABLES `tbl_usuarios` WRITE;
 /*!40000 ALTER TABLE `tbl_usuarios` DISABLE KEYS */;
-INSERT INTO `tbl_usuarios` VALUES (1,4991,'Daiane Nascimento Rosa','dai','123','F','(11)91234-5678','daai@email.com','2000-01-30','imagens/menina.png'),(31,4965,'Biel Santos','glsantos','123','M','011986394488','gabriel._.lima@hotmail.com','1990-01-01','imagens/menino.png'),(35,4965,'Eilane Alves','eilane','321','F','43251671','eilane02@terra.com','2017-04-10','imagens/menina.png'),(37,4965,'Andrey','drey','123','M','01145452687','andrey@outlook.com','2000-04-12','imagens/menino.png'),(38,4851,'kassiano','kassiano','1234','M','11999999','kassiano.resende@gmail.com','1987-04-12','imagens/menino.png'),(40,1,' Joyce','Joyce','negro','F','011948188045','joyce@gmail.com','2000-10-05',''),(41,1,'Daiane','dailinda','10093454','F','011974565231','dai@email.com','2000-01-30','R.drawable.babyF');
+INSERT INTO `tbl_usuarios` VALUES (1,4991,'Daiane Nascimento Rosa','dai','123','F','(11)91234-5678','daai@email.com','2000-01-30','imagens/menina.png',1),(31,4965,'Biel Santos','glsantos','123','M','011986394488','gabriel._.lima@hotmail.com','1990-01-01','imagens/menino.png',1),(35,4965,'Eilane Alves','eilane','321','F','43251671','eilane02@terra.com','2017-04-10','imagens/menina.png',0),(37,4965,'Andrey','drey','123','M','01145452687','andrey@outlook.com','2000-04-12','imagens/menino.png',1),(38,4851,'kassiano','kassiano','1234','M','11999999','kassiano.resende@gmail.com','1987-04-12','imagens/menino.png',0),(40,1,'Joyce','Joyce','negro','F','011948188045','joyce@gmail.com','2000-10-05','',1),(41,1,'Daiane','dailinda','10093454','F','011974565231','dai@email.com','2000-01-30','R.drawable.babyF',0);
 /*!40000 ALTER TABLE `tbl_usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -168,4 +169,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-25 16:44:44
+-- Dump completed on 2017-04-28 16:48:56
