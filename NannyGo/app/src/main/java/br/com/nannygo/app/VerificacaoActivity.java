@@ -9,9 +9,8 @@ import android.widget.TextView;
 
 public class VerificacaoActivity extends AppCompatActivity {
 
-    Intent intent;
-    String jsonUsuario;
     TextView text_view_nome;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,26 +18,24 @@ public class VerificacaoActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
+        mostrarPrimeiroNome();
+    }
+
+    private void mostrarPrimeiroNome()
+    {
         text_view_nome = (TextView) findViewById(R.id.text_view_nome);
-
         String nome = UsuarioFinal.getNome();
-
         String primeiroNome[] = nome.split(" ");
         text_view_nome.setText(primeiroNome[0]);
-
     }
 
     public void abrirTelaBabas(View view) {
-        intent = new Intent(this, BabasActivity.class);
-        intent.putExtra("jsonUsuario", jsonUsuario);
-        startActivity(intent);
+        startActivity(new Intent(this, BabasActivity.class));
     }
 
     public void abrirTelaAreaBabas(View view) {
-        intent = new Intent(this, AreaBabaActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, AreaBabaActivity.class));
     }
 }

@@ -14,7 +14,7 @@ import java.util.List;
 public class BabaAdapter extends ArrayAdapter<Baba>
 {
     int resource;
-    View v;
+    View view;
     ImageView img_baba;
     TextView hora_baba, dia_semana_baba, preco_hora_baba, id_baba, nome_item_baba;
     String hora, preco;
@@ -30,11 +30,10 @@ public class BabaAdapter extends ArrayAdapter<Baba>
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
     {
-        v = convertView;
-        if (v == null)
+        view = convertView;
+        if (view == null)
         {
-            v = LayoutInflater.from(getContext())
-                    .inflate(resource, null);
+            view = LayoutInflater.from(getContext()).inflate(resource, null);
         }
 
         baba = getItem(position);
@@ -42,7 +41,7 @@ public class BabaAdapter extends ArrayAdapter<Baba>
         formatarStrings();
         inserirCamposLayout();
 
-        return v;
+        return view;
     }
 
     private void inserirCamposLayout()
@@ -64,12 +63,12 @@ public class BabaAdapter extends ArrayAdapter<Baba>
 
     public void pegarView()
     {
-        img_baba = (ImageView) v.findViewById(R.id.img_item_baba);
-        hora_baba = (TextView) v.findViewById(R.id.hora_baba);
-        dia_semana_baba = (TextView) v.findViewById(R.id.dia_semana_baba);
-        preco_hora_baba = (TextView) v.findViewById(R.id.preco_hora_baba);
-        id_baba = (TextView) v.findViewById(R.id.id_baba);
-        nome_item_baba = (TextView) v.findViewById(R.id.nome_item_baba);
+        img_baba = (ImageView) view.findViewById(R.id.img_item_baba);
+        hora_baba = (TextView) view.findViewById(R.id.hora_baba);
+        dia_semana_baba = (TextView) view.findViewById(R.id.dia_semana_baba);
+        preco_hora_baba = (TextView) view.findViewById(R.id.preco_hora_baba);
+        id_baba = (TextView) view.findViewById(R.id.id_baba);
+        nome_item_baba = (TextView) view.findViewById(R.id.nome_item_baba);
     }
 
 }

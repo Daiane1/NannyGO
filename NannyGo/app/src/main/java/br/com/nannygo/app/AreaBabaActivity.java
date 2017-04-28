@@ -10,11 +10,8 @@ import android.widget.TextView;
 
 public class AreaBabaActivity extends AppCompatActivity
 {
-
     TextView text_view_nome, text_view_sexo, text_view_telefone, text_view_email, text_view_idade;
     ImageView img_baba;
-    Intent intent;
-    String jsonUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -26,11 +23,11 @@ public class AreaBabaActivity extends AppCompatActivity
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        encontrarObjetosView();
+        pegarObjetosView();
         inserirCampos();
     }
 
-    private void encontrarObjetosView()
+    private void pegarObjetosView()
     {
         text_view_nome = (TextView) findViewById(R.id.text_view_nome);
         text_view_sexo = (TextView) findViewById(R.id.text_view_sexo);
@@ -54,13 +51,12 @@ public class AreaBabaActivity extends AppCompatActivity
         text_view_email.setText(UsuarioFinal.getEmail());
         text_view_idade.setText(UsuarioFinal.getIdade());
 
-        //img_baba.setImageDrawable();
+        //TODO: implementar foto babá
     }
 
 
     public void abrirTelaRegistroBaba(View view)
     {
-        intent = new Intent(this, RegistroBabaActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, RegistroBabaActivity.class));
     }
 }

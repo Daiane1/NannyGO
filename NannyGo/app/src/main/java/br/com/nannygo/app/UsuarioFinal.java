@@ -1,6 +1,7 @@
 package br.com.nannygo.app;
 
-public class UsuarioFinal {
+public class UsuarioFinal
+{
     private static String nome;
     private static String sexo;
     private static String telefone;
@@ -12,63 +13,75 @@ public class UsuarioFinal {
     private static String imagem;
 
 
-    public static String getNome() {
+    public static String getNome()
+    {
         return nome;
     }
 
-    public static void setNome(String nome) {
+    public static void setNome(String nome)
+    {
         UsuarioFinal.nome = nome;
     }
 
-    public static String getSexo() {
+    public static String getSexo()
+    {
         return sexo;
     }
 
-    public static void setSexo(String sexo) {
+    public static void setSexo(String sexo)
+    {
         UsuarioFinal.sexo = sexo;
     }
 
-    public static String getTelefone() {
+    public static String getTelefone()
+    {
         return telefone;
     }
 
-    public static void setTelefone(String telefone) {
+    public static void setTelefone(String telefone)
+    {
         UsuarioFinal.telefone = telefone;
     }
 
-    public static String getEmail() {
+    public static String getEmail()
+    {
         return email;
     }
 
-    public static void setEmail(String email) {
+    public static void setEmail(String email)
+    {
         UsuarioFinal.email = email;
     }
 
-    public static String getLogin() {
+    public static String getLogin()
+    {
         return login;
     }
 
-    public static void setLogin(String login) {
+    public static void setLogin(String login)
+    {
         UsuarioFinal.login = login;
     }
 
-    public static String getSenha() {
+    public static String getSenha()
+    {
         return senha;
     }
 
-    public static void setSenha(String senha) {
+    public static void setSenha(String senha)
+    {
         UsuarioFinal.senha = senha;
     }
 
-    public static String getDataNascimento() {
+    public static String getDataNascimento()
+    {
         return dataNascimento;
     }
 
-    public static void setDataNascimento(String dataNascimento) {
+    public static void setDataNascimento(String dataNascimento)
+    {
         UsuarioFinal.dataNascimento = dataNascimento;
     }
-
-
 
     public static String getIdade()
     {
@@ -81,19 +94,23 @@ public class UsuarioFinal {
         return viewIdade;
     }
 
-    public static String getIdCidade() {
+    public static String getIdCidade()
+    {
         return idCidade;
     }
 
-    public static void setIdCidade(String idCidade) {
+    public static void setIdCidade(String idCidade)
+    {
         UsuarioFinal.idCidade = idCidade;
     }
 
-    public static String getImagem() {
+    public static String getImagem()
+    {
         return imagem;
     }
 
-    public static void setImagem(String imagem) {
+    public static void setImagem(String imagem)
+    {
         UsuarioFinal.imagem = imagem;
     }
 }

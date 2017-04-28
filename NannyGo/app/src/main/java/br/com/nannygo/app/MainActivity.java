@@ -1,6 +1,5 @@
 package br.com.nannygo.app;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -27,9 +26,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         context = this;
+        pegarView();
+    }
+
+    private void pegarView()
+    {
         edit_text_login = (EditText) findViewById(R.id.edit_text_login);
         edit_text_senha = (EditText) findViewById(R.id.edit_text_senha);
-
     }
 
     public void abrirTelaRegistro(View view) {
@@ -45,13 +48,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private class AutenticarUsuarioTask extends AsyncTask<Void, Void, Void> {
-        ProgressDialog progress;
         String retornoJson;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
 
         @Override
         protected Void doInBackground(Void... params) {
@@ -68,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
             if (retornoJson.isEmpty())
             {
+                //Criação de dialog caso o login não foi bem sucedido.
                 new AlertDialog.Builder(context)
                         .setTitle("Acesso Negado")
                         .setNeutralButton("OK", null)
@@ -85,6 +83,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //  Criação de uma classe com atributos estáticos, para que os dados do usuário sejam utilizados
+    //no aplicativo sejam iguais, uma vez que a classe implementada pelo Gson não implementa campos
+    //estáticos.
     private void criarUsuarioFinal(Usuario usuario) {
         UsuarioFinal.setNome(usuario.getNome());
         UsuarioFinal.setSexo(usuario.getSexo());

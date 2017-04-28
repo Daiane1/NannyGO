@@ -36,14 +36,13 @@ public class BabasActivity extends AppCompatActivity
         setContentView(R.layout.activity_baba);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        list_view_babas = (ListView) findViewById(R.id.list_view_babas);
         context = this;
 
-
+        list_view_babas = (ListView) findViewById(R.id.list_view_babas);
         abrirDetalhesBaba();
+
         new ConfigurarListaBabasTask().execute();
     }
 
@@ -54,8 +53,7 @@ public class BabasActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-                Intent intent = new Intent(context, DetalhesBabaActivity.class);
-                
+                startActivity(new Intent(context, DetalhesBabaActivity.class));
             }
         });
     }
@@ -105,11 +103,12 @@ public class BabasActivity extends AppCompatActivity
                         .setIcon(android.R.drawable.ic_delete)
                         .setMessage("Houve um erro em acessar a lista de babás. Tente novamente.")
                         .show();
-            }
-            else
+            } else
             {
                 Log.d("json", retornoJson);
-                lstBabas = gson.fromJson(retornoJson, new TypeToken<List<Baba>>() {}.getType());
+                lstBabas = gson.fromJson(retornoJson, new TypeToken<List<Baba>>()
+                {
+                }.getType());
                 configurarAdapter();
             }
         }

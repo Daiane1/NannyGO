@@ -21,10 +21,9 @@ import java.util.List;
 
 public class RegistroBabaActivity extends AppCompatActivity
 {
-    static Spinner spinner_disponibilidade;
+    Spinner spinner_disponibilidade;
     static int condicaoHora;
-    static ImageView img_hora_inicio, img_hora_fim;
-    static TextView text_view_hora_inicio, text_view_hora_fim;
+    ImageView img_hora_inicio, img_hora_fim;
     Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -36,11 +35,17 @@ public class RegistroBabaActivity extends AppCompatActivity
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        context = this;
+
         pegarView();
         abrirDialogHora();
         preencherSpinner();
+        configurarBotaoConfirma();
 
-        context = this;
+    }
+
+    private void configurarBotaoConfirma()
+    {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,7 +53,6 @@ public class RegistroBabaActivity extends AppCompatActivity
                 startActivity(new Intent(context, BabasActivity.class));
             }
         });
-
     }
 
     private void abrirDialogHora() {
@@ -74,8 +78,6 @@ public class RegistroBabaActivity extends AppCompatActivity
         spinner_disponibilidade = (Spinner) findViewById(R.id.spinner_disponibilidade);
         img_hora_inicio = (ImageView) findViewById(R.id.img_hora_inicio);
         img_hora_fim = (ImageView) findViewById(R.id.img_hora_fim);
-        text_view_hora_inicio = (TextView) findViewById(R.id.text_view_hora_inicio);
-        text_view_hora_fim = (TextView) findViewById(R.id.text_view_hora_fim);
     }
 
     private void preencherSpinner() {
@@ -99,8 +101,10 @@ public class RegistroBabaActivity extends AppCompatActivity
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
             String text_hora = String.format("%02d:%02d", hourOfDay, minute);
             if (condicaoHora == 0) {
+                TextView text_view_hora_inicio = (TextView)getView().findViewById(R.id.text_view_hora_inicio);
                 text_view_hora_inicio.setText(text_hora);
             } else if (condicaoHora == 1) {
+                TextView text_view_hora_fim = (TextView)getView().findViewById(R.id.text_view_hora_fim);
                 text_view_hora_fim.setText(text_hora);
             }
         }

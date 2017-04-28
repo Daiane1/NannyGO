@@ -23,9 +23,9 @@ import java.util.Calendar;
 public class RegistroActivity extends AppCompatActivity
 {
     EditText edit_text_nome, edit_text_login, edit_text_senha, edit_text_confirmar, edit_text_telefone, edit_text_email;
-    static TextView text_view_data_nascimento;
+    TextView text_view_data_nascimento;
     RadioButton radio_masculino, radio_feminino;
-    String nome, login, telefone, email, sexo, data_nascimento_mysql;
+    String nome, login, telefone, email, sexo, dataNascimentoBanco;
     String senha = "";
     String confirmar = "-";
     FloatingActionButton fab;
@@ -39,12 +39,17 @@ public class RegistroActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         context = this;
+
         text_view_data_nascimento = (TextView) findViewById(R.id.text_view_data_nascimento);
         text_view_data_nascimento.setKeyListener(null);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        fab = (FloatingActionButton) findViewById(R.id.fab);
+        configurarBotaoConfirmar();
+    }
 
+    private void configurarBotaoConfirmar()
+    {
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -54,13 +59,32 @@ public class RegistroActivity extends AppCompatActivity
                 inserirBanco();
             }
         });
-
-
     }
 
     private void inserirBanco()
     {
+        nome = edit_text_nome.getText().toString();
+        login = edit_text_login.getText().toString();
+        senha = edit_text_senha.getText().toString();
+        confirmar = edit_text_confirmar.getText().toString();
+        telefone = edit_text_telefone.getText().toString();
+        email = edit_text_email.getText().toString();
 
+        verificarSexoSelecionado();
+        formatarData();
+
+        //Substitui todos ' ' para '_' para o funcionamento do link PhP
+        nome = nome.replaceAll(" ", "_");
+
+        //Verifica se a senha em ambos os campos estiver semelhante(senha e confirmar senha)
+        if (senha.equals(confirmar))
+        {
+            new RegistroUsuarioTask().execute();
+        }
+    }
+
+    private void verificarSexoSelecionado()
+    {
         if (radio_masculino.isChecked())
         {
             sexo = "M";
@@ -70,24 +94,13 @@ public class RegistroActivity extends AppCompatActivity
         {
             sexo = "F";
         }
+    }
 
-        nome = edit_text_nome.getText().toString();
-        login = edit_text_login.getText().toString();
-        senha = edit_text_senha.getText().toString();
-        confirmar = edit_text_confirmar.getText().toString();
-        telefone = edit_text_telefone.getText().toString();
-        email = edit_text_email.getText().toString();
-
+    private void formatarData()
+    {
+        //Formata a data de 'dd/MM/yyyy' para 'yyyy-MM-dd'
         String data_nascimento[] = text_view_data_nascimento.getText().toString().split("-");
-        data_nascimento_mysql = String.format("%s-%s-%s", data_nascimento[2], data_nascimento[1], data_nascimento[0]);
-
-        nome = nome.replaceAll(" ", "_");
-
-
-        if (senha.equals(confirmar))
-        {
-            new RegistroUsuarioTask().execute();
-        }
+        dataNascimentoBanco = String.format("%s-%s-%s", data_nascimento[2], data_nascimento[1], data_nascimento[0]);
     }
 
     private void encontrarObjetosView()
@@ -108,7 +121,6 @@ public class RegistroActivity extends AppCompatActivity
         cal.show(getFragmentManager(), "calendario");
     }
 
-
     private class RegistroUsuarioTask extends AsyncTask<Void, Void, Void>
     {
         ProgressDialog progress;
@@ -124,7 +136,7 @@ public class RegistroActivity extends AppCompatActivity
         protected Void doInBackground(Void... params)
         {
             String link = String.format("http://10.0.2.2/20171sem/NannyGO/registroUsuario.php?nome=%s&login=%s&senha=%s&sexo=%s&telefone=%s&email=%s&data_nascimento=%s",
-                    nome, login, senha, sexo, telefone, email, data_nascimento_mysql);
+                    nome, login, senha, sexo, telefone, email, dataNascimentoBanco);
             Log.d("link", link);
             HttpConnection.get(link);
             return null;
@@ -155,8 +167,8 @@ public class RegistroActivity extends AppCompatActivity
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth)
         {
             String dataSelecionada = String.format("%02d-%02d-%d", dayOfMonth, ++month, year);
+            TextView text_view_data_nascimento = (TextView)getView().findViewById(R.id.text_view_data_nascimento);
             text_view_data_nascimento.setText(dataSelecionada);
-
         }
     }
 

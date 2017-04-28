@@ -2,13 +2,13 @@ package br.com.nannygo.app;
 
 public class Usuario {
 
-    private  String nome;
-    private  String sexo;
-    private  String telefone;
-    private  String email;
-    private  String login;
-    private  String senha;
-    private  String dataNascimento;
+    private String nome;
+    private String sexo;
+    private String telefone;
+    private String email;
+    private String login;
+    private String senha;
+    private String dataNascimento;
     private String idCidade;
     private String imagem;
 
