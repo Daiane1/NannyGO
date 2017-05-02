@@ -61,6 +61,8 @@ public class RegistroActivity extends AppCompatActivity
         });
     }
 
+
+
     private void inserirBanco()
     {
         nome = edit_text_nome.getText().toString();

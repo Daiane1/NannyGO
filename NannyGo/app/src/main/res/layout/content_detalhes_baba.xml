@@ -59,14 +59,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Preço /"
+                android:text="Preço "
                 android:id="@+id/preco_item_baba"
                 />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hora"
+                android:text="/Hora"
                 android:id="@+id/hora_item_baba"
                 />
 

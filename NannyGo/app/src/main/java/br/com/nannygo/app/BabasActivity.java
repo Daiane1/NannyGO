@@ -56,6 +56,7 @@ public class BabasActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
                 Intent intent = new Intent(context, DetalhesBabaActivity.class);
+                intent.putExtra("preco", lstBabas.get(position).getPreco());
                 intent.putExtra("idusuario", lstBabas.get(position).getIdUsuario());
                 startActivity(intent);
             }
