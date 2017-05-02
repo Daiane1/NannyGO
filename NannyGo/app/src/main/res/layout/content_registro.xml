@@ -52,7 +52,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Senha"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -113,6 +114,24 @@
                     android:onClick="abrirSelecaoData"
                     android:layout_gravity="center"/>
             </TableRow>
+            <TableRow>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Cidade"
+                    android:textSize="8pt"
+                    android:id="@+id/edit_text_cidade"
+                    />
+                <ImageView
+                    android:layout_height="28dp"
+                    android:layout_width="28dp"
+                    android:layout_weight="0"
+                    android:adjustViewBounds="true"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_search_black_24dp"
+                    android:onClick="abrirSelecaoCidade"/>
+            </TableRow>
         </TableLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -138,7 +157,6 @@
                 android:layout_height="wrap_content"
                 android:hint="Email" />
         </android.support.design.widget.TextInputLayout>
-
 
     </LinearLayout>
 

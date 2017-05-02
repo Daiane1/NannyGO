@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 public class VerificacaoActivity extends AppCompatActivity {
 
-    TextView text_view_nome;
+    TextView text_view_nome, text_view_bemvindo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +21,20 @@ public class VerificacaoActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         mostrarPrimeiroNome();
+
+        configurarBemVindo();
+    }
+
+    private void configurarBemVindo()
+    {
+        text_view_bemvindo = (TextView) findViewById(R.id.text_view_bemvindo);
+        if(UsuarioFinal.getSexo().equals("F")){
+            text_view_bemvindo.setText("Bem Vinda");
+        }
+        else
+        {
+            text_view_bemvindo.setText("Bem Vindo");
+        }
     }
 
     private void mostrarPrimeiroNome()

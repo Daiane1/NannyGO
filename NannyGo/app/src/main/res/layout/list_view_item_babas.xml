@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:text="R$ 100,00"
                 android:layout_gravity="end"
-                android:visibility="visible"/>
+                android:visibility="invisible"/>
             <TextView
                 android:id="@+id/preco_hora_baba"
                 android:layout_width="wrap_content"

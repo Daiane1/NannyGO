@@ -22,7 +22,7 @@ import java.util.Calendar;
 
 public class RegistroActivity extends AppCompatActivity
 {
-    EditText edit_text_nome, edit_text_login, edit_text_senha, edit_text_confirmar, edit_text_telefone, edit_text_email;
+    EditText edit_text_nome, edit_text_login, edit_text_senha, edit_text_confirmar, edit_text_telefone, edit_text_email, edit_text_cidade;
     static TextView text_view_data_nascimento;
     RadioButton radio_masculino, radio_feminino;
     String nome, login, telefone, email, sexo, dataNascimentoBanco;
@@ -113,12 +113,18 @@ public class RegistroActivity extends AppCompatActivity
         edit_text_email = (EditText) findViewById(R.id.edit_text_email);
         radio_feminino = (RadioButton) findViewById(R.id.radio_feminino);
         radio_masculino = (RadioButton) findViewById(R.id.radio_masculino);
+        edit_text_cidade = (EditText) findViewById(R.id.edit_text_cidade);
     }
 
     public void abrirSelecaoData(View view)
     {
         DialogFragment cal = new RegistroActivity.DatePickerFragment();
         cal.show(getFragmentManager(), "calendario");
+    }
+
+    public void abrirSelecaoCidade(View view)
+    {
+        //startActivity(new Intent(context, SelecaoCidadeActivity.class));
     }
 
     private class RegistroUsuarioTask extends AsyncTask<Void, Void, Void>
