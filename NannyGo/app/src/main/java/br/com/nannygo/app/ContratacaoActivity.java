@@ -48,6 +48,15 @@ public class ContratacaoActivity extends AppCompatActivity
         configurarSelecaoHora();
         configurarBotaoConfirmar();
         configurarBotaoCalendario();
+
+        pegarView();
+    }
+
+    private void pegarView()
+    {
+        text_view_data = (TextView) findViewById(R.id.text_view_data);
+        text_view_hora_inicio = (TextView) findViewById(R.id.text_view_hora_inicio);
+        text_view_hora_fim = (TextView) findViewById(R.id.text_view_hora_fim);
     }
 
     private void configurarSelecaoHora()
