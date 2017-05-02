@@ -4,5 +4,7 @@
 	{
 		die("Conexão falhou: " . mysqli_connect_error());
 	}
+	
+	//teste
 
 ?>
