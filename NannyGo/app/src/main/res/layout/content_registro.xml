@@ -101,7 +101,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="8pt"
-                    android:hint="00-00-0000"
+                    android:hint="Data de nascimento"
                     android:layout_weight="1"
                     android:id="@+id/text_view_data_nascimento"
                     android:textColor="@color/preto"/>

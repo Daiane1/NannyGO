@@ -1,4 +1,6 @@
 <?php
+	require_once('conexao.php');
+
 	$nome = $_GET['nome'];
 	$login = $_GET['login'];
 	$senha = $_GET['senha'];
@@ -19,9 +21,8 @@
 	}
 	
 	$sql = "INSERT INTO tbl_usuarios(nome, login, senha, sexo, telefone, email, data_nascimento, idCidade, imagem) VALUES('".$nome."','".$login."','".$senha."','".$sexo."','".$telefone."','".$email."','".$data_nascimento."', 1, '".$imagem."');";
-	$conexao = mysql_connect('localhost', 'root', 'bcd127');
-	mysql_select_db('db_nannygo');
-	echo($sql);
 	
-	mysql_query($sql);
+	mysqli_query($conexao, $sql);
+	
+	mysqli_close($conexao);
 ?>

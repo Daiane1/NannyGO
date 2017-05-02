@@ -50,6 +50,7 @@ public class ContratacaoActivity extends AppCompatActivity
         configurarBotaoCalendario();
 
         pegarView();
+
     }
 
     private void pegarView()

@@ -13,7 +13,7 @@ public class Usuario
     private String dataNascimento;
     private String idCidade;
     private String imagem;
-    private boolean statusBaba;
+    private String statusBaba;
 
 
     public String getNome()
@@ -71,12 +71,12 @@ public class Usuario
         this.idUsuario = idUsuario;
     }
 
-    public boolean getStatusBaba()
+    public String getStatusBaba()
     {
         return statusBaba;
     }
 
-    public void setStatusBaba(boolean statusBaba)
+    public void setStatusBaba(String statusBaba)
     {
         this.statusBaba = statusBaba;
     }

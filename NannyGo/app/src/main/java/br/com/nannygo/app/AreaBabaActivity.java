@@ -1,17 +1,27 @@
 package br.com.nannygo.app;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import static android.view.View.GONE;
 
 public class AreaBabaActivity extends AppCompatActivity
 {
     TextView text_view_nome, text_view_sexo, text_view_telefone, text_view_email, text_view_idade;
     ImageView img_baba;
+    Button btn_disponivel, btn_indisponivel;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -22,9 +32,26 @@ public class AreaBabaActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        context = this;
 
         pegarObjetosView();
         inserirCampos();
+
+        configurarBotaoRegistro();
+    }
+
+    private void configurarBotaoRegistro()
+    {
+        if(UsuarioFinal.getStatusBaba().equals("1"))
+        {
+            btn_disponivel.setVisibility(GONE);
+            btn_indisponivel.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            btn_disponivel.setVisibility(View.VISIBLE);
+            btn_indisponivel.setVisibility(GONE);
+        }
     }
 
     private void pegarObjetosView()
@@ -35,6 +62,8 @@ public class AreaBabaActivity extends AppCompatActivity
         text_view_email = (TextView) findViewById(R.id.text_view_email);
         text_view_idade = (TextView) findViewById(R.id.text_view_idade);
         img_baba = (ImageView) findViewById(R.id.img_baba);
+        btn_disponivel = (Button) findViewById(R.id.btn_disponivel);
+        btn_indisponivel = (Button) findViewById(R.id.btn_indisponivel);
     }
 
     private void inserirCampos()
@@ -62,5 +91,43 @@ public class AreaBabaActivity extends AppCompatActivity
 
     public void removerRegistro(View view)
     {
+        new AlertDialog.Builder(context).setTitle("Confirmação").setMessage("Deseja mesmo remover seu registro como babá?").setPositiveButton("Sim", new DialogInterface.OnClickListener()
+        {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                new RemoverBabaTask().execute();
+            }
+        }).setNegativeButton("Não", null).show();
+
     }
+
+    private class RemoverBabaTask extends AsyncTask<Void, Void, Void>
+    {
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... params)
+        {
+            String link = String.format("http://10.0.2.2/20171sem/NannyGO/removerBaba.php?id_usuario=%s",
+                    UsuarioFinal.getIdUsuario());
+            HttpConnection.get(link);
+            Log.d("link", link);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid)
+        {
+            super.onPostExecute(aVoid);
+            UsuarioFinal.setStatusBaba("0");
+            startActivity(new Intent(context, VerificacaoActivity.class));
+        }
+    }
+
 }

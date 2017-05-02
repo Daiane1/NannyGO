@@ -48,7 +48,7 @@ public class BabaAdapter extends ArrayAdapter<Baba>
     {
         hora_baba.setText(hora);
         dia_semana_baba.setText(baba.getDiasDisponiveis());
-        id_baba.setText(baba.getIdBaba().toString());
+        id_baba.setText(baba.getIdUsuario().toString());
         preco_hora_baba.setText(preco);
         nome_item_baba.setText(baba.getNome());
         img_baba.setImageResource(R.drawable.babym);

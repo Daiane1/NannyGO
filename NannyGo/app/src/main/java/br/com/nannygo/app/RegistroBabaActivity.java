@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -29,6 +30,7 @@ public class RegistroBabaActivity extends AppCompatActivity
     EditText edit_text_preco;
     static TextView text_view_hora_inicio, text_view_hora_fim;
     Context context;
+    String preco, horaInicio, horaFim, diasDisponiveis;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -54,6 +56,10 @@ public class RegistroBabaActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                preco = edit_text_preco.getText().toString();
+                horaInicio = text_view_hora_inicio.getText().toString();
+                horaFim = text_view_hora_fim.getText().toString();
+                diasDisponiveis = spinner_disponibilidade.getSelectedItem().toString();
                 new RegistrarBabaTask().execute();
                 //startActivity(new Intent(context, BabasActivity.class));
             }
@@ -123,11 +129,9 @@ public class RegistroBabaActivity extends AppCompatActivity
         {
             String link = String.format("http://10.0.2.2/20171sem/NannyGO/registrarBaba.php?id_usuario=%s&preco=%s&horaInicio=%s&horaFim=%s&diasDisponiveis=%s",
                     UsuarioFinal.getIdUsuario(),
-                    edit_text_preco.getText().toString(),
-                    text_view_hora_inicio.getText().toString(),
-                    text_view_hora_fim.getText().toString(),
-                    spinner_disponibilidade.getSelectedItem());
+                    preco, horaInicio, horaFim, diasDisponiveis);
             HttpConnection.get(link);
+            Log.d("link", link);
             return null;
         }
 
@@ -135,7 +139,7 @@ public class RegistroBabaActivity extends AppCompatActivity
         protected void onPostExecute(Void aVoid)
         {
             super.onPostExecute(aVoid);
-            UsuarioFinal.setStatusBaba(true);
+            UsuarioFinal.setStatusBaba("1");
             startActivity(new Intent(context, BabasActivity.class));
         }
     }

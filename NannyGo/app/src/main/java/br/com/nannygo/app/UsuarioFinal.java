@@ -12,7 +12,7 @@ public class UsuarioFinal
     private static String dataNascimento;
     private static String idCidade;
     private static String imagem;
-    private static boolean statusBaba;
+    private static String statusBaba;
 
 
     public static String getNome()
@@ -126,12 +126,12 @@ public class UsuarioFinal
         UsuarioFinal.idUsuario = idUsuario;
     }
 
-    public static boolean getStatusBaba()
+    public static String getStatusBaba()
     {
         return statusBaba;
     }
 
-    public static void setStatusBaba(boolean statusBaba)
+    public static void setStatusBaba(String statusBaba)
     {
         UsuarioFinal.statusBaba = statusBaba;
     }

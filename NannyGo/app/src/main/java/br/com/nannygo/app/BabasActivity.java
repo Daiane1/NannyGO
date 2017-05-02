@@ -44,6 +44,8 @@ public class BabasActivity extends AppCompatActivity
         abrirDetalhesBaba();
 
         new ConfigurarListaBabasTask().execute();
+
+
     }
 
     private void abrirDetalhesBaba()
@@ -53,7 +55,9 @@ public class BabasActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
-                startActivity(new Intent(context, DetalhesBabaActivity.class));
+                Intent intent = new Intent(context, DetalhesBabaActivity.class);
+                intent.putExtra("idusuario", lstBabas.get(position).getIdUsuario());
+                startActivity(intent);
             }
         });
     }
