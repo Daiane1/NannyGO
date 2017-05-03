@@ -127,7 +127,9 @@ public class RegistroBabaActivity extends AppCompatActivity
         @Override
         protected Void doInBackground(Void... params)
         {
-            String link = String.format("http://10.0.2.2/20171sem/NannyGO/registrarBaba.php?id_usuario=%s&preco=%s&horaInicio=%s&horaFim=%s&diasDisponiveis=%s",
+            String href = getResources().getString(R.string.linkAWS);
+            String link = String.format("%sregistrarBaba.php?id_usuario=%s&preco=%s&horaInicio=%s&horaFim=%s&diasDisponiveis=%s",
+                    href,
                     UsuarioFinal.getIdUsuario(),
                     preco, horaInicio, horaFim, diasDisponiveis);
             HttpConnection.get(link);

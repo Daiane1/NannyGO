@@ -81,7 +81,8 @@ public class BabasActivity extends AppCompatActivity
         @Override
         protected Void doInBackground(Void... params)
         {
-            String link = "http://10.0.2.2/20171sem/NannyGO/configurarListaBaba.php";
+            String href = getResources().getString(R.string.linkAWS);
+            String link = String.format("%sconfigurarListaBaba.php", href);
             retornoJson = HttpConnection.get(link);
             return null;
         }
@@ -92,29 +93,32 @@ public class BabasActivity extends AppCompatActivity
             super.onPostExecute(aVoid);
             Gson gson = new GsonBuilder().excludeFieldsWithModifiers(Modifier.VOLATILE).create();
 
-            if (retornoJson.isEmpty())
+            if (retornoJson != null)
             {
-                //Alert Dialog caso o acesso a lista de babás não foi bem sucedido
-                new AlertDialog.Builder(context)
-                        .setTitle("Erro")
-                        .setPositiveButton("OK", new DialogInterface.OnClickListener()
-                        {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which)
-                            {
-                                startActivity(new Intent(context, VerificacaoActivity.class));
-                            }
-                        })
-                        .setIcon(android.R.drawable.ic_delete)
-                        .setMessage("Houve um erro em acessar a lista de babás. Tente novamente.")
-                        .show();
-            } else
-            {
-                Log.d("json", retornoJson);
-                lstBabas = gson.fromJson(retornoJson, new TypeToken<List<Baba>>()
+                if (retornoJson.isEmpty())
                 {
-                }.getType());
-                configurarAdapter();
+                    //Alert Dialog caso o acesso a lista de babás não foi bem sucedido
+                    new AlertDialog.Builder(context)
+                            .setTitle("Erro")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener()
+                            {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which)
+                                {
+                                    startActivity(new Intent(context, VerificacaoActivity.class));
+                                }
+                            })
+                            .setIcon(android.R.drawable.ic_delete)
+                            .setMessage("Houve um erro em acessar a lista de babás. Tente novamente.")
+                            .show();
+                } else
+                {
+                    Log.d("json", retornoJson);
+                    lstBabas = gson.fromJson(retornoJson, new TypeToken<List<Baba>>()
+                    {
+                    }.getType());
+                    configurarAdapter();
+                }
             }
         }
     }

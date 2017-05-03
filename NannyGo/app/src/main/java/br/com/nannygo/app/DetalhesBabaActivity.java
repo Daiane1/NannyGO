@@ -52,7 +52,9 @@ public class DetalhesBabaActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params)
         {
-            String link = String.format("http://10.0.2.2/20171sem/NannyGO/pegarUsuario.php?id_usuario=%s",
+            String href = getResources().getString(R.string.linkAWS);
+            String link = String.format("%spegarUsuario.php?id_usuario=%s",
+                    href,
                     idUsuario);
             retornoJson = HttpConnection.get(link);
             Log.d("json", retornoJson);

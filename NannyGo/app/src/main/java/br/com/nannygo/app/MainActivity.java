@@ -53,8 +53,10 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            String link = String.format("http://10.0.2.2/20171sem/NannyGO/autenticarUsuario.php?login=%s&senha=%s", login, senha);
+            String href = getResources().getString(R.string.linkAWS);
+            String link = String.format("%sautenticarUsuario.php?login=%s&senha=%s", href, login, senha);
             retornoJson = HttpConnection.get(link);
+            Log.d("link", link);
             return null;
         }
 
@@ -63,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(aVoid);
 
             Gson gson = new GsonBuilder().excludeFieldsWithModifiers(Modifier.VOLATILE).create();
+
 
             if (retornoJson.isEmpty())
             {
