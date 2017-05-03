@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -60,8 +59,9 @@ public class RegistroBabaActivity extends AppCompatActivity
                 horaInicio = text_view_hora_inicio.getText().toString();
                 horaFim = text_view_hora_fim.getText().toString();
                 diasDisponiveis = spinner_disponibilidade.getSelectedItem().toString();
+
+                diasDisponiveis = diasDisponiveis.replaceAll(" ", "_");
                 new RegistrarBabaTask().execute();
-                //startActivity(new Intent(context, BabasActivity.class));
             }
         });
     }
@@ -127,13 +127,12 @@ public class RegistroBabaActivity extends AppCompatActivity
         @Override
         protected Void doInBackground(Void... params)
         {
-            String href = getResources().getString(R.string.linkAWS);
+            String href = getResources().getString(R.string.linkLocal);
             String link = String.format("%sregistrarBaba.php?id_usuario=%s&preco=%s&horaInicio=%s&horaFim=%s&diasDisponiveis=%s",
                     href,
                     UsuarioFinal.getIdUsuario(),
                     preco, horaInicio, horaFim, diasDisponiveis);
             HttpConnection.get(link);
-            Log.d("link", link);
             return null;
         }
 

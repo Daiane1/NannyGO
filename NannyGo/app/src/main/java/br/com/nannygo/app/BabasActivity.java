@@ -8,7 +8,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -44,8 +43,6 @@ public class BabasActivity extends AppCompatActivity
         abrirDetalhesBaba();
 
         new ConfigurarListaBabasTask().execute();
-
-
     }
 
     private void abrirDetalhesBaba()
@@ -81,7 +78,7 @@ public class BabasActivity extends AppCompatActivity
         @Override
         protected Void doInBackground(Void... params)
         {
-            String href = getResources().getString(R.string.linkAWS);
+            String href = getResources().getString(R.string.linkLocal);
             String link = String.format("%sconfigurarListaBaba.php", href);
             retornoJson = HttpConnection.get(link);
             return null;
@@ -113,7 +110,6 @@ public class BabasActivity extends AppCompatActivity
                             .show();
                 } else
                 {
-                    Log.d("json", retornoJson);
                     lstBabas = gson.fromJson(retornoJson, new TypeToken<List<Baba>>()
                     {
                     }.getType());

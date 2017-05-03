@@ -114,7 +114,7 @@ public class AreaBabaActivity extends AppCompatActivity
         @Override
         protected Void doInBackground(Void... params)
         {
-            String href = getResources().getString(R.string.linkAWS);
+            String href = getResources().getString(R.string.linkLocal);
             String link = String.format("%sremoverBaba.php?id_usuario=%s",
                     href,
                     UsuarioFinal.getIdUsuario());

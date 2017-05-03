@@ -126,7 +126,7 @@ public class RegistroActivity extends AppCompatActivity
 
     public void abrirSelecaoCidade(View view)
     {
-        //startActivity(new Intent(context, SelecaoCidadeActivity.class));
+        startActivity(new Intent(context, SelecaoCidadesActivity.class));
     }
 
     private class RegistroUsuarioTask extends AsyncTask<Void, Void, Void>

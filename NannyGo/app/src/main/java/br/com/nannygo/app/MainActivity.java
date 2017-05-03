@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -53,10 +52,9 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            String href = getResources().getString(R.string.linkAWS);
+            String href = getResources().getString(R.string.linkLocal);
             String link = String.format("%sautenticarUsuario.php?login=%s&senha=%s", href, login, senha);
             retornoJson = HttpConnection.get(link);
-            Log.d("link", link);
             return null;
         }
 
@@ -79,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
             }
             else
             {
-                Log.d("login", retornoJson);
                 Usuario usuario = gson.fromJson(retornoJson, Usuario.class);
                 criarUsuarioFinal(usuario);
                 Intent intent = new Intent(context, VerificacaoActivity.class);

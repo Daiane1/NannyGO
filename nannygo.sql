@@ -34,7 +34,7 @@ CREATE TABLE `tbl_babas` (
   PRIMARY KEY (`id_baba`),
   UNIQUE KEY `id_usuario_UNIQUE` (`id_usuario`),
   CONSTRAINT `fk_baba_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `tbl_usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `tbl_babas` (
 
 LOCK TABLES `tbl_babas` WRITE;
 /*!40000 ALTER TABLE `tbl_babas` DISABLE KEYS */;
-INSERT INTO `tbl_babas` VALUES (1,1,100.00,'18:00','23:59','Semana'),(2,31,5.00,'00:00','23:59','Sempre'),(3,37,50.00,'19:00','23:59','Semana'),(6,40,2.50,'23:59','00:00','Sempre');
+INSERT INTO `tbl_babas` VALUES (2,31,5.00,'00:00','23:59','Sempre'),(3,37,50.00,'19:00','23:59','Semana'),(6,40,2.50,'23:59','00:00','Sempre'),(7,1,25.56,'23:59','00:01','Final_de_semana');
 /*!40000 ALTER TABLE `tbl_babas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,7 +59,8 @@ CREATE TABLE `tbl_cidade` (
   `nome` varchar(120) DEFAULT NULL,
   `estado` int(5) DEFAULT NULL,
   PRIMARY KEY (`id_cidade`),
-  KEY `fk_Cidade_estado` (`estado`)
+  KEY `fk_Cidade_estado` (`estado`),
+  CONSTRAINT `fk_cidade_estado` FOREIGN KEY (`estado`) REFERENCES `tbl_estado` (`id_estado`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=5565 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -84,9 +85,7 @@ CREATE TABLE `tbl_estado` (
   `id_estado` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(75) DEFAULT NULL,
   `uf` varchar(5) DEFAULT NULL,
-  `pais` int(7) DEFAULT NULL,
-  PRIMARY KEY (`id_estado`),
-  KEY `fk_Estado_pais` (`pais`)
+  PRIMARY KEY (`id_estado`)
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -96,33 +95,40 @@ CREATE TABLE `tbl_estado` (
 
 LOCK TABLES `tbl_estado` WRITE;
 /*!40000 ALTER TABLE `tbl_estado` DISABLE KEYS */;
-INSERT INTO `tbl_estado` VALUES (1,'Acre','AC',1),(2,'Alagoas','AL',1),(3,'Amazonas','AM',1),(4,'Amapá','AP',1),(5,'Bahia','BA',1),(6,'Ceará','CE',1),(7,'Distrito Federal','DF',1),(8,'Espírito Santo','ES',1),(9,'Goiás','GO',1),(10,'Maranhão','MA',1),(11,'Minas Gerais','MG',1),(12,'Mato Grosso do Sul','MS',1),(13,'Mato Grosso','MT',1),(14,'Pará','PA',1),(15,'Paraíba','PB',1),(16,'Pernambuco','PE',1),(17,'Piauí','PI',1),(18,'Paraná','PR',1),(19,'Rio de Janeiro','RJ',1),(20,'Rio Grande do Norte','RN',1),(21,'Rondônia','RO',1),(22,'Roraima','RR',1),(23,'Rio Grande do Sul','RS',1),(24,'Santa Catarina','SC',1),(25,'Sergipe','SE',1),(26,'São Paulo','SP',1),(27,'Tocantins','TO',1);
+INSERT INTO `tbl_estado` VALUES (1,'Acre','AC'),(2,'Alagoas','AL'),(3,'Amazonas','AM'),(4,'Amapá','AP'),(5,'Bahia','BA'),(6,'Ceará','CE'),(7,'Distrito Federal','DF'),(8,'Espírito Santo','ES'),(9,'Goiás','GO'),(10,'Maranhão','MA'),(11,'Minas Gerais','MG'),(12,'Mato Grosso do Sul','MS'),(13,'Mato Grosso','MT'),(14,'Pará','PA'),(15,'Paraíba','PB'),(16,'Pernambuco','PE'),(17,'Piauí','PI'),(18,'Paraná','PR'),(19,'Rio de Janeiro','RJ'),(20,'Rio Grande do Norte','RN'),(21,'Rondônia','RO'),(22,'Roraima','RR'),(23,'Rio Grande do Sul','RS'),(24,'Santa Catarina','SC'),(25,'Sergipe','SE'),(26,'São Paulo','SP'),(27,'Tocantins','TO');
 /*!40000 ALTER TABLE `tbl_estado` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `tbl_pais`
+-- Table structure for table `tbl_transacoes`
 --
 
-DROP TABLE IF EXISTS `tbl_pais`;
+DROP TABLE IF EXISTS `tbl_transacoes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tbl_pais` (
-  `id_pais` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(60) DEFAULT NULL,
-  `sigla` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`id_pais`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+CREATE TABLE `tbl_transacoes` (
+  `id_transacao` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) NOT NULL,
+  `id_baba` int(11) NOT NULL,
+  `data_transacao` date NOT NULL,
+  `status_aprovado` tinyint(4) DEFAULT '0',
+  `metodo_pagamento` varchar(50) NOT NULL,
+  `valor` float NOT NULL,
+  PRIMARY KEY (`id_transacao`),
+  KEY `fk_transacoes_baba_idx` (`id_baba`),
+  KEY `fk_transacoes_usuario_idx` (`id_usuario`),
+  CONSTRAINT `fk_transacoes_baba` FOREIGN KEY (`id_baba`) REFERENCES `tbl_babas` (`id_baba`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_transacoes_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `tbl_usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tbl_pais`
+-- Dumping data for table `tbl_transacoes`
 --
 
-LOCK TABLES `tbl_pais` WRITE;
-/*!40000 ALTER TABLE `tbl_pais` DISABLE KEYS */;
-INSERT INTO `tbl_pais` VALUES (1,'Brasil','BR');
-/*!40000 ALTER TABLE `tbl_pais` ENABLE KEYS */;
+LOCK TABLES `tbl_transacoes` WRITE;
+/*!40000 ALTER TABLE `tbl_transacoes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbl_transacoes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -142,6 +148,7 @@ CREATE TABLE `tbl_usuarios` (
   `telefone` varchar(15) NOT NULL,
   `email` varchar(50) NOT NULL,
   `data_nascimento` date NOT NULL,
+  `logradouro` varchar(200) NOT NULL,
   `imagem` varchar(200) NOT NULL,
   `statusBaba` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_usuario`),
@@ -156,7 +163,7 @@ CREATE TABLE `tbl_usuarios` (
 
 LOCK TABLES `tbl_usuarios` WRITE;
 /*!40000 ALTER TABLE `tbl_usuarios` DISABLE KEYS */;
-INSERT INTO `tbl_usuarios` VALUES (1,4991,'Daiane Nascimento Rosa','dai','123','F','(11)91234-5678','daai@email.com','2000-01-30','imagens/menina.png',1),(31,4965,'Biel Santos','glsantos','123','M','011986394488','gabriel._.lima@hotmail.com','1990-01-01','imagens/menino.png',1),(35,4965,'Eilane Alves','eilane','321','F','43251671','eilane02@terra.com','2017-04-10','imagens/menina.png',0),(37,4965,'Andrey','drey','123','M','01145452687','andrey@outlook.com','2000-04-12','imagens/menino.png',1),(38,4851,'kassiano','kassiano','1234','M','11999999','kassiano.resende@gmail.com','1987-04-12','imagens/menino.png',0),(40,1,'Joyce','Joyce','negro','F','011948188045','joyce@gmail.com','2000-10-05','',1),(41,1,'Daiane','dailinda','10093454','F','011974565231','dai@email.com','2000-01-30','R.drawable.babyF',0);
+INSERT INTO `tbl_usuarios` VALUES (1,4991,'Daiane Nascimento Rosa','dai','123','F','(11)91234-5678','daai@email.com','2000-01-30','','imagens/menina.png',1),(31,4965,'Biel Santos','glsantos','123','M','011986394488','gabriel._.lima@hotmail.com','1990-01-01','','imagens/menino.png',1),(35,4965,'Eilane Alves','eilane','321','F','43251671','eilane02@terra.com','2017-04-10','','imagens/menina.png',0),(37,4965,'Andrey','drey','123','M','01145452687','andrey@outlook.com','2000-04-12','','imagens/menino.png',1),(38,4851,'kassiano','kassiano','1234','M','11999999','kassiano.resende@gmail.com','1987-04-12','','imagens/menino.png',0),(40,1,'Joyce','Joyce','negro','F','011948188045','joyce@gmail.com','2000-10-05','','',1),(41,1,'Daiane','dailinda','10093454','F','011974565231','dai@email.com','2000-01-30','','R.drawable.babyF',0);
 /*!40000 ALTER TABLE `tbl_usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -169,4 +176,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-28 16:48:56
+-- Dump completed on 2017-05-03 16:46:43
