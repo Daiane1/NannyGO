@@ -80,6 +80,17 @@ public class Usuario
     {
         this.statusBaba = statusBaba;
     }
+
+    public String getIdade()
+    {
+        String dataNascimento[] = getDataNascimento().split("-");
+        final java.util.Calendar c = java.util.Calendar.getInstance();
+        int ano = c.get(java.util.Calendar.YEAR);
+        int idade = ano - Integer.parseInt(dataNascimento[0]);
+        String viewIdade = String.format("%d anos", idade);
+
+        return viewIdade;
+    }
 }
 
 

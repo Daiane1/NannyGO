@@ -14,230 +14,128 @@
     tools:showIn="@layout/activity_detalhes_baba"
     android:orientation="vertical">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="horizontal"
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-        <ImageView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:id="@+id/img_item_baba"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-
-            />
-
-        <LinearLayout
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="15dp"
-            >
-
-            <TextView
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/nome_item_baba"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/avaliacao_item_baba" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="60dp"
-            >
-
+        <TableRow>
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/baba"
+                android:id="@+id/img_baba"
+                />
+            <TableLayout>
+                <TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxWidth="250dp"
+                        android:textSize="10pt"
+                        android:textAllCaps="true"
+                        android:fontFamily="sans-serif-smallcaps"
+                        android:textColor="@color/azul"
+                        android:id="@+id/text_view_nome"
+                        android:maxLines="1"/>
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/azul"
+                        android:id="@+id/text_view_idade"
+                        android:textSize="8pt"/>
+                </TableRow>
+            </TableLayout>
+        </TableRow>
+        <TableRow
+            android:layout_marginTop="5dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Preço "
-                android:id="@+id/preco_item_baba"
+                android:text="Sexo"
+                android:textSize="8pt"
                 />
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="8pt"
+                android:textColor="@color/azul"
+                android:maxWidth="250dp"
+                android:id="@+id/text_view_sexo"/>
+        </TableRow>
+        <TableRow
+            android:layout_marginTop="5dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="/Hora"
-                android:id="@+id/hora_item_baba"
+                android:text="Telefone"
+                android:textSize="8pt"
                 />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal" >
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="8pt"
+                android:textColor="@color/azul"
+                android:maxWidth="250dp"
+                android:id="@+id/text_view_telefone"
+                />
+        </TableRow>
+        <TableRow
+            android:layout_marginTop="5dp">
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="20dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:text="Descrição"
-            android:textSize="30dp"
-            android:textColor="@color/rosa"
-            android:textAlignment="center"
-            android:layout_marginBottom="10dp"
-            android:textStyle="bold"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_marginBottom="10dp">
-
-            <TextView
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Endereço:"
-                android:textSize="17dp"
-                android:textColor="@color/azul"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Rua Maria Siqueira, "
-                android:layout_marginLeft="5dp"
-                android:id="@+id/text_detalhes_endereco"
-                android:textSize="17dp"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="102"
-                android:id="@+id/text_detalhes_numero"
-                android:textSize="17dp"/>
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_marginBottom="10dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Cidade:"
-                android:textSize="17dp"
-                android:textColor="@color/azul"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Barueri"
-                android:layout_marginLeft="5dp"
-                android:id="@+id/text_detalhes_cidade"
-                android:textSize="17dp"/>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_marginBottom="10dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Estado:"
-                android:textSize="17dp"
-                android:textColor="@color/azul"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="São Paulo"
-                android:layout_marginLeft="5dp"
-                android:id="@+id/text_detalhes_estado"
-                android:textSize="17dp"
+                android:text="E-mail"
+                android:textSize="8pt"
                 />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_marginBottom="10dp">
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Email:"
-                android:textSize="17dp"
+                android:layout_weight="1"
+                android:textSize="8pt"
                 android:textColor="@color/azul"
-                android:textStyle="bold"/>
-
+                android:maxWidth="250dp"
+                android:id="@+id/text_view_email"
+                />
+        </TableRow>
+        <TableRow
+            android:layout_marginTop="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cidade"
+                android:textSize="8pt"
+                />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="biiacastro@outlook.com"
-                android:layout_marginLeft="5dp"
-                android:id="@+id/text_detalhes_email"
-                android:textSize="17dp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_marginBottom="10dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Telefone:"
-                android:textSize="17dp"
+                android:layout_weight="1"
+                android:textSize="8pt"
                 android:textColor="@color/azul"
-                android:textStyle="bold"/>
-
+                android:maxWidth="250dp"
+                android:id="@+id/text_view_cidade"
+                />
+        </TableRow>
+        <TableRow
+            android:layout_marginTop="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Estado"
+                android:textSize="8pt"
+                />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="4303-5101"
-                android:layout_marginLeft="5dp"
-                android:id="@+id/text_detalhes_telefone"
-                android:textSize="17dp"/>
-
-        </LinearLayout>
-        <Button
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:text="Contratar Babá"
-            android:layout_gravity="end"
-            android:background="@color/rosa"
-            android:textColor="@color/branco"
-            android:onClick="abrirTelaConfirmacao"
-            />
-
-    </LinearLayout>
+                android:layout_weight="1"
+                android:textSize="8pt"
+                android:textColor="@color/azul"
+                android:maxWidth="250dp"
+                android:id="@+id/text_view_estado"
+                />
+        </TableRow>
+    </TableLayout>
 
 </LinearLayout>

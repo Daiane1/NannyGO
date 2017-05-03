@@ -17,7 +17,8 @@ public class DetalhesBabaActivity extends AppCompatActivity {
     String retornoJson;
     Integer idUsuario;
     String preco;
-    static TextView text_view_sexo, text_view_email, text_view_preco;
+    static TextView text_view_nome, text_view_sexo, text_view_email, text_view_preco, text_view_telefone, text_view_idade, text_view_estado, text_view_cidade;
+    Usuario usuario;
 
 
     @Override
@@ -42,13 +43,40 @@ public class DetalhesBabaActivity extends AppCompatActivity {
 
     private void pegarUsuarioView()
     {
+        text_view_nome = (TextView) findViewById(R.id.text_view_nome);
         text_view_sexo = (TextView) findViewById(R.id.text_view_sexo);
         text_view_email = (TextView) findViewById(R.id.text_view_email);
+        text_view_telefone = (TextView) findViewById(R.id.text_view_telefone);
+        text_view_idade = (TextView) findViewById(R.id.text_view_idade);
         text_view_preco = (TextView) findViewById(R.id.preco_hora_baba);
+        text_view_cidade = (TextView) findViewById(R.id.text_view_cidade);
+        text_view_estado = (TextView) findViewById(R.id.text_view_estado);
+
+    }
+
+    public void inserirCampos()
+    {
+        text_view_nome.setText(usuario.getNome());
+
+        if (usuario.getSexo().equals("M"))
+        {
+            text_view_sexo.setText("Masculino");
+        } else if (usuario.getSexo().equals("F"))
+        {
+            text_view_sexo.setText("Feminino");
+        }
+        text_view_telefone.setText(usuario.getTelefone());
+        text_view_email.setText(usuario.getEmail());
+        text_view_idade.setText(usuario.getIdade());
+        text_view_cidade.setText(usuario.getIdade());
+        text_view_estado.setText(usuario.getIdade());
+        //text_view_preco.setText(preco);
+
     }
 
     private class PegarUsuarioTask extends AsyncTask<Void, Void, Void>
     {
+        String retornoJson;
         @Override
         protected Void doInBackground(Void... params)
         {
@@ -64,8 +92,10 @@ public class DetalhesBabaActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             Gson gson = new Gson();
-            Usuario usuario = gson.fromJson(retornoJson, Usuario.class);
+            usuario = gson.fromJson(retornoJson, Usuario.class);
+            inserirCampos();
 
         }
     }
+
 }
