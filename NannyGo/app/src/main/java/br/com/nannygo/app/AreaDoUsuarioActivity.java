@@ -27,11 +27,11 @@ import com.google.gson.GsonBuilder;
 
 import java.lang.reflect.Modifier;
 
-public class AreaUsuarioActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
-    LinearLayout nav_header;
+public class AreaDoUsuarioActivity extends AppCompatActivity {
+
+    //LinearLayout nav_header;
     TextView text_view_nome_usuario, text_view_idade_usuario, text_view_email_usuario, text_view_telefone_usuario;
-    String retornoJson, login, senha;
+    //String retornoJson, login, senha;
     Context context;
     //ImageView img_baba;
 
@@ -39,46 +39,49 @@ public class AreaUsuarioActivity extends AppCompatActivity
     //String jsonUsuario;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_area_usuario);
-
-        Intent intent = getIntent();
-
-        if (intent != null){
-            login = intent.getStringExtra("login");
-            senha = intent.getStringExtra("senha");
-        }
-
-        context = this;
+        setContentView(R.layout.activity_area_do_usuario);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        //Intent intent = getIntent();
+
+        /*if (intent != null){
+            login = intent.getStringExtra("login");
+            senha = intent.getStringExtra("senha");
+        }*/
+
+        context = this;
 
         encontrarObjetosView();
-        new inserirCampos().execute();
+        inserirCampos();
+       // new inserirCampos().execute();
 
     }
 
     private void encontrarObjetosView() {
-        /*
+
         text_view_nome_usuario = (TextView) findViewById(R.id.text_view_nome_usuario);
         text_view_idade_usuario = (TextView) findViewById(R.id.text_view_idade_usuario);
         text_view_email_usuario = (TextView) findViewById(R.id.text_view_email_usuario);
         text_view_telefone_usuario = (TextView) findViewById(R.id.text_view_telefone_usuario);
-        nav_header = (LinearLayout) findViewById(R.id.nav_header);
-        */
+
     }
 
-    private class inserirCampos extends AsyncTask<Void, Void, Void> {
+    private void inserirCampos() {
+        text_view_nome_usuario.setText(UsuarioFinal.getNome());
+        text_view_idade_usuario.setText(UsuarioFinal.getIdade());
+        text_view_email_usuario.setText(UsuarioFinal.getEmail());
+        text_view_telefone_usuario.setText(UsuarioFinal.getTelefone());
+
+        //img_baba.setImageDrawable();
+    }
+
+    /*private class inserirCampos extends AsyncTask<Void, Void, Void> {
         ProgressDialog progress;
         String retornoJson;
 
@@ -114,12 +117,12 @@ public class AreaUsuarioActivity extends AppCompatActivity
             {
                 Usuario usuario = gson.fromJson(retornoJson, Usuario.class);
                 criarUsuarioFinal(usuario);
-                /*
+
                 text_view_nome_usuario.setText(UsuarioFinal.getNome());
                 text_view_idade_usuario.setText(UsuarioFinal.getIdade());
                 text_view_email_usuario.setText(UsuarioFinal.getEmail());
                 text_view_telefone_usuario.setText(UsuarioFinal.getTelefone());
-                */
+
 
             }
         }
@@ -133,63 +136,6 @@ public class AreaUsuarioActivity extends AppCompatActivity
         UsuarioFinal.setLogin(usuario.getLogin());
         UsuarioFinal.setSenha(usuario.getSenha());
         UsuarioFinal.setDataNascimento(usuario.getDataNascimento());
-    }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.area_usuario, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
+    }*/
 
 }
