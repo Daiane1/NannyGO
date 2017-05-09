@@ -94,6 +94,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.nannygo.app.VerificacaoActivity" />
         </activity>
+        <activity
+            android:name=".SelecaoCidadesActivity"
+            android:label="@string/title_activity_selecao_cidades"
+            android:parentActivityName=".RegistroActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.nannygo.app.RegistroActivity"/>
+        </activity>
     </application>
 
 </manifest>
