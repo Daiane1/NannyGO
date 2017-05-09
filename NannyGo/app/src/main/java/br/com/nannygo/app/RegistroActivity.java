@@ -25,11 +25,12 @@ public class RegistroActivity extends AppCompatActivity
     EditText edit_text_nome, edit_text_login, edit_text_senha, edit_text_confirmar, edit_text_telefone, edit_text_email, edit_text_cidade;
     static TextView text_view_data_nascimento;
     RadioButton radio_masculino, radio_feminino;
-    String nome, login, telefone, email, sexo, dataNascimentoBanco;
-    String senha = "";
-    String confirmar = "-";
+    String nome, login, telefone, email, sexo, dataNascimentoBanco, senha, dataNascimento;
+    Integer idCidade;
     FloatingActionButton fab;
     Context context;
+    Intent intent;
+    Intent intentCidade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -40,11 +41,38 @@ public class RegistroActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         context = this;
 
-        text_view_data_nascimento = (TextView) findViewById(R.id.text_view_data_nascimento);
-        text_view_data_nascimento.setKeyListener(null);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        encontrarObjetosView();
         configurarBotaoConfirmar();
+        intent = getIntent();
+        intentCidade = new Intent(context, SelecaoCidadesActivity.class);
+
+        preencherCampos();
+
+    }
+
+    private void preencherCampos()
+    {
+        if (intent.getStringExtra("cidade") != null)
+        {
+            edit_text_cidade.setText(intent.getStringExtra("cidade"));
+            edit_text_nome.setText(intent.getStringExtra("nome"));
+            edit_text_login.setText(intent.getStringExtra("login"));
+            edit_text_senha.setText(intent.getStringExtra("senha"));
+            text_view_data_nascimento.setText(intent.getStringExtra("dtNasc"));
+            edit_text_telefone.setText(intent.getStringExtra("telefone"));
+            edit_text_email.setText(intent.getStringExtra("email"));
+
+            if (intent.getStringExtra("sexo").equals("F"))
+            {
+                radio_feminino.toggle();
+            }
+            else if (intent.getStringExtra("sexo").equals("M"))
+            {
+                radio_masculino.toggle();
+            }
+
+        }
     }
 
     private void configurarBotaoConfirmar()
@@ -55,7 +83,6 @@ public class RegistroActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                encontrarObjetosView();
                 inserirBanco();
             }
         });
@@ -65,24 +92,27 @@ public class RegistroActivity extends AppCompatActivity
 
     private void inserirBanco()
     {
-        nome = edit_text_nome.getText().toString();
-        login = edit_text_login.getText().toString();
-        senha = edit_text_senha.getText().toString();
-        confirmar = edit_text_confirmar.getText().toString();
-        telefone = edit_text_telefone.getText().toString();
-        email = edit_text_email.getText().toString();
+        pegarDados();
 
         verificarSexoSelecionado();
         formatarData();
 
         //Substitui todos ' ' para '_' para o funcionamento do link PhP
         nome = nome.replaceAll(" ", "_");
+        idCidade = intent.getIntExtra("idCidade", -1);
 
-        //Verifica se a senha em ambos os campos estiver semelhante(senha e confirmar senha)
-        if (senha.equals(confirmar))
-        {
-            new RegistroUsuarioTask().execute();
-        }
+
+        new RegistroUsuarioTask().execute();
+    }
+
+    private void pegarDados()
+    {
+        nome = edit_text_nome.getText().toString();
+        login = edit_text_login.getText().toString();
+        senha = edit_text_senha.getText().toString();
+        telefone = edit_text_telefone.getText().toString();
+        email = edit_text_email.getText().toString();
+        dataNascimento = text_view_data_nascimento.getText().toString();
     }
 
     private void verificarSexoSelecionado()
@@ -110,12 +140,15 @@ public class RegistroActivity extends AppCompatActivity
         edit_text_nome = (EditText) findViewById(R.id.edit_text_nome);
         edit_text_login = (EditText) findViewById(R.id.edit_text_login);
         edit_text_senha = (EditText) findViewById(R.id.edit_text_senha);
-        edit_text_confirmar = (EditText) findViewById(R.id.edit_text_confirmar);
         edit_text_telefone = (EditText) findViewById(R.id.edit_text_telefone);
         edit_text_email = (EditText) findViewById(R.id.edit_text_email);
         radio_feminino = (RadioButton) findViewById(R.id.radio_feminino);
         radio_masculino = (RadioButton) findViewById(R.id.radio_masculino);
         edit_text_cidade = (EditText) findViewById(R.id.edit_text_cidade);
+        text_view_data_nascimento = (TextView) findViewById(R.id.text_view_data_nascimento);
+        text_view_data_nascimento.setKeyListener(null);
+        edit_text_cidade = (EditText) findViewById(R.id.edit_text_cidade);
+        edit_text_cidade.setKeyListener(null);
     }
 
     public void abrirSelecaoData(View view)
@@ -126,7 +159,30 @@ public class RegistroActivity extends AppCompatActivity
 
     public void abrirSelecaoCidade(View view)
     {
-        //startActivity(new Intent(context, SelecaoCidadesActivity.class));
+        preencherIntent();
+        startActivity(intentCidade);
+    }
+
+    private void preencherIntent()
+    {
+        nome = "";
+        login = "";
+        senha = "";
+        sexo = "";
+        verificarSexoSelecionado();
+        dataNascimento = "";
+        telefone = "";
+        email = "";
+
+        pegarDados();
+
+        intentCidade.putExtra("nome", nome);
+        intentCidade.putExtra("login", login);
+        intentCidade.putExtra("senha", senha);
+        intentCidade.putExtra("sexo", sexo);
+        intentCidade.putExtra("dtNasc", dataNascimento);
+        intentCidade.putExtra("telefone", telefone);
+        intentCidade.putExtra("email", email);
     }
 
     private class RegistroUsuarioTask extends AsyncTask<Void, Void, Void>
@@ -143,8 +199,8 @@ public class RegistroActivity extends AppCompatActivity
         @Override
         protected Void doInBackground(Void... params)
         {
-            String link = String.format("http://10.0.2.2/20171sem/NannyGO/registroUsuario.php?nome=%s&login=%s&senha=%s&sexo=%s&telefone=%s&email=%s&data_nascimento=%s",
-                    nome, login, senha, sexo, telefone, email, dataNascimentoBanco);
+            String link = String.format("http://10.0.2.2/20171sem/NannyGO/registroUsuario.php?nome=%s&login=%s&senha=%s&sexo=%s&telefone=%s&email=%s&data_nascimento=%s&cidade=%s",
+                    nome, login, senha, sexo, telefone, email, dataNascimentoBanco, idCidade);
             Log.d("link", link);
             HttpConnection.get(link);
             return null;
