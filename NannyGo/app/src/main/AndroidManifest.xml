@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="br.com.nannygo.app">
+    package="br.com.nannygo.app">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -16,9 +16,9 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
@@ -29,7 +29,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="br.com.nannygo.app.MainActivity"/>
+                android:value="br.com.nannygo.app.MainActivity" />
         </activity>
         <activity
             android:name=".BabasActivity"
@@ -39,7 +39,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="br.com.nannygo.app.VerificacaoActivity"/>
+                android:value="br.com.nannygo.app.VerificacaoActivity" />
         </activity>
         <activity
             android:name=".ContratacaoActivity"
@@ -49,7 +49,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="br.com.nannygo.app.BabasActivity"/>
+                android:value="br.com.nannygo.app.BabasActivity" />
         </activity>
         <activity
             android:name=".DetalhesBabaActivity"
@@ -59,14 +59,13 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="br.com.nannygo.app.AvaliacaoActivity"/>
+                android:value="br.com.nannygo.app.AvaliacaoActivity" />
         </activity>
         <activity
             android:name=".VerificacaoActivity"
             android:label="@string/title_activity_verificacao"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AreaBabaActivity"
             android:label="@string/title_activity_area_baba"
@@ -75,7 +74,7 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="br.com.nannygo.app.VerificacaoActivity"/>
+                android:value="br.com.nannygo.app.VerificacaoActivity" />
         </activity>
         <activity
             android:name=".RegistroBabaActivity"
@@ -84,7 +83,16 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="br.com.nannygo.app.AreaBabaActivity"/>
+                android:value="br.com.nannygo.app.AreaBabaActivity" />
+        </activity>
+        <activity
+            android:name=".AreaUsuarioActivity"
+            android:label="@string/title_activity_area_usuario"
+            android:parentActivityName=".VerificacaoActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.nannygo.app.VerificacaoActivity" />
         </activity>
     </application>
 
