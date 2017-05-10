@@ -13,6 +13,9 @@ public class UsuarioFinal
     private static String idCidade;
     private static String imagem;
     private static String statusBaba;
+    private static String cidade;
+    private static String estado;
+    private static String uf;
 
 
     public static String getNome()
@@ -134,5 +137,36 @@ public class UsuarioFinal
     public static void setStatusBaba(String statusBaba)
     {
         UsuarioFinal.statusBaba = statusBaba;
+    }
+
+
+    public static String getCidade()
+    {
+        return cidade;
+    }
+
+    public static void setCidade(String cidade)
+    {
+        UsuarioFinal.cidade = cidade;
+    }
+
+    public static String getEstado()
+    {
+        return estado;
+    }
+
+    public static void setEstado(String estado)
+    {
+        UsuarioFinal.estado = estado;
+    }
+
+    public static String getUf()
+    {
+        return uf;
+    }
+
+    public static void setUf(String uf)
+    {
+        UsuarioFinal.uf = uf;
     }
 }
