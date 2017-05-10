@@ -4,7 +4,7 @@
 	$login = $_GET['login'];
 	$senha = $_GET['senha'];
 	
-	$sql = "SELECT * FROM tbl_usuarios WHERE login='".$login."' and senha='".$senha."';";
+	$sql = "SELECT * FROM vw_usuario WHERE login='".$login."' and senha='".$senha."';";
 	
 	$select = mysqli_query($conexao, $sql);
 	
@@ -20,7 +20,10 @@
 			"senha"=>$rs['senha'],
 			"dataNascimento"=>$rs['data_nascimento'],
 			"imagem"=>$rs['imagem'],
-			"statusBaba"=>$rs['statusBaba']);
+			"statusBaba"=>$rs['statusBaba'],
+			"cidade"=>$rs['cidade'],
+			"estado"=>$rs['estado'],
+			"uf"=>$rs['uf']);
 			
 		$usuarioJSON = json_encode($usuario);
 		

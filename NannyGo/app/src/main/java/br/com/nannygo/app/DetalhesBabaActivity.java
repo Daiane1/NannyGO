@@ -68,8 +68,8 @@ public class DetalhesBabaActivity extends AppCompatActivity {
         text_view_telefone.setText(usuario.getTelefone());
         text_view_email.setText(usuario.getEmail());
         text_view_idade.setText(usuario.getIdade());
-        text_view_cidade.setText(usuario.getIdade());
-        text_view_estado.setText(usuario.getIdade());
+        text_view_cidade.setText(usuario.getCidade());
+        text_view_estado.setText(usuario.getEstado());
         //text_view_preco.setText(preco);
 
     }
@@ -80,7 +80,7 @@ public class DetalhesBabaActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params)
         {
-            String href = getResources().getString(R.string.linkAWS);
+            String href = getResources().getString(R.string.linkLocal);
             String link = String.format("%spegarUsuario.php?id_usuario=%s",
                     href,
                     idUsuario);
