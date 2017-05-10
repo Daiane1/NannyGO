@@ -3,6 +3,8 @@
     package="br.com.nannygo.app">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -101,7 +103,10 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="br.com.nannygo.app.RegistroActivity"/>
+                android:value="br.com.nannygo.app.RegistroActivity" />
+        </activity>
+        <activity android:name=".Teste2Activity">
+
         </activity>
     </application>
 
