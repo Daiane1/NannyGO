@@ -13,4 +13,5 @@
     <string name="linkAWS">http://sample-env-1.wfmd8xcwwr.us-west-2.elasticbeanstalk.com/nannygo/</string>
     <string name="linkLocal">http://10.0.2.2/20171sem/NannyGO/</string>
     <string name="title_activity_selecao_cidades">Selecione sua cidade</string>
+    <string name="title_activity_area_usuario">Área do Usuário</string>
 </resources>
