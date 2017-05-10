@@ -22,11 +22,10 @@ import java.util.Calendar;
 
 public class RegistroActivity extends AppCompatActivity
 {
-    EditText edit_text_nome, edit_text_login, edit_text_senha, edit_text_confirmar, edit_text_telefone, edit_text_email, edit_text_cidade;
+    EditText edit_text_nome, edit_text_login, edit_text_senha, edit_text_confirmar, edit_text_telefone, edit_text_email, edit_text_cidade, edit_text_logradouro;
     static TextView text_view_data_nascimento;
     RadioButton radio_masculino, radio_feminino;
-    String nome, login, telefone, email, sexo, dataNascimentoBanco, senha, dataNascimento;
-    Integer idCidade;
+    String nome, login, telefone, email, sexo, dataNascimentoBanco, senha, dataNascimento, idCidade, logradouro;
     FloatingActionButton fab;
     Context context;
     Intent intent;
@@ -62,6 +61,7 @@ public class RegistroActivity extends AppCompatActivity
             text_view_data_nascimento.setText(intent.getStringExtra("dtNasc"));
             edit_text_telefone.setText(intent.getStringExtra("telefone"));
             edit_text_email.setText(intent.getStringExtra("email"));
+            edit_text_logradouro.setText(intent.getStringExtra("logradouro"));
 
             if (intent.getStringExtra("sexo").equals("F"))
             {
@@ -99,8 +99,9 @@ public class RegistroActivity extends AppCompatActivity
 
         //Substitui todos ' ' para '_' para o funcionamento do link PhP
         nome = nome.replaceAll(" ", "_");
-        idCidade = intent.getIntExtra("idCidade", -1);
+        logradouro = logradouro.replaceAll(" ", "_");
 
+        idCidade = intent.getStringExtra("idcidade");
 
         new RegistroUsuarioTask().execute();
     }
@@ -112,6 +113,7 @@ public class RegistroActivity extends AppCompatActivity
         senha = edit_text_senha.getText().toString();
         telefone = edit_text_telefone.getText().toString();
         email = edit_text_email.getText().toString();
+        logradouro = edit_text_logradouro.getText().toString();
         dataNascimento = text_view_data_nascimento.getText().toString();
     }
 
@@ -149,6 +151,7 @@ public class RegistroActivity extends AppCompatActivity
         text_view_data_nascimento.setKeyListener(null);
         edit_text_cidade = (EditText) findViewById(R.id.edit_text_cidade);
         edit_text_cidade.setKeyListener(null);
+        edit_text_logradouro = (EditText) findViewById(R.id.edit_text_logradouro);
     }
 
     public void abrirSelecaoData(View view)
@@ -173,6 +176,7 @@ public class RegistroActivity extends AppCompatActivity
         dataNascimento = "";
         telefone = "";
         email = "";
+        logradouro = "";
 
         pegarDados();
 
@@ -183,6 +187,7 @@ public class RegistroActivity extends AppCompatActivity
         intentCidade.putExtra("dtNasc", dataNascimento);
         intentCidade.putExtra("telefone", telefone);
         intentCidade.putExtra("email", email);
+        intentCidade.putExtra("logradouro", logradouro);
     }
 
     private class RegistroUsuarioTask extends AsyncTask<Void, Void, Void>
@@ -199,8 +204,8 @@ public class RegistroActivity extends AppCompatActivity
         @Override
         protected Void doInBackground(Void... params)
         {
-            String link = String.format("http://10.0.2.2/20171sem/NannyGO/registroUsuario.php?nome=%s&login=%s&senha=%s&sexo=%s&telefone=%s&email=%s&data_nascimento=%s&cidade=%s",
-                    nome, login, senha, sexo, telefone, email, dataNascimentoBanco, idCidade);
+            String link = String.format("http://10.0.2.2/20171sem/NannyGO/registroUsuario.php?nome=%s&login=%s&senha=%s&sexo=%s&telefone=%s&email=%s&data_nascimento=%s&cidade=%s&logradouro=%s",
+                    nome, login, senha, sexo, telefone, email, dataNascimentoBanco, idCidade, logradouro);
             Log.d("link", link);
             HttpConnection.get(link);
             return null;

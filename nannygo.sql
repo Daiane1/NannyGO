@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `db_nannygo` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `db_nannygo`;
 -- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
 --
 -- Host: localhost    Database: db_nannygo
@@ -166,6 +164,39 @@ LOCK TABLES `tbl_usuarios` WRITE;
 INSERT INTO `tbl_usuarios` VALUES (1,4991,'Daiane Nascimento Rosa','dai','123','F','(11)91234-5678','daai@email.com','2000-01-30','','imagens/menina.png',1),(31,4965,'Biel Santos','glsantos','123','M','011986394488','gabriel._.lima@hotmail.com','1990-01-01','','imagens/menino.png',1),(35,4965,'Eilane Alves','eilane','321','F','43251671','eilane02@terra.com','2017-04-10','','imagens/menina.png',0),(37,4965,'Andrey','drey','123','M','01145452687','andrey@outlook.com','2000-04-12','','imagens/menino.png',1),(38,4851,'kassiano','kassiano','1234','M','11999999','kassiano.resende@gmail.com','1987-04-12','','imagens/menino.png',0),(40,1,'Joyce','Joyce','negro','F','011948188045','joyce@gmail.com','2000-10-05','','',1),(41,1,'Daiane','dailinda','10093454','F','011974565231','dai@email.com','2000-01-30','','R.drawable.babyF',0);
 /*!40000 ALTER TABLE `tbl_usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Temporary view structure for view `vw_cidade_estado`
+--
+
+DROP TABLE IF EXISTS `vw_cidade_estado`;
+/*!50001 DROP VIEW IF EXISTS `vw_cidade_estado`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE VIEW `vw_cidade_estado` AS SELECT 
+ 1 AS `id_cidade`,
+ 1 AS `cidade`,
+ 1 AS `estado`,
+ 1 AS `uf`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Final view structure for view `vw_cidade_estado`
+--
+
+/*!50001 DROP VIEW IF EXISTS `vw_cidade_estado`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vw_cidade_estado` AS select `c`.`id_cidade` AS `id_cidade`,`c`.`nome` AS `cidade`,`e`.`nome` AS `estado`,`e`.`uf` AS `uf` from (`tbl_cidade` `c` join `tbl_estado` `e` on((`c`.`estado` = `e`.`id_estado`))) order by `cidade` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -176,4 +207,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-03 16:46:43
+-- Dump completed on 2017-05-10 13:36:23
