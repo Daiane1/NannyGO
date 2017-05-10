@@ -98,5 +98,8 @@ public class MainActivity extends AppCompatActivity {
         UsuarioFinal.setSenha(usuario.getSenha());
         UsuarioFinal.setDataNascimento(usuario.getDataNascimento());
         UsuarioFinal.setStatusBaba(usuario.getStatusBaba());
+        UsuarioFinal.setCidade(usuario.getCidade());
+        UsuarioFinal.setEstado(usuario.getEstado());
+        UsuarioFinal.setUf(usuario.getUf());
     }
 }

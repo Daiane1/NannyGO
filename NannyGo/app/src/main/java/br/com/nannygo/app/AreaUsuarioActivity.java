@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import static br.com.nannygo.app.R.id.img_edit;
 import static br.com.nannygo.app.R.id.img_user;
 
 public class AreaUsuarioActivity extends AppCompatActivity {
@@ -19,6 +20,7 @@ public class AreaUsuarioActivity extends AppCompatActivity {
     TextView text_view_nome, text_view_telefone, text_view_email, text_view_idade;
     ImageView img_usuario;
     Context context;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,7 @@ public class AreaUsuarioActivity extends AppCompatActivity {
 
         /*configurarBotaoFlutuanteBack();*/
         configurarBotaoFlutuanteLogout();
+        /*configurarBotaoFlutuanteEdit();*/
         pegarObjetosView();
         inserirCampos();
     }
@@ -62,9 +65,11 @@ public class AreaUsuarioActivity extends AppCompatActivity {
             }
         });
 
+    }
 
-
-
+    public void abrirTelaEditarUsuario(View view) {
+        Intent intent = new Intent(context, EditarUsuarioActivity.class);
+        startActivity(intent);
     }
 
     private void mostrarAlertaLogout() {

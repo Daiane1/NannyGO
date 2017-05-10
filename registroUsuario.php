@@ -8,9 +8,12 @@
 	$telefone = $_GET['telefone'];
 	$email = $_GET['email'];
 	$data_nascimento = $_GET['data_nascimento'];
+	$cidade = $_GET['cidade'];
+	$logradouro = $_GET['logradouro'];
 	$imagem = "";
 	
 	$nome = str_replace('_',' ',$nome);
+	$logradouro = str_replace('_', ' ', $logradouro);
 	if ($sexo == 'M')
 	{
 		$imagem = 'R.drawable.babyM';
@@ -20,7 +23,9 @@
 		$imagem = 'R.drawable.babyF';
 	}
 	
-	$sql = "INSERT INTO tbl_usuarios(nome, login, senha, sexo, telefone, email, data_nascimento, idCidade, imagem) VALUES('".$nome."','".$login."','".$senha."','".$sexo."','".$telefone."','".$email."','".$data_nascimento."', 1, '".$imagem."');";
+	$sql = "INSERT INTO tbl_usuarios(nome, login, senha, sexo, telefone, email, data_nascimento, idCidade, imagem, logradouro) VALUES('".$nome."','".$login."','".$senha."','".$sexo."','".$telefone."','".$email."','".$data_nascimento."', '".$cidade."', '".$imagem."', '".$logradouro."');";
+	
+	echo $sql;
 	
 	mysqli_query($conexao, $sql);
 	

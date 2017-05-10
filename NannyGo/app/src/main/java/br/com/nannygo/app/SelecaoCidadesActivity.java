@@ -66,7 +66,6 @@ public class SelecaoCidadesActivity extends AppCompatActivity
 
                 intent.putExtra("cidade", cidade);
                 intent.putExtra("idcidade", lstJson.get(i).getIdCidade());
-                //TODO: Consertar id cidade
 
                 startActivity(intent);
             }
@@ -89,6 +88,7 @@ public class SelecaoCidadesActivity extends AppCompatActivity
         intent.putExtra("dtNasc", intentRegistro.getStringExtra("dtNasc"));
         intent.putExtra("telefone", intentRegistro.getStringExtra("telefone"));
         intent.putExtra("email", intentRegistro.getStringExtra("email"));
+        intent.putExtra("logradouro", intentRegistro.getStringExtra("logradouro"));
     }
 
     private void pegarView()
