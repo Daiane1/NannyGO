@@ -22,7 +22,7 @@ public class VerificacaoActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         context = this;
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         configurarBotaoFlutuante();
         mostrarPrimeiroNome();

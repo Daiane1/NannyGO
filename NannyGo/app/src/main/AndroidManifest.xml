@@ -101,7 +101,16 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="br.com.nannygo.app.RegistroActivity"/>
+                android:value="br.com.nannygo.app.RegistroActivity" />
+        </activity>
+        <activity
+            android:name=".EditarUsuarioActivity"
+            android:label="@string/title_activity_editar_usuario"
+            android:parentActivityName=".AreaUsuarioActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.nannygo.app.AreaUsuarioActivity" />
         </activity>
     </application>
 
