@@ -63,8 +63,7 @@ public class VerificacaoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(context, AreaUsuarioActivity.class);
-
+                Intent intent = new Intent(context, MenuUsuarioActivity.class);
                 startActivity(intent);
             }
         });

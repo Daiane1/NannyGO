@@ -3,8 +3,10 @@
     package="br.com.nannygo.app">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-feature android:name="android.hardware.camera"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <uses-feature android:name="android.hardware.camera" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -30,8 +32,7 @@
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            >
+            android:windowSoftInputMode="stateAlwaysHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.nannygo.app.MainActivity" />
@@ -42,8 +43,7 @@
             android:parentActivityName=".VerificacaoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            >
+            android:windowSoftInputMode="stateAlwaysHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.nannygo.app.VerificacaoActivity" />
@@ -54,8 +54,7 @@
             android:parentActivityName=".BabasActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            >
+            android:windowSoftInputMode="stateAlwaysHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.nannygo.app.BabasActivity" />
@@ -66,8 +65,7 @@
             android:parentActivityName=".BabasActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            >
+            android:windowSoftInputMode="stateAlwaysHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.nannygo.app.BabasActivity" />
@@ -77,16 +75,14 @@
             android:label="@string/title_activity_verificacao"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            />
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".AreaBabaActivity"
             android:label="@string/title_activity_area_baba"
             android:parentActivityName=".VerificacaoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            >
+            android:windowSoftInputMode="stateAlwaysHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.nannygo.app.VerificacaoActivity" />
@@ -96,8 +92,7 @@
             android:label="@string/title_activity_registro_baba"
             android:parentActivityName=".AreaBabaActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            >
+            android:windowSoftInputMode="stateAlwaysHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.nannygo.app.AreaBabaActivity" />
@@ -105,10 +100,9 @@
         <activity
             android:name=".AreaUsuarioActivity"
             android:label="@string/title_activity_area_usuario"
-            android:parentActivityName=".VerificacaoActivity"
+            android:parentActivityName=".MenuUsuarioActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            >
+            android:windowSoftInputMode="stateAlwaysHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.nannygo.app.VerificacaoActivity" />
@@ -118,8 +112,7 @@
             android:label="@string/title_activity_selecao_cidades"
             android:parentActivityName=".RegistroActivity"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            >
+            android:windowSoftInputMode="stateAlwaysHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.nannygo.app.RegistroActivity" />
@@ -133,14 +126,23 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.nannygo.app.RegistroActivity" />
         </activity>
-        <activity android:name=".Teste2Activity"
+        <activity
+            android:name=".Teste2Activity"
             android:label="@string/title_activity_editar_usuario"
             android:parentActivityName=".VerificacaoActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.nannygo.app.AreaUsuarioActivity" />
-
+        </activity>
+        <activity
+            android:name=".MenuUsuarioActivity"
+            android:label="@string/title_activity_menu_usuario"
+            android:parentActivityName=".VerificacaoActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.nannygo.app.VerificacaoActivity" />
         </activity>
     </application>
 
