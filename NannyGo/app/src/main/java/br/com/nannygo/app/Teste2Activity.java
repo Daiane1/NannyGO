@@ -1,6 +1,5 @@
 package br.com.nannygo.app;
 
-import android.app.DownloadManager;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -16,7 +15,6 @@ import android.widget.Button;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.lang.ref.ReferenceQueue;
 
 public class Teste2Activity extends AppCompatActivity {
 
@@ -81,7 +79,7 @@ public class Teste2Activity extends AppCompatActivity {
     }
 
     private void makeRequest() {
-        ReferenceQueue requestQueue = Volley.newRequestQueue(this);
-        StringRequest request = new StringRequest(DownloadManager.Request.Method.POST, "localhost");
+        /*ReferenceQueue requestQueue = Volley.newRequestQueue(this);
+        StringRequest request = new StringRequest(DownloadManager.Request.Method.POST, "localhost");*/
     }
 }

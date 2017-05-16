@@ -131,14 +131,16 @@
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-<<<<<<< HEAD
                 android:value="br.com.nannygo.app.RegistroActivity" />
         </activity>
-        <activity android:name=".Teste2Activity">
-
-=======
+        <activity android:name=".Teste2Activity"
+            android:label="@string/title_activity_editar_usuario"
+            android:parentActivityName=".VerificacaoActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.nannygo.app.AreaUsuarioActivity" />
->>>>>>> f0ab33e860b8c8d147210e91c8c0f96bc29cc1f1
+
         </activity>
     </application>
 
