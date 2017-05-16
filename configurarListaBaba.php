@@ -1,5 +1,7 @@
 <?php
 	require_once('conexao.php');
+	$origem = $_GET['origem'];
+	
 	$sql = "SELECT * FROM tbl_usuarios as a, tbl_babas as b WHERE a.id_usuario = b.id_usuario;";
 	
 	$select = mysqli_query($conexao, $sql);
@@ -15,6 +17,7 @@
 			"horaInicio"=>$resultado['horaInicio'],
 			"horaFim"=>$resultado['horaFim'],
 			"diasDisponiveis"=>$resultado['diasDisponiveis'],
+			"idCidade"=>$resultado['idCidade'],
 			"imagem"=>$resultado['imagem']);
 		$array[] = $baba;
 	}

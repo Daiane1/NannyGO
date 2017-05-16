@@ -23,7 +23,8 @@
 			"statusBaba"=>$rs['statusBaba'],
 			"cidade"=>$rs['cidade'],
 			"estado"=>$rs['estado'],
-			"uf"=>$rs['uf']);
+			"uf"=>$rs['uf'],
+			"idCidade"=>$rs['idCidade']);
 			
 		$usuarioJSON = json_encode($usuario);
 		
