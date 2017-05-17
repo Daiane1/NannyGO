@@ -17,6 +17,23 @@ public class UsuarioFinal
     private static String estado;
     private static String uf;
 
+    public static void logout()
+    {
+        idUsuario = null;
+        nome = null;
+        sexo = null;
+        telefone = null;
+        email = null;
+        login = null;
+        senha = null;
+        dataNascimento = null;
+        idCidade = null;
+        imagem = null;
+        statusBaba = null;
+        cidade = null;
+        estado = null;
+        uf = null;
+    }
 
     public static String getNome()
     {
@@ -169,4 +186,5 @@ public class UsuarioFinal
     {
         UsuarioFinal.uf = uf;
     }
+
 }

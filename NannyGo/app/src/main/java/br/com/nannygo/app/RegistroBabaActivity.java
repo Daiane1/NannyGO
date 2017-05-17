@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -97,7 +98,7 @@ public class RegistroBabaActivity extends AppCompatActivity
     private void preencherSpinner() {
         List<String> lstDiasSemana = new ArrayList<>();
         lstDiasSemana.add("Semana");
-        lstDiasSemana.add("Final de semana");
+        lstDiasSemana.add("Finais de semana");
         lstDiasSemana.add("Sempre");
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, lstDiasSemana);
@@ -128,10 +129,11 @@ public class RegistroBabaActivity extends AppCompatActivity
         protected Void doInBackground(Void... params)
         {
             String href = getResources().getString(R.string.linkLocal);
-            String link = String.format("%sregistrarBaba.php?id_usuario=%s&preco=%s&horaInicio=%s&horaFim=%s&diasDisponiveis=%s",
+            String link = String.format("%sregistrarBaba.php?id_usuario=%s&preco=%s&horaInicio=%s&horaFim=%s&diasDisponiveis=%s&id_cidade=%s",
                     href,
                     UsuarioFinal.getIdUsuario(),
-                    preco, horaInicio, horaFim, diasDisponiveis);
+                    preco, horaInicio, horaFim, diasDisponiveis,
+                    UsuarioFinal.getIdCidade());
             HttpConnection.get(link);
             return null;
         }

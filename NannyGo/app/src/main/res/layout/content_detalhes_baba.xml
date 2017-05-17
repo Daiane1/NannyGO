@@ -138,4 +138,13 @@
         </TableRow>
     </TableLayout>
 
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="50dp"
+        android:text="Contratar esta babá"
+        android:backgroundTint="@color/rosa"
+        android:textColor="#fff"
+        android:layout_gravity="center_horizontal"
+        android:onClick="abrirTelaConfirmacao" />
 </LinearLayout>

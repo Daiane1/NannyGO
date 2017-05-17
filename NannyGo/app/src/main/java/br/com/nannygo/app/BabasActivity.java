@@ -93,7 +93,6 @@ public class BabasActivity extends AppCompatActivity
             String href = getResources().getString(R.string.linkLocal);
             String link = String.format("%sconfigurarListaBaba.php?origem=%s", href, UsuarioFinal.getIdCidade());
             retornoJson = HttpConnection.get(link);
-            Log.d("link", link);
             return null;
         }
 

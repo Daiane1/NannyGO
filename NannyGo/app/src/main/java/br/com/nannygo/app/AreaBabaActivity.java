@@ -119,7 +119,6 @@ public class AreaBabaActivity extends AppCompatActivity
                     href,
                     UsuarioFinal.getIdUsuario());
             HttpConnection.get(link);
-            Log.d("link", link);
             return null;
         }
 

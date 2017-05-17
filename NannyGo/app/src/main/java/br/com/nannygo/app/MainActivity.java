@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void abrirTelaRegistro(View view) {
-        Intent intent = new Intent(context, Teste2Activity.class);
+        Intent intent = new Intent(context, RegistroActivity.class);
         startActivity(intent);
     }
 

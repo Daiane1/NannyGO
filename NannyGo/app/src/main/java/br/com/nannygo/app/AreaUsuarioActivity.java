@@ -78,7 +78,7 @@ public class AreaUsuarioActivity extends AppCompatActivity {
                 .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        UsuarioFinal.logout();
                         Intent intent = new Intent(context, MainActivity.class);
                         startActivity(intent);
                     }
