@@ -62,13 +62,19 @@ public class MenuUsuarioActivity extends AppCompatActivity {
 
     }
 
+    /* Codigo desenvolvido para Entrar no Perfil do Usuário */
     public void abrirTelaPerfil(View view){
         Intent intent = new Intent(context, AreaUsuarioActivity.class);
         startActivity(intent);
     }
 
-    /* Codigo desenvolvido para o funcionamento do botão "Logout" */
+    /* Codigo desenvolvido para Entrar no Histórico de Transições */
+    public void abrirTelaHistorico(View view){
+        Intent intent = new Intent(context, HistoricoClienteActivity.class);
+        startActivity(intent);
+    }
 
+    /* Codigo desenvolvido para o funcionamento do botão "Logout" */
     private void configurarBotaoFlutuanteLogout() {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.logout);
         fab.setOnClickListener(new View.OnClickListener() {

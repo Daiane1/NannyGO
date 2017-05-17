@@ -74,6 +74,7 @@
                 android:backgroundTint="@color/azul"
                 android:text="Histórico"
                 android:textColor="@color/branco"
+                android:onClick="abrirTelaHistorico"
                 />
 
 
