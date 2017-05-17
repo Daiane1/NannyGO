@@ -32,7 +32,6 @@ public class AreaUsuarioActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         /*configurarBotaoFlutuanteBack();*/
-        configurarBotaoFlutuanteLogout();
         /*configurarBotaoFlutuanteEdit();*/
         pegarObjetosView();
         inserirCampos();
@@ -55,36 +54,12 @@ public class AreaUsuarioActivity extends AppCompatActivity {
         //TODO: implementar foto babá
     }
 
-    private void configurarBotaoFlutuanteLogout() {
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.logout);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mostrarAlertaLogout();
-            }
-        });
 
-    }
 
     public void abrirTelaEditarUsuario(View view) {
         Intent intent = new Intent(context, EditarUsuarioActivity.class);
         startActivity(intent);
     }
 
-    private void mostrarAlertaLogout() {
-        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(context)
-                .setTitle("Sair")
-                .setMessage("Deseja mesmo sair?")
-                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        UsuarioFinal.logout();
-                        Intent intent = new Intent(context, MainActivity.class);
-                        startActivity(intent);
-                    }
-                })
-                .setNegativeButton("Não", null)
-                ;
-        alertDialog.show();
-    }
+
 }

@@ -16,4 +16,5 @@
     <string name="title_activity_area_usuario">Perfil do Usuário</string>
     <string name="title_activity_editar_usuario">Edite seu Perfil</string>
     <string name="title_activity_menu_usuario">Informações do Usuário</string>
+    <string name="title_activity_historico_cliente">Histórico de Transição</string>
 </resources>
