@@ -14,7 +14,6 @@
     tools:showIn="@layout/activity_area_baba"
     android:orientation="vertical"
     >
-
     <TextView
 
         android:layout_width="wrap_content"
@@ -38,105 +37,139 @@
          android:id="@+id/img_baba"
      />
 
-    <TableLayout
-        android:layout_height="wrap_content"
+    <LinearLayout
         android:layout_width="match_parent"
-        >
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
 
-        <TableRow
-            android:layout_marginTop="20dp">
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Idade"
+            android:textSize="8pt"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/azul"
+            android:id="@+id/text_view_idade"
+            android:textSize="8pt"
+            android:layout_weight="1"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Idade"
-                android:textSize="8pt"
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="E-mail"
+            android:textSize="8pt"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="8pt"
+            android:textColor="@color/azul"
+            android:maxWidth="250dp"
+            android:id="@+id/text_view_email"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
 
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/azul"
-                android:id="@+id/text_view_idade"
-                android:textSize="8pt"
-             />
-        </TableRow>
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Telefone"
+            android:textSize="8pt"
 
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="8pt"
+            android:textColor="@color/azul"
+            android:maxWidth="250dp"
+            android:id="@+id/text_view_telefone"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
 
-        <TableRow
-            android:layout_marginTop="5dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sexo"
-                android:textSize="8pt"
-                />
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Cidade"
+            android:textSize="8pt"
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="8pt"
-                android:textColor="@color/azul"
-                android:maxWidth="250dp"
-                android:id="@+id/text_view_sexo"/>
-        </TableRow>
-        <TableRow
-            android:layout_marginTop="5dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Telefone"
-                android:textSize="8pt"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="8pt"
-                android:textColor="@color/azul"
-                android:maxWidth="250dp"
-                android:id="@+id/text_view_telefone"
-                />
-        </TableRow>
-        <TableRow
-            android:layout_marginTop="5dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="E-mail"
-                android:textSize="8pt"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="8pt"
-                android:textColor="@color/azul"
-                android:maxWidth="250dp"
-                android:id="@+id/text_view_email"
-                />
-        </TableRow>
-    </TableLayout>
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="50dp"
-        android:text="Estou disponível!"
-        android:backgroundTint="@color/rosa"
-        android:textColor="#fff"
-        android:layout_gravity="center_horizontal"
-        android:onClick="abrirTelaRegistroBaba"
-        android:id="@+id/btn_disponivel"/>
-    <Button
-        android:layout_width="200dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="50dp"
-        android:text="Não estou mais disponível!"
-        android:backgroundTint="@color/rosa"
-        android:textColor="#fff"
-        android:layout_gravity="center_horizontal"
-        android:onClick="removerRegistro"
-        android:visibility="gone"
-        android:id="@+id/btn_indisponivel"/>
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="8pt"
+            android:textColor="@color/azul"
+            android:maxWidth="250dp"
+            android:id="@+id/text_view_cidade"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Estado"
+            android:textSize="8pt"
+
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="8pt"
+            android:textColor="@color/azul"
+            android:maxWidth="250dp"
+            android:id="@+id/text_view_estado"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Status"
+            android:textSize="8pt"
+
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="8pt"
+            android:textColor="@color/azul"
+            android:maxWidth="250dp"
+            android:id="@+id/text_view_status"
+            />
+    </LinearLayout>
 </LinearLayout>

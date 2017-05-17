@@ -10,11 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static br.com.nannygo.app.R.id.img_user;
 
@@ -22,8 +18,7 @@ public class MenuUsuarioActivity extends AppCompatActivity {
 
     TextView text_view_nome;
     ImageView img_usuario;
-    ListView lista_menu_usuario;
-    List<String> lstMenuUsuario = new ArrayList<>();
+
 
     Context context;
     Intent intent;
@@ -38,28 +33,32 @@ public class MenuUsuarioActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         pegarObjetosView();
-        inserirCampos();
+        formatarNome();
         configurarBotaoFlutuanteLogout();
 
-       /* lista_menu_usuario = (ListView) findViewById(R.id.lista_menu_usuario);
-        lstMenuUsuario.add("Meu Perfil");
-        lstMenuUsuario.add("Histórico");
-        lstMenuUsuario.add("Sair");
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, lstMenuUsuario);
-        lista_menu_usuario.setAdapter(adapter );*/
     }
 
-    /* Codigo desenvolvido para pegar campos do banco */
+    // Codigo desenvolvido para pegar campos do banco
     private void pegarObjetosView() {
         img_usuario = (ImageView) findViewById(img_user);
         text_view_nome = (TextView) findViewById(R.id.text_view_nome);
 
     }
 
-    /* Codigo desenvolvido para pegar inserir do banco */
-    private void inserirCampos() {
-        text_view_nome.setText(UsuarioFinal.getNome());
-
+    private void formatarNome()
+    {
+        text_view_nome = (TextView) findViewById(R.id.text_view_nome);
+        String nome = UsuarioFinal.getNome();
+        String nomeFormatado[] = nome.split(" ");
+        int len = nomeFormatado.length-1;
+        if (len > 1)
+        {
+            text_view_nome.setText(String.format("%s %s", nomeFormatado[0], nomeFormatado[len]));
+        }
+        else
+        {
+            text_view_nome.setText(nome);
+        }
     }
 
     public void abrirTelaPerfil(View view){
@@ -67,7 +66,7 @@ public class MenuUsuarioActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    /* Codigo desenvolvido para o funcionamento do botão "Logout" */
+    //Codigo desenvolvido para o funcionamento do botão "Logout"
 
     private void configurarBotaoFlutuanteLogout() {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.logout);
@@ -89,6 +88,7 @@ public class MenuUsuarioActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
 
                         Intent intent = new Intent(context, MainActivity.class);
+                        UsuarioFinal.logout();
                         startActivity(intent);
                     }
                 })
@@ -96,28 +96,4 @@ public class MenuUsuarioActivity extends AppCompatActivity {
                 ;
         alertDialog.show();
     }
-
-    /*public void sair(View view){
-        mostrarAlertaLogout();
-    }
-
-    private void mostrarAlertaLogout() {
-        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(context)
-                .setTitle("Sair")
-                .setMessage("Deseja mesmo sair?")
-                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        Intent intent = new Intent(context, MainActivity.class);
-                        startActivity(intent);
-                    }
-                })
-                .setNegativeButton("Não", null)
-                ;
-        alertDialog.show();
-    }*/
-
-
-
 }

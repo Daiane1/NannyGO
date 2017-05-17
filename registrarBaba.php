@@ -9,6 +9,7 @@
 	$id_cidade = $_GET['id_cidade'];
 	
 	$preco = str_replace(',', '.', $preco);
+	$diasDisponiveis = str_replace('_', ' ', $diasDisponiveis);
 	
 	$sql = "INSERT INTO tbl_babas(id_usuario, preco, horaInicio, horaFim, diasDisponiveis, idCidade) VALUES('".$id_usuario."', '".$preco."', '".$horaInicio."', '".$horaFim."', '".$diasDisponiveis."', '".$id_cidade."');";
 	mysqli_query($conexao, $sql);

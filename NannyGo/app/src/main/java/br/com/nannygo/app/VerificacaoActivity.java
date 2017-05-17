@@ -54,7 +54,7 @@ public class VerificacaoActivity extends AppCompatActivity {
     }
 
     public void abrirTelaAreaBabas(View view) {
-        startActivity(new Intent(this, AreaBabaActivity.class));
+        startActivity(new Intent(this, MenuBabaActivity.class));
     }
 
     private void configurarBotaoFlutuante() {

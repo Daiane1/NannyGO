@@ -84,6 +84,7 @@ public class BabasActivity extends AppCompatActivity
 
             dialog.setTitle("Aguarde");
             dialog.setMessage("O app está carregando a lista de babás!");
+            dialog.setIcon(R.drawable.ic_update_black_24dp);
             dialog.show();
         }
 

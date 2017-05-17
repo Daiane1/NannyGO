@@ -75,26 +75,4 @@
                 android:text="Histórico"
                 android:textColor="@color/branco"
                 />
-
-
-
-       <!-- <Button
-            android:layout_width="120dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/rosa"
-            android:text="Sair"
-            android:textColor="@color/branco"
-            android:onClick="sair"
-            android:id="@+id/btn_sair"
-            />-->
-
-<!--
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/lista_menu_usuario"
-        >
-    </ListView> -->
 </LinearLayout>
