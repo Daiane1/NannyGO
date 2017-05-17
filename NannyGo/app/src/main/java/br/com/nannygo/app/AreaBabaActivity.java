@@ -1,26 +1,18 @@
 package br.com.nannygo.app;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import static android.view.View.GONE;
-
 public class AreaBabaActivity extends AppCompatActivity
 {
-    TextView text_view_nome, text_view_sexo, text_view_telefone, text_view_email, text_view_idade;
+    TextView text_view_nome, text_view_sexo, text_view_telefone, text_view_email, text_view_idade, text_view_cidade, text_view_estado, text_view_status;
     ImageView img_baba;
-    Button btn_disponivel, btn_indisponivel;
     Context context;
 
     @Override
@@ -37,22 +29,8 @@ public class AreaBabaActivity extends AppCompatActivity
         pegarObjetosView();
         inserirCampos();
 
-        configurarBotaoRegistro();
     }
 
-    private void configurarBotaoRegistro()
-    {
-        if(UsuarioFinal.getStatusBaba().equals("1"))
-        {
-            btn_disponivel.setVisibility(GONE);
-            btn_indisponivel.setVisibility(View.VISIBLE);
-        }
-        else
-        {
-            btn_disponivel.setVisibility(View.VISIBLE);
-            btn_indisponivel.setVisibility(GONE);
-        }
-    }
 
     private void pegarObjetosView()
     {
@@ -62,73 +40,49 @@ public class AreaBabaActivity extends AppCompatActivity
         text_view_email = (TextView) findViewById(R.id.text_view_email);
         text_view_idade = (TextView) findViewById(R.id.text_view_idade);
         img_baba = (ImageView) findViewById(R.id.img_baba);
-        btn_disponivel = (Button) findViewById(R.id.btn_disponivel);
-        btn_indisponivel = (Button) findViewById(R.id.btn_indisponivel);
+        text_view_cidade = (TextView) findViewById(R.id.text_view_cidade);
+        text_view_estado = (TextView) findViewById(R.id.text_view_estado);
+        text_view_status = (TextView) findViewById(R.id.text_view_status);
+
     }
 
     private void inserirCampos()
     {
-        text_view_nome.setText(UsuarioFinal.getNome());
-        if (UsuarioFinal.getSexo().equals("M"))
-        {
-            text_view_sexo.setText("Masculino");
-        } else if (UsuarioFinal.getSexo().equals("F"))
-        {
-            text_view_sexo.setText("Feminino");
-        }
+        formatarNome();
         text_view_telefone.setText(UsuarioFinal.getTelefone());
         text_view_email.setText(UsuarioFinal.getEmail());
         text_view_idade.setText(UsuarioFinal.getIdade());
+        text_view_cidade.setText(UsuarioFinal.getCidade());
+        text_view_estado.setText(UsuarioFinal.getEstado());
+        if (UsuarioFinal.getStatusBaba().equals("0")){
+            text_view_status.setText("Indisponível");
+        }
+        else if (UsuarioFinal.getStatusBaba().equals("1")){
+            text_view_status.setText("Disponível");
+        }
+
 
         //TODO: implementar foto babá
     }
 
+    private void formatarNome()
+    {
+        text_view_nome = (TextView) findViewById(R.id.text_view_nome);
+        String nome = UsuarioFinal.getNome();
+        String nomeFormatado[] = nome.split(" ");
+        int len = nomeFormatado.length-1;
+        if (len > 1)
+        {
+            text_view_nome.setText(String.format("%s %s", nomeFormatado[0], nomeFormatado[len]));
+        }
+        else
+        {
+            text_view_nome.setText(nome);
+        }
+    }
 
     public void abrirTelaRegistroBaba(View view)
     {
         startActivity(new Intent(this, RegistroBabaActivity.class));
     }
-
-    public void removerRegistro(View view)
-    {
-        new AlertDialog.Builder(context).setTitle("Confirmação").setMessage("Deseja mesmo remover seu registro como babá?").setPositiveButton("Sim", new DialogInterface.OnClickListener()
-        {
-            @Override
-            public void onClick(DialogInterface dialog, int which)
-            {
-                new RemoverBabaTask().execute();
-            }
-        }).setNegativeButton("Não", null).show();
-
-    }
-
-    private class RemoverBabaTask extends AsyncTask<Void, Void, Void>
-    {
-        @Override
-        protected void onPreExecute()
-        {
-            super.onPreExecute();
-
-        }
-
-        @Override
-        protected Void doInBackground(Void... params)
-        {
-            String href = getResources().getString(R.string.linkLocal);
-            String link = String.format("%sremoverBaba.php?id_usuario=%s",
-                    href,
-                    UsuarioFinal.getIdUsuario());
-            HttpConnection.get(link);
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid)
-        {
-            super.onPostExecute(aVoid);
-            UsuarioFinal.setStatusBaba("0");
-            startActivity(new Intent(context, VerificacaoActivity.class));
-        }
-    }
-
 }
