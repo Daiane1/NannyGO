@@ -16,7 +16,7 @@ public class BabaAdapter extends ArrayAdapter<Baba>
     int resource;
     View view;
     ImageView img_baba;
-    TextView hora_baba, dia_semana_baba, preco_hora_baba, id_baba, nome_item_baba;
+    TextView hora_baba, dia_semana_baba, preco_hora_baba, id_baba, nome_item_baba, distancia_baba;
     String hora, preco;
     Baba baba;
 
@@ -52,6 +52,13 @@ public class BabaAdapter extends ArrayAdapter<Baba>
         preco_hora_baba.setText(preco);
         nome_item_baba.setText(baba.getNome());
         img_baba.setImageResource(R.drawable.babym);
+
+        String distancia = String.format("%.2f km", baba.getDistanciaKm());
+        if (baba.getDistanciaKm() < 5)
+        {
+            distancia = "< 5 km";
+        }
+        distancia_baba.setText(distancia);
     }
 
     // Método formata as horas iniciais e finais em um só campo, e também coloca a moeda no preço.
@@ -69,6 +76,7 @@ public class BabaAdapter extends ArrayAdapter<Baba>
         preco_hora_baba = (TextView) view.findViewById(R.id.preco_hora_baba);
         id_baba = (TextView) view.findViewById(R.id.id_baba);
         nome_item_baba = (TextView) view.findViewById(R.id.nome_item_baba);
+        distancia_baba = (TextView) view.findViewById(R.id.distancia_baba);
     }
 
 }

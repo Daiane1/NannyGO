@@ -10,6 +10,8 @@ public class Baba {
     private String diasDisponiveis;
     private Integer idBaba;
     private Integer idUsuario;
+    private double distancia;
+    private double distanciaKm;
 
 
     public String getImagem() {
@@ -43,4 +45,19 @@ public class Baba {
     public Integer getIdUsuario() {
         return idUsuario;
     }
+
+
+    public double getDistancia() {
+        return distancia;
+    }
+
+    public void setDistancia(double distancia) {
+        this.distancia = distancia;
+    }
+
+    public double getDistanciaKm() {
+        double km = distancia/1000;
+        return km;
+    }
+
 }

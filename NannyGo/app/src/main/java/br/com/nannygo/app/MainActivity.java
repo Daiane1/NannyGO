@@ -101,5 +101,6 @@ public class MainActivity extends AppCompatActivity {
         UsuarioFinal.setCidade(usuario.getCidade());
         UsuarioFinal.setEstado(usuario.getEstado());
         UsuarioFinal.setUf(usuario.getUf());
+        UsuarioFinal.setIdCidade(usuario.getIdCidade());
     }
 }

@@ -1,6 +1,7 @@
 package br.com.nannygo.app;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -75,12 +77,23 @@ public class BabasActivity extends AppCompatActivity
 
     private class ConfigurarListaBabasTask extends AsyncTask<Void, Void, Void>
     {
+        ProgressDialog dialog = new ProgressDialog(context);
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            dialog.setTitle("Aguarde");
+            dialog.setMessage("O app está carregando a lista de babás!");
+            dialog.show();
+        }
+
         @Override
         protected Void doInBackground(Void... params)
         {
             String href = getResources().getString(R.string.linkLocal);
-            String link = String.format("%sconfigurarListaBaba.php", href);
+            String link = String.format("%sconfigurarListaBaba.php?origem=%s", href, UsuarioFinal.getIdCidade());
             retornoJson = HttpConnection.get(link);
+            Log.d("link", link);
             return null;
         }
 
@@ -89,7 +102,7 @@ public class BabasActivity extends AppCompatActivity
         {
             super.onPostExecute(aVoid);
             Gson gson = new GsonBuilder().excludeFieldsWithModifiers(Modifier.VOLATILE).create();
-
+            dialog.dismiss();
             if (retornoJson != null)
             {
                 if (retornoJson.isEmpty())
@@ -110,6 +123,7 @@ public class BabasActivity extends AppCompatActivity
                             .show();
                 } else
                 {
+                    Log.d("json", retornoJson);
                     lstBabas = gson.fromJson(retornoJson, new TypeToken<List<Baba>>()
                     {
                     }.getType());

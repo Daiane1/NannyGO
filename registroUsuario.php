@@ -14,6 +14,7 @@
 	
 	$nome = str_replace('_',' ',$nome);
 	$logradouro = str_replace('_', ' ', $logradouro);
+	
 	if ($sexo == 'M')
 	{
 		$imagem = 'R.drawable.babyM';
