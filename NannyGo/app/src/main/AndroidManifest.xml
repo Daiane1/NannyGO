@@ -79,13 +79,13 @@
         <activity
             android:name=".AreaBabaActivity"
             android:label="@string/title_activity_area_baba"
-            android:parentActivityName=".VerificacaoActivity"
+            android:parentActivityName=".MenuBabaActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="br.com.nannygo.app.VerificacaoActivity"/>
+                android:value="br.com.nannygo.app.MenuBabaActivity"/>
         </activity>
         <activity
             android:name=".RegistroBabaActivity"

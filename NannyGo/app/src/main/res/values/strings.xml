@@ -17,9 +17,6 @@
     <string name="title_activity_editar_usuario">Edite seu Perfil</string>
     <string name="title_activity_menu_usuario">Informações do Usuário</string>
     <string name="title_activity_historico_cliente">Histórico de Transição</string>
-<<<<<<< HEAD
     <string name="title_activity_transacao">TransacaoActivity</string>
-=======
     <string name="title_activity_menu_baba">Informações da Babá</string>
->>>>>>> 9d0bda3a169e814a1219c568e04328e1b7774178
 </resources>
