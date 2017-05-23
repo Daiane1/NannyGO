@@ -7,6 +7,7 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
@@ -32,6 +33,9 @@ public class ContratacaoActivity extends AppCompatActivity
     List<String> lstFormaPagamento = new ArrayList();
     static int condicaoHora = 0;
     static TextView text_view_hora_fim, text_view_hora_inicio, text_view_data;
+
+    static TextView txt_view_metodo_pagamento;
+    String metodo_pagamento;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -133,6 +137,10 @@ public class ContratacaoActivity extends AppCompatActivity
                         .setIcon(R.drawable.done)
                         .setMessage("Aguarde a aprovação da babá.")
                         .show();
+
+                        metodo_pagamento = spinner_forma_pagamento.getSelectedItem().toString();
+
+                        new InserirHistoricoTask().execute();
             }
         });
     }
@@ -181,4 +189,18 @@ public class ContratacaoActivity extends AppCompatActivity
             }
         }
     }
+
+    private class InserirHistoricoTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            String href = getResources().getString(R.string.linkLocal);
+            String link = String.format("%sinserirHistorico.php?id_transacao=%s&id_usuario=%s&id_baba=%s&metodo_pagamento=%s",
+                    href,
+                    Transacao.getIdTransacao(),
+                    metodo_pagamento, UsuarioFinal.getIdCidade());
+            HttpConnection.get(link);
+            return null;
+        }
+    }
+
 }

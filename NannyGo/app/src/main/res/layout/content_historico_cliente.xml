@@ -14,66 +14,10 @@
     tools:showIn="@layout/activity_historico_cliente"
     android:orientation="vertical"
     >
-
-    <!--<TableLayout
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TableRow>
-            <TextView
-                android:layout_width="330dp"
-                android:text="Babás Contratadas"
-                android:textStyle="bold"
-                android:textAlignment="center"
-                android:textColor="@color/colorAccent"
-                android:textSize="10pt"
-                />
-        </TableRow>
-    </TableLayout>-->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/list_view_babas">
+    </ListView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/nome_item_baba"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nome"
-                android:textSize="10pt"
-                android:textStyle="bold"/>
-            <TextView
-                android:id="@+id/preco_hora_baba"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:gravity="end"
-                android:textSize="10pt"
-                android:layout_marginTop="-25dp"
-                android:text="R$ 100,00" />
-            <TextView
-                android:id="@+id/id_transacao"
-                android:layout_width="175dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:visibility="gone" />
-            <TextView
-                android:id="@+id/id_usuario"
-                android:layout_width="175dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:visibility="gone" />
-            <TextView
-                android:id="@+id/id_baba"
-                android:layout_width="175dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:visibility="gone" />
-
-        </LinearLayout>
-    </LinearLayout>
 </LinearLayout>

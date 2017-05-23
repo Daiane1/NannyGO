@@ -6,20 +6,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
 
-public class TransacaoAdapter extends ArrayAdapter<Transacao>
-{
+public class TransacaoAdapter extends ArrayAdapter<Transacao> {
     int resource;
     View view;
-    TextView id_transacao, id_usuario, id_baba, data_transacao, metodo_pagamento;
+    TextView id_transacao, id_usuario, id_baba, nome, data_transacao, metodo_pagamento;
     Transacao transacao;
 
-    public TransacaoAdapter(Context context, int resource, List<Transacao> objects)
-    {
+    public TransacaoAdapter(Context context, int resource, List<Transacao> objects) {
         super(context, resource, objects);
         this.resource = resource;
     }
@@ -29,8 +26,7 @@ public class TransacaoAdapter extends ArrayAdapter<Transacao>
     public View getView(int position, View convertView, ViewGroup parent)
     {
         view = convertView;
-        if (view == null)
-        {
+        if (view == null) {
             view = LayoutInflater.from(getContext()).inflate(resource, null);
         }
 
@@ -47,8 +43,8 @@ public class TransacaoAdapter extends ArrayAdapter<Transacao>
         id_baba.setText(transacao.getIdBaba().toString());
         data_transacao.setText(transacao.getData_transacao());
         metodo_pagamento.setText(transacao.getMetodo_pagamento());
+        nome.setText(transacao.getNome().toString());
     }
-
 
     public void pegarView(){
         id_transacao = (TextView) view.findViewById(R.id.id_transacao);

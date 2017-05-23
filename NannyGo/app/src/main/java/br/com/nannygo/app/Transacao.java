@@ -2,26 +2,27 @@ package br.com.nannygo.app;
 
 public class Transacao {
 
-    private Integer idTransacao;
-    private Integer idUsuario;
-    private Integer idBaba;
-    private String data_transacao;
+    private static Integer idTransacao;
+    private static Integer idUsuario;
+    private static Integer idBaba;
+    private static String data_transacao;
     private boolean status_aprovado;
-    private String metodo_pagamento;
+    private static String metodo_pagamento;
+    private String nome;
 
-    public Integer getIdTransacao() {
+    public static Integer getIdTransacao() {
         return idTransacao;
     }
 
-    public Integer getIdUsuario() {
+    public static Integer getIdUsuario() {
         return idUsuario;
     }
 
-    public Integer getIdBaba() {
+    public static Integer getIdBaba() {
         return idBaba;
     }
 
-    public String getData_transacao(){
+    public static String getData_transacao(){
         return data_transacao;
     }
 
@@ -29,7 +30,11 @@ public class Transacao {
         return status_aprovado;
     }
 
-    public String getMetodo_pagamento(){
+    public static String getMetodo_pagamento(){
         return metodo_pagamento;
+    }
+
+    public String getNome() {
+        return nome;
     }
 }

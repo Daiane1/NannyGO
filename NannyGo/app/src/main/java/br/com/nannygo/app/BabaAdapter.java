@@ -53,6 +53,8 @@ public class BabaAdapter extends ArrayAdapter<Baba>
         nome_item_baba.setText(baba.getNome());
         img_baba.setImageResource(R.drawable.babym);
 
+
+
         String distancia = String.format("%.2f km", baba.getDistanciaKm());
         if (baba.getDistanciaKm() < 5)
         {
