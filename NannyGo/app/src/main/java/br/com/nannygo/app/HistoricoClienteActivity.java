@@ -44,7 +44,7 @@ public class HistoricoClienteActivity extends AppCompatActivity {
         list_view_babas = (ListView) findViewById(R.id.list_view_babas);
         abrirDetalhesBaba();
 
-        new ConfigurarListaBabasTask().execute();
+        new ConfigurarHistoricoClienteTask().execute();
 
     }
 
@@ -71,7 +71,7 @@ public class HistoricoClienteActivity extends AppCompatActivity {
         list_view_babas.setAdapter(adapter);
     }
 
-    private class ConfigurarListaBabasTask extends AsyncTask<Void, Void, Void> {
+    private class ConfigurarHistoricoClienteTask extends AsyncTask<Void, Void, Void> {
         ProgressDialog dialog = new ProgressDialog(context);
 
         @Override
@@ -87,7 +87,7 @@ public class HistoricoClienteActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params) {
             String href = getResources().getString(R.string.linkLocal);
-            String link = String.format("%sconfigurarListaBaba.php?origem=%s", href, UsuarioFinal.getIdCidade());
+            String link = String.format("%configurarHistoricoCliente.php?", href, Transacao.getIdTransacao());
             retornoJson = HttpConnection.get(link);
             return null;
         }
@@ -121,3 +121,4 @@ public class HistoricoClienteActivity extends AppCompatActivity {
 
     }
 }
+
