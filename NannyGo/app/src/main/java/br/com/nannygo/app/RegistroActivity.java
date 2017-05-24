@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -30,6 +31,7 @@ public class RegistroActivity extends AppCompatActivity
     Context context;
     Intent intent;
     Intent intentCidade;
+    boolean statusValidacao = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -95,7 +97,7 @@ public class RegistroActivity extends AppCompatActivity
         pegarDados();
 
         verificarSexoSelecionado();
-        formatarData();
+
 
         //Substitui todos ' ' para '_' para o funcionamento do link PhP
         nome = nome.replaceAll(" ", "_");
@@ -103,7 +105,76 @@ public class RegistroActivity extends AppCompatActivity
 
         idCidade = intent.getStringExtra("idcidade");
 
-        new RegistroUsuarioTask().execute();
+        validarCampos();
+        if (statusValidacao)
+        {
+            new RegistroUsuarioTask().execute();
+        }
+        else
+        {
+            new AlertDialog.Builder(context).setTitle("Registro inválido!").setMessage("Preencha todos os campos!").setPositiveButton("OK", null).show();
+        }
+    }
+
+    private void validarCampos()
+    {
+        if (nome.isEmpty() || nome == null)
+        {
+            statusValidacao = false;
+        }
+
+        if (login.isEmpty() || login == null)
+        {
+            statusValidacao = false;
+        }
+
+        if (senha.isEmpty() || senha == null)
+        {
+            statusValidacao = false;
+        }
+
+        if (!radio_feminino.isChecked() && !radio_masculino.isChecked())
+        {
+            statusValidacao = false;
+        }
+        Calendar cal = Calendar.getInstance();
+        int ano = cal.get(Calendar.YEAR);
+        if (text_view_data_nascimento==null || text_view_data_nascimento.getText().toString().isEmpty())
+        {
+            statusValidacao = false;
+        }
+        else
+        {
+            String dataFormatada[] = text_view_data_nascimento.getText().toString().split("-");
+            if(Integer.parseInt(dataFormatada[2])<ano)
+            {
+                formatarData();
+            }
+            else
+            {
+                statusValidacao = false;
+            }
+        }
+
+        if (logradouro.isEmpty() || logradouro == null)
+        {
+            statusValidacao = false;
+        }
+
+        if (edit_text_cidade==null || edit_text_cidade.getText().toString().isEmpty())
+        {
+            statusValidacao = false;
+        }
+
+        if (telefone.isEmpty() || telefone == null)
+        {
+            statusValidacao = false;
+        }
+
+        if (email.isEmpty() || email == null || !email.contains("@"))
+        {
+            statusValidacao = false;
+        }
     }
 
     private void pegarDados()
