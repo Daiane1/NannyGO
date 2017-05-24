@@ -77,24 +77,16 @@
             <TextView
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
-                android:text="Hora Fim"
+                android:text="Quantidade horas"
                 android:textSize="8pt"
                 android:textColor="@color/rosa"/>
-            <TextView
+            <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="8pt"
+                android:id="@+id/spinner_horas"
+                android:paddingStart="125dp"
                 android:layout_weight="1"
-                android:gravity="end"
-                android:hint="00:00"
-                android:textColor="@color/preto"
-                android:id="@+id/text_view_hora_fim"/>
-            <ImageView
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:src="@drawable/ic_alarm_on_black_24dp"
-                android:adjustViewBounds="true"
-                android:id="@+id/img_hora_fim"/>
+                />
 
         </TableRow>
         <TableRow
@@ -111,8 +103,7 @@
                 android:id="@+id/spinner_forma_pagamento"
                 android:paddingStart="85dp"
                 android:layout_weight="1"
-                >
-            </Spinner>
+                />
         </TableRow>
     </TableLayout>
 </LinearLayout>

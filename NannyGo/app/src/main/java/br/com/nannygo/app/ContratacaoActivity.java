@@ -13,6 +13,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
@@ -29,13 +30,14 @@ public class ContratacaoActivity extends AppCompatActivity
 {
     Context context;
     ImageView img_data, img_hora_inicio, img_hora_fim;
-    Spinner spinner_forma_pagamento;
-    List<String> lstFormaPagamento = new ArrayList();
+    Spinner spinner_forma_pagamento, spinner_horas;
+    List<String> lstFormaPagamento = new ArrayList<>();
+    List<String> lstHoras = new ArrayList<>();
     static int condicaoHora = 0;
     static TextView text_view_hora_fim, text_view_hora_inicio, text_view_data;
-
-    static TextView txt_view_metodo_pagamento;
-    String metodo_pagamento;
+    double valor, preco;
+    Integer idBaba;
+    String metodoPagamento, dataServico, dataFinal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -48,7 +50,13 @@ public class ContratacaoActivity extends AppCompatActivity
 
         context = this;
 
+        Intent intent = getIntent();
+        valor = Double.parseDouble(intent.getStringExtra("preco"));
+        Log.d("valor", String.valueOf(valor));
+        idBaba = intent.getIntExtra("idbaba", -1);
+
         preencherSpinnerPagamento();
+        preencherSpinnerHoras();
         configurarSelecaoHora();
         configurarBotaoConfirmar();
         configurarBotaoCalendario();
@@ -77,18 +85,6 @@ public class ContratacaoActivity extends AppCompatActivity
                 time.show(getFragmentManager(), "timePickerInicio");
             }
         });
-
-        img_hora_fim = (ImageView) findViewById(R.id.img_hora_fim);
-        img_hora_fim.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                DialogFragment time = new TimePickerFragment();
-                condicaoHora = 1;
-                time.show(getFragmentManager(), "timePickerFim");
-            }
-        });
     }
 
     private void preencherSpinnerPagamento()
@@ -101,6 +97,21 @@ public class ContratacaoActivity extends AppCompatActivity
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, lstFormaPagamento);
         spinner_forma_pagamento.setAdapter(adapter);
     }
+
+    private void preencherSpinnerHoras()
+    {
+        spinner_horas = (Spinner) findViewById(R.id.spinner_horas);
+        int i = 1;
+        while (i <= 24)
+        {
+            lstHoras.add(String.valueOf(i));
+            i++;
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, lstHoras);
+        spinner_horas.setAdapter(adapter);
+    }
+
 
     private void configurarBotaoCalendario()
     {
@@ -130,6 +141,17 @@ public class ContratacaoActivity extends AppCompatActivity
                     @Override
                     public void onClick(DialogInterface dialog, int which)
                     {
+                        metodoPagamento = spinner_forma_pagamento.getSelectedItem().toString();
+                        metodoPagamento = metodoPagamento.replaceAll("é", "e");
+                        dataServico = text_view_data.getText().toString();
+                        String data[] = dataServico.split("/");
+                        dataFinal = String.format("%s-%s-%s", data[2], data[1], data[0]);
+
+
+                        int horas = Integer.parseInt(spinner_horas.getSelectedItem().toString());
+                        preco = horas*valor;
+
+                        new InserirHistoricoTask().execute();
                         startActivity(new Intent(context, BabasActivity.class));
                     }
                 })
@@ -137,10 +159,6 @@ public class ContratacaoActivity extends AppCompatActivity
                         .setIcon(R.drawable.done)
                         .setMessage("Aguarde a aprovação da babá.")
                         .show();
-
-                        metodo_pagamento = spinner_forma_pagamento.getSelectedItem().toString();
-
-                        new InserirHistoricoTask().execute();
             }
         });
     }
@@ -194,10 +212,15 @@ public class ContratacaoActivity extends AppCompatActivity
         @Override
         protected Void doInBackground(Void... params) {
             String href = getResources().getString(R.string.linkLocal);
-            String link = String.format("%sinserirHistorico.php?id_transacao=%s&id_usuario=%s&id_baba=%s&metodo_pagamento=%s",
+            String link = String.format("%sregistrarTransacao.php?id_usuario=%s&id_baba=%d&metodo_pagamento=%s&valor=%f&data_servico=%s",
                     href,
-                    Transacao.getIdTransacao(),
-                    metodo_pagamento, UsuarioFinal.getIdCidade());
+                    UsuarioFinal.getIdUsuario(),
+                    idBaba,
+                    metodoPagamento,
+                    preco,
+                    dataFinal
+                    );
+            Log.d("link", link);
             HttpConnection.get(link);
             return null;
         }

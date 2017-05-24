@@ -57,6 +57,7 @@ public class BabasActivity extends AppCompatActivity
                 Intent intent = new Intent(context, DetalhesBabaActivity.class);
                 intent.putExtra("preco", lstBabas.get(position).getPreco());
                 intent.putExtra("idusuario", lstBabas.get(position).getIdUsuario());
+                intent.putExtra("idbaba", lstBabas.get(position).getIdBaba());
                 startActivity(intent);
             }
         });

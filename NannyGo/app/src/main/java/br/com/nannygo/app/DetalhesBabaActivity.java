@@ -15,7 +15,7 @@ import com.google.gson.Gson;
 public class DetalhesBabaActivity extends AppCompatActivity {
     Intent intent;
     String retornoJson;
-    Integer idUsuario;
+    Integer idUsuario, idBaba;
     String preco;
     static TextView text_view_nome, text_view_sexo, text_view_email, text_view_preco, text_view_telefone, text_view_idade, text_view_estado, text_view_cidade;
     Usuario usuario;
@@ -32,13 +32,16 @@ public class DetalhesBabaActivity extends AppCompatActivity {
         intent = getIntent();
         idUsuario = intent.getIntExtra("idusuario", -1);
         preco = intent.getStringExtra("preco");
-
+        idBaba = intent.getIntExtra("idbaba", -1);
         pegarUsuarioView();
         new PegarUsuarioTask().execute();
     }
 
     public void abrirTelaConfirmacao(View view) {
-        startActivity(new Intent(this, ContratacaoActivity.class));
+        Intent intent = new Intent(this, ContratacaoActivity.class);
+        intent.putExtra("preco", preco);
+        intent.putExtra("idbaba", idBaba);
+        startActivity(intent);
     }
 
     private void pegarUsuarioView()
@@ -48,7 +51,7 @@ public class DetalhesBabaActivity extends AppCompatActivity {
         text_view_email = (TextView) findViewById(R.id.text_view_email);
         text_view_telefone = (TextView) findViewById(R.id.text_view_telefone);
         text_view_idade = (TextView) findViewById(R.id.text_view_idade);
-        text_view_preco = (TextView) findViewById(R.id.preco_hora_baba);
+        text_view_preco = (TextView) findViewById(R.id.text_view_preco);
         text_view_cidade = (TextView) findViewById(R.id.text_view_cidade);
         text_view_estado = (TextView) findViewById(R.id.text_view_estado);
 
@@ -70,7 +73,7 @@ public class DetalhesBabaActivity extends AppCompatActivity {
         text_view_idade.setText(usuario.getIdade());
         text_view_cidade.setText(usuario.getCidade());
         text_view_estado.setText(usuario.getEstado());
-        //text_view_preco.setText(preco);
+        text_view_preco.setText(String.format("R$ %s/hora", preco));
 
     }
 

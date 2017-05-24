@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: db_nannygo
 -- ------------------------------------------------------
--- Server version	5.7.10-log
+-- Server version	5.6.10-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -112,15 +112,16 @@ CREATE TABLE `tbl_transacoes` (
   `id_usuario` int(11) NOT NULL,
   `id_baba` int(11) NOT NULL,
   `data_transacao` date NOT NULL,
-  `status_aprovado` tinyint(4) DEFAULT '0',
+  `status_aprovado` tinyint(4) NOT NULL DEFAULT '0',
   `metodo_pagamento` varchar(50) NOT NULL,
   `valor` float NOT NULL,
+  `data_servico` date NOT NULL,
   PRIMARY KEY (`id_transacao`),
   KEY `fk_transacoes_baba_idx` (`id_baba`),
   KEY `fk_transacoes_usuario_idx` (`id_usuario`),
   CONSTRAINT `fk_transacoes_baba` FOREIGN KEY (`id_baba`) REFERENCES `tbl_babas` (`id_baba`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_transacoes_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `tbl_usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -129,6 +130,7 @@ CREATE TABLE `tbl_transacoes` (
 
 LOCK TABLES `tbl_transacoes` WRITE;
 /*!40000 ALTER TABLE `tbl_transacoes` DISABLE KEYS */;
+INSERT INTO `tbl_transacoes` VALUES (1,1,7,'2017-05-24',0,'Credito',153.36,'0000-00-00'),(2,1,3,'2017-05-24',0,'Credito',350,'2017-05-31');
 /*!40000 ALTER TABLE `tbl_transacoes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -298,4 +300,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-16 22:17:23
+-- Dump completed on 2017-05-24 15:26:02
