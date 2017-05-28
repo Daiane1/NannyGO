@@ -80,13 +80,13 @@
         <activity
             android:name=".AreaBabaActivity"
             android:label="@string/title_activity_area_baba"
-            android:parentActivityName=".VerificacaoActivity"
+            android:parentActivityName=".MenuBabaActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="br.com.nannygo.app.VerificacaoActivity" />
+                android:value="br.com.nannygo.app.MenuBabaActivity" />
         </activity>
         <activity
             android:name=".RegistroBabaActivity"
@@ -101,12 +101,12 @@
         <activity
             android:name=".AreaUsuarioActivity"
             android:label="@string/title_activity_area_usuario"
-            android:parentActivityName=".VerificacaoActivity"
+            android:parentActivityName=".MenuUsuarioActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="br.com.nannygo.app.VerificacaoActivity" />
+                android:value="br.com.nannygo.app.MenuUsuarioActivity" />
         </activity>
         <activity
             android:name=".SelecaoCidadesActivity"
@@ -145,6 +145,34 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.nannygo.app.VerificacaoActivity" />
         </activity>
+        <activity
+            android:name=".MenuUsuarioActivity"
+            android:label="@string/title_activity_menu_usuario"
+            android:parentActivityName=".VerificacaoActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.nannygo.app.VerificacaoActivity" />
+        </activity>
+        <activity
+            android:name=".HistoricoClienteActivity"
+            android:label="@string/title_activity_historico_cliente"
+            android:parentActivityName=".MenuUsuarioActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.nannygo.app.MenuUsuarioActivity" />
+        </activity>
+        <activity
+            android:name=".MenuBabaActivity"
+            android:label="@string/title_activity_menu_baba"
+            android:parentActivityName=".VerificacaoActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.nannygo.app.VerificacaoActivity" />
+        </activity>
     </application>
+
 
 </manifest>

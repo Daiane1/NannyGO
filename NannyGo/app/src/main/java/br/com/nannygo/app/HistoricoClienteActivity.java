@@ -44,7 +44,7 @@ public class HistoricoClienteActivity extends AppCompatActivity {
         list_view_babas = (ListView) findViewById(R.id.list_view_babas);
         abrirDetalhesBaba();
 
-        new ConfigurarHistoricoClienteTask().execute();
+        //new ConfigurarHistoricoClienteTask().execute();
 
     }
 
