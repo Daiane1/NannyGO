@@ -29,15 +29,15 @@ import java.util.List;
 public class ContratacaoActivity extends AppCompatActivity
 {
     Context context;
-    ImageView img_data, img_hora_inicio, img_hora_fim;
+    ImageView img_data, img_hora_inicio;
     Spinner spinner_forma_pagamento, spinner_horas;
     List<String> lstFormaPagamento = new ArrayList<>();
     List<String> lstHoras = new ArrayList<>();
     static int condicaoHora = 0;
     static TextView text_view_hora_fim, text_view_hora_inicio, text_view_data;
     double valor, preco;
-    Integer idBaba;
-    String metodoPagamento, dataServico, dataFinal;
+    Integer idBaba, horas;
+    String metodoPagamento, dataServico, dataFinal, horaInicio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -148,8 +148,10 @@ public class ContratacaoActivity extends AppCompatActivity
                         dataFinal = String.format("%s-%s-%s", data[2], data[1], data[0]);
 
 
-                        int horas = Integer.parseInt(spinner_horas.getSelectedItem().toString());
+                        horas = Integer.parseInt(spinner_horas.getSelectedItem().toString());
                         preco = horas*valor;
+
+                        horaInicio = text_view_hora_inicio.getText().toString();
 
                         new InserirHistoricoTask().execute();
                         startActivity(new Intent(context, BabasActivity.class));
@@ -212,15 +214,16 @@ public class ContratacaoActivity extends AppCompatActivity
         @Override
         protected Void doInBackground(Void... params) {
             String href = getResources().getString(R.string.linkLocal);
-            String link = String.format("%sregistrarTransacao.php?id_usuario=%s&id_baba=%d&metodo_pagamento=%s&valor=%f&data_servico=%s",
+            String link = String.format("%sregistrarTransacao.php?id_usuario=%s&id_baba=%d&metodo_pagamento=%s&valor=%f&data_servico=%s&hora_inicio=%s&qntd_horas=%s",
                     href,
                     UsuarioFinal.getIdUsuario(),
                     idBaba,
                     metodoPagamento,
                     preco,
-                    dataFinal
+                    dataFinal,
+                    horaInicio,
+                    horas
                     );
-            Log.d("link", link);
             HttpConnection.get(link);
             return null;
         }

@@ -2,39 +2,126 @@ package br.com.nannygo.app;
 
 public class Transacao {
 
-    private static Integer idTransacao;
-    private static Integer idUsuario;
-    private static Integer idBaba;
-    private static String data_transacao;
-    private boolean status_aprovado;
-    private static String metodo_pagamento;
+    private Integer idTransacao;
+    private Integer idUsuario;
+    private Integer idBaba;
+    private String dataTransacao;
+    private String dataServico;
+    private Integer statusAprovado;
+    private String metodoPagamento;
     private String nome;
+    private String valor;
+    private String horaInicio;
+    private Integer qntdHoras;
 
-    public static Integer getIdTransacao() {
+
+    public Integer getIdTransacao()
+    {
         return idTransacao;
     }
 
-    public static Integer getIdUsuario() {
+    public void setIdTransacao(Integer idTransacao)
+    {
+        this.idTransacao = idTransacao;
+    }
+
+    public Integer getIdUsuario()
+    {
         return idUsuario;
     }
 
-    public static Integer getIdBaba() {
+    public void setIdUsuario(Integer idUsuario)
+    {
+        this.idUsuario = idUsuario;
+    }
+
+    public Integer getIdBaba()
+    {
         return idBaba;
     }
 
-    public static String getData_transacao(){
-        return data_transacao;
+    public void setIdBaba(Integer idBaba)
+    {
+        this.idBaba = idBaba;
     }
 
-    public boolean getStatus_aprovado(){
-        return status_aprovado;
+    public String getDataTransacao()
+    {
+        return dataTransacao;
     }
 
-    public static String getMetodo_pagamento(){
-        return metodo_pagamento;
+    public void setDataTransacao(String dataTransacao)
+    {
+        this.dataTransacao = dataTransacao;
     }
 
-    public String getNome() {
+    public String getDataServico()
+    {
+        return dataServico;
+    }
+
+    public void setDataServico(String dataServico)
+    {
+        this.dataServico = dataServico;
+    }
+
+    public Integer getStatusAprovado()
+    {
+        return statusAprovado;
+    }
+
+    public void setStatusAprovado(Integer statusAprovado)
+    {
+        this.statusAprovado = statusAprovado;
+    }
+
+    public String getMetodoPagamento()
+    {
+        return metodoPagamento;
+    }
+
+    public void setMetodoPagamento(String metodoPagamento)
+    {
+        this.metodoPagamento = metodoPagamento;
+    }
+
+    public String getNome()
+    {
         return nome;
+    }
+
+    public void setNome(String nome)
+    {
+        this.nome = nome;
+    }
+
+    public String getValor()
+    {
+        return valor;
+    }
+
+    public void setValor(String valor)
+    {
+        this.valor = valor;
+    }
+
+    public String getHoraInicio()
+    {
+        return horaInicio;
+    }
+
+    public void setHoraInicio(String horaInicio)
+    {
+        this.horaInicio = horaInicio;
+    }
+
+    public Integer getQntdHoras()
+    {
+        return qntdHoras;
+    }
+
+    public void setQntdHoras(Integer qntdHoras)
+    {
+        this.qntdHoras = qntdHoras;
     }
 }

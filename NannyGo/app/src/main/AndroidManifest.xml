@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
@@ -172,7 +173,24 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.nannygo.app.VerificacaoActivity" />
         </activity>
+        <activity
+            android:name=".TransacoesEsperaActivity"
+            android:label="@string/title_activity_transacoes_espera"
+            android:parentActivityName=".MenuBabaActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.nannygo.app.MenuBabaActivity" />
+        </activity>
+        <activity
+            android:name=".DetalhesTransacaoEsperaActivity"
+            android:label="@string/title_activity_detalhes_transacao_espera"
+            android:parentActivityName=".TransacoesEsperaActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.nannygo.app.TransacoesEsperaActivity" />
+        </activity>
     </application>
-
 
 </manifest>

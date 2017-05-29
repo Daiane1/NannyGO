@@ -41,9 +41,9 @@ public class TransacaoAdapter extends ArrayAdapter<Transacao> {
         id_transacao.setText(transacao.getIdTransacao().toString());
         id_usuario.setText(transacao.getIdUsuario().toString());
         id_baba.setText(transacao.getIdBaba().toString());
-        data_transacao.setText(transacao.getData_transacao());
-        metodo_pagamento.setText(transacao.getMetodo_pagamento());
-        nome.setText(transacao.getNome().toString());
+        data_transacao.setText(transacao.getDataTransacao());
+        metodo_pagamento.setText(transacao.getMetodoPagamento());
+        nome.setText(transacao.getNome());
     }
 
     public void pegarView(){

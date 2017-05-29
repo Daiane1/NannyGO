@@ -93,7 +93,7 @@ public class BabasActivity extends AppCompatActivity
         protected Void doInBackground(Void... params)
         {
             String href = getResources().getString(R.string.linkLocal);
-            String link = String.format("%sconfigurarListaBaba.php?origem=%s", href, UsuarioFinal.getIdCidade());
+            String link = String.format("%sconfigurarListaBaba.php?origem=%s&id_usuario=%s", href, UsuarioFinal.getIdCidade(), UsuarioFinal.getIdUsuario());
             retornoJson = HttpConnection.get(link);
             return null;
         }

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/text_view_nome_cliente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nome"
+        android:textSize="10pt"
+        android:layout_weight="1"
+        android:maxLength="30"
+        android:maxLines="1"/>
+    <TextView
+        android:id="@+id/text_view_preco"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="end"
+        android:textSize="10pt"
+        android:text="R$ 100,00" />
+    <TextView
+        android:id="@+id/text_view_id_transacao"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:visibility="gone" />
+    <TextView
+        android:id="@+id/text_view_id_usuario"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:visibility="gone" />
+    <TextView
+        android:id="@+id/text_view_id_baba"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:visibility="gone" />
+
+</LinearLayout>

@@ -1,8 +1,9 @@
 <?php
 	require_once('conexao.php');
 	$idorigem = $_GET['origem'];
+	$id_usuario = $_GET['id_usuario'];
 	
-	$sql = "SELECT * FROM vw_lista_babas;";
+	$sql = "SELECT * FROM vw_lista_babas WHERE id_usuario!=".$id_usuario.";";
 	
 	$selectBaba = mysqli_query($conexao, $sql);
 	

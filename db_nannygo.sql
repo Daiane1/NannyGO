@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
 -- Host: localhost    Database: db_nannygo
 -- ------------------------------------------------------
--- Server version	5.6.10-log
+-- Server version	5.7.17-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -35,7 +35,7 @@ CREATE TABLE `tbl_babas` (
   KEY `fk_baba_cidade_idx` (`idCidade`),
   CONSTRAINT `fk_bab_cidade` FOREIGN KEY (`idCidade`) REFERENCES `tbl_cidade` (`id_cidade`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_baba_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `tbl_usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `tbl_babas` (
 
 LOCK TABLES `tbl_babas` WRITE;
 /*!40000 ALTER TABLE `tbl_babas` DISABLE KEYS */;
-INSERT INTO `tbl_babas` VALUES (2,31,4965,5.00,'00:00','23:59','Sempre'),(3,37,4965,50.00,'19:00','23:59','Semana'),(6,40,4991,2.50,'23:59','00:00','Sempre'),(7,1,4991,25.56,'23:59','00:01','Finais de semana'),(8,44,5353,5.40,'23:59','00:01','Finais de semana');
+INSERT INTO `tbl_babas` VALUES (2,31,4965,5.00,'00:00','23:59','Sempre'),(3,37,4965,50.00,'19:00','23:59','Semana'),(6,40,4991,2.50,'23:59','00:00','Sempre'),(8,44,5353,5.40,'23:59','00:01','Finais de semana'),(9,1,4991,15.00,'17:30','00:00','Finais de semana');
 /*!40000 ALTER TABLE `tbl_babas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,12 +116,12 @@ CREATE TABLE `tbl_transacoes` (
   `metodo_pagamento` varchar(50) NOT NULL,
   `valor` float NOT NULL,
   `data_servico` date NOT NULL,
+  `hora_inicio` varchar(5) NOT NULL,
+  `qntd_horas` int(11) NOT NULL,
   PRIMARY KEY (`id_transacao`),
-  KEY `fk_transacoes_baba_idx` (`id_baba`),
   KEY `fk_transacoes_usuario_idx` (`id_usuario`),
-  CONSTRAINT `fk_transacoes_baba` FOREIGN KEY (`id_baba`) REFERENCES `tbl_babas` (`id_baba`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_transacoes_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `tbl_usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130,7 +130,7 @@ CREATE TABLE `tbl_transacoes` (
 
 LOCK TABLES `tbl_transacoes` WRITE;
 /*!40000 ALTER TABLE `tbl_transacoes` DISABLE KEYS */;
-INSERT INTO `tbl_transacoes` VALUES (1,1,7,'2017-05-24',0,'Credito',153.36,'0000-00-00'),(2,1,3,'2017-05-24',0,'Credito',350,'2017-05-31');
+INSERT INTO `tbl_transacoes` VALUES (2,1,3,'2017-05-24',0,'Credito',350,'2017-05-31','00:00',2),(3,1,6,'2017-05-27',0,'Credito',2.5,'2017-05-04','00:00',2),(4,37,7,'2017-05-28',0,'Credito',153.36,'2017-05-31','00:00',2),(5,1,6,'2017-05-28',0,'Credito',15,'2017-05-31','00:00',2),(6,40,9,'2017-05-28',0,'Debito',45,'2017-05-31','00:00',2),(7,1,2,'2017-05-28',0,'Credito',35,'2017-05-31','04:07',7);
 /*!40000 ALTER TABLE `tbl_transacoes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -159,7 +159,7 @@ CREATE TABLE `tbl_usuarios` (
   UNIQUE KEY `email_UNIQUE` (`email`),
   KEY `fk_cidade_idx` (`idCidade`),
   CONSTRAINT `fk_cidade` FOREIGN KEY (`idCidade`) REFERENCES `tbl_cidade` (`id_cidade`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -168,7 +168,7 @@ CREATE TABLE `tbl_usuarios` (
 
 LOCK TABLES `tbl_usuarios` WRITE;
 /*!40000 ALTER TABLE `tbl_usuarios` DISABLE KEYS */;
-INSERT INTO `tbl_usuarios` VALUES (1,4991,'Daiane Nascimento Rosa','dai','123','F','(11)91234-5678','daai@email.com','2000-01-30','Rua Antonio Lopes Tempos, 133','imagens/menina.png',1),(31,4965,'Biel Santos','glsantos','123','M','011986394488','gabriel._.lima@hotmail.com','1990-01-01','Rua, 000','imagens/menino.png',1),(35,4965,'Eilane Alves','eilane','321','F','43251671','eilane02@terra.com','2017-04-10','Rua, 000','imagens/menina.png',0),(37,4965,'Andrey','drey','123','M','01145452687','andrey@outlook.com','2000-04-12','Rua, 000','imagens/menino.png',1),(38,4851,'kassiano','kassiano','1234','M','11999999','kassiano.resende@gmail.com','1987-04-12','Rua, 000','imagens/menino.png',0),(40,4991,'Joyce','Joyce','negro','F','011948188045','joyce@gmail.com','2000-10-05','Rua, 000','',1),(41,4991,'Daiane','dailinda','10093454','F','011974565231','dai@email.com','2000-01-30','Rua Antonio Lopes Tempos, 133','R.drawable.babyF',0),(42,4770,'Gabriel Testa','gtesta','123','M','011986394488','gabrieltesta@email.com','1999-08-13','Rua Antonio Chalupe, 312','R.drawable.babyM',1),(43,4991,'Daiane Rosa','daairosa','123','F','0111564864','daairosa@email.com','2000-01-30','Rua Antonio Lopes Tempos, 133','R.drawable.babyF',0),(44,5353,'Rafael Vieira','baeu','123','M','048415648651','asd@hsduif.com','2017-04-11','Rua blablabla, 123','R.drawable.babyM',1);
+INSERT INTO `tbl_usuarios` VALUES (1,4991,'Daiane Nascimento Rosa','dai','123','F','(11)91234-5678','daai@email.com','2000-01-30','Rua Antonio Lopes Tempos, 133','imagens/menina.png',1),(31,4965,'Biel Santos','glsantos','123','M','011986394488','gabriel._.lima@hotmail.com','1990-01-01','Rua, 000','imagens/menino.png',1),(35,4965,'Eilane Alves','eilane','321','F','43251671','eilane02@terra.com','2017-04-10','Rua, 000','imagens/menina.png',0),(37,4965,'Andrey','drey','123','M','01145452687','andrey@outlook.com','2000-04-12','Rua, 000','imagens/menino.png',1),(38,4851,'kassiano','kassiano','1234','M','11999999','kassiano.resende@gmail.com','1987-04-12','Rua, 000','imagens/menino.png',0),(40,4991,'Joyce','Joyce','negro','F','011948188045','joyce@gmail.com','2000-10-05','Rua, 000','',1),(41,4991,'Daiane','dailinda','10093454','F','011974565231','dai@email.com','2000-01-30','Rua Antonio Lopes Tempos, 133','R.drawable.babyF',0),(42,4770,'Gabriel Testa','gtesta','123','M','011986394488','gabrieltesta@email.com','1999-08-13','Rua Antonio Chalupe, 312','R.drawable.babyM',1),(43,4991,'Daiane Rosa','daairosa','123','F','0111564864','daairosa@email.com','2000-01-30','Rua Antonio Lopes Tempos, 133','R.drawable.babyF',0),(44,5353,'Rafael Vieira','baeu','123','M','048415648651','asd@hsduif.com','2017-04-11','Rua blablabla, 123','R.drawable.babyM',1),(45,4770,'Gabriel Reder','sinep','123sinep','M','1191234567','sinep@email.com','2000-08-22','Rua Brasil, 304','R.drawable.babyM',0);
 /*!40000 ALTER TABLE `tbl_usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -300,4 +300,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-24 15:26:02
+-- Dump completed on 2017-05-28 23:15:37

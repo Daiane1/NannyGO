@@ -87,8 +87,8 @@ public class HistoricoClienteActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params) {
             String href = getResources().getString(R.string.linkLocal);
-            String link = String.format("%configurarHistoricoCliente.php?", href, Transacao.getIdTransacao());
-            retornoJson = HttpConnection.get(link);
+            //String link = String.format("%configurarHistoricoCliente.php?", href, Transacao.getIdTransacao());
+            //retornoJson = HttpConnection.get(link);
             return null;
         }
 

@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
             Gson gson = new GsonBuilder().excludeFieldsWithModifiers(Modifier.VOLATILE).create();
 
 
-            if (retornoJson.isEmpty())
+            if (retornoJson.isEmpty() || retornoJson == null)
             {
                 //Criação de dialog caso o login não foi bem sucedido.
                 new AlertDialog.Builder(context)

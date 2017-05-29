@@ -64,7 +64,7 @@ public class RegistroActivity extends AppCompatActivity {
 
         preencherCampos();
 
-        img_upload.setOnClickListener(new View.OnClickListener() {
+        /*img_upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -74,7 +74,7 @@ public class RegistroActivity extends AppCompatActivity {
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), RESULT_LOAD_IMAGE);
             }
-        });
+        });*/
     }
 
     private void preencherCampos()
