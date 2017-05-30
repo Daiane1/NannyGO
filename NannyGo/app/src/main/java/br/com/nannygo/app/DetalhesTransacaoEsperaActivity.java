@@ -3,6 +3,7 @@ package br.com.nannygo.app;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -94,7 +95,7 @@ public class DetalhesTransacaoEsperaActivity extends AppCompatActivity
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i)
                     {
-
+                        new AprovarTransacaoTask().execute();
                     }
                 })
                 .show();
@@ -112,10 +113,48 @@ public class DetalhesTransacaoEsperaActivity extends AppCompatActivity
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i)
                     {
-
+                        new RejeitarTransacaoTask().execute();
                     }
                 })
                 .show();
+    }
+
+    private class AprovarTransacaoTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            String href = getResources().getString(R.string.linkLocal);
+            String link = String.format("%saprovarTransacao.php?id_transacao=%s",
+                    href,
+                    idTransacao
+            );
+            HttpConnection.get(link);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            startActivity(new Intent(context, DetalhesTransacaoEsperaActivity.class));
+        }
+    }
+
+    private class RejeitarTransacaoTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... params) {
+            String href = getResources().getString(R.string.linkLocal);
+            String link = String.format("%srejeitarTransacao.php?id_transacao=%s",
+                    href,
+                    idTransacao
+            );
+            HttpConnection.get(link);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            startActivity(new Intent(context, TransacoesEsperaActivity.class));
+        }
     }
 
 }
