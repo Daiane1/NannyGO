@@ -13,7 +13,7 @@ import java.util.List;
 public class TransacaoAdapter extends ArrayAdapter<Transacao> {
     int resource;
     View view;
-    TextView id_transacao, id_usuario, id_baba, nome, data_transacao, metodo_pagamento;
+    TextView id_transacao, id_usuario, id_baba, nome, data_transacao, metodo_pagamento, valor, nome_item_baba;
     Transacao transacao;
 
     public TransacaoAdapter(Context context, int resource, List<Transacao> objects) {
@@ -50,6 +50,8 @@ public class TransacaoAdapter extends ArrayAdapter<Transacao> {
         id_transacao = (TextView) view.findViewById(R.id.id_transacao);
         id_usuario = (TextView) view.findViewById(R.id.id_usuario);
         id_baba = (TextView) view.findViewById(R.id.id_baba);
+        nome_item_baba = (TextView) view.findViewById(R.id.nome_item_baba);
+        valor = (TextView) view.findViewById(R.id.preco_hora_baba);
     }
 
 }

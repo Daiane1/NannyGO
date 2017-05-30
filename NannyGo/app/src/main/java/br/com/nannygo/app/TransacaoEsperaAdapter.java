@@ -50,7 +50,7 @@ public class TransacaoEsperaAdapter extends ArrayAdapter<Transacao>
         text_view_id_transacao = (TextView) view.findViewById(R.id.text_view_id_transacao);
         text_view_id_usuario = (TextView) view.findViewById(R.id.text_view_id_usuario);
         text_view_id_baba = (TextView) view.findViewById(R.id.text_view_id_baba);
-        text_view_nome_cliente = (TextView) view.findViewById(R.id.text_view_nome_cliente);
+        text_view_nome_cliente = (TextView) view.findViewById(R.id.nome_item_baba);
         text_view_preco = (TextView) view.findViewById(R.id.text_view_preco);
 
     }
