@@ -20,6 +20,7 @@
     <string name="title_activity_transacao">TransacaoActivity</string>
     <string name="title_activity_menu_baba">Informações da Babá</string>
     <string name="title_activity_fale_conosco">Fale Conosco</string>
-    <string name="title_activity_transacoes_espera">Transações esperando aprovação</string>
+    <string name="title_activity_transacoes_espera">Transações em espera</string>
     <string name="title_activity_detalhes_transacao_espera">Detalhes da Transação</string>
+    <string name="title_activity_historico_baba">Histórico de Transações</string>
 </resources>
