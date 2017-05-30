@@ -137,6 +137,11 @@ public class MenuBabaActivity extends AppCompatActivity
         startActivity(new Intent(context, TransacoesEsperaActivity.class));
     }
 
+    public void abrirTelaHistoricoBaba(View view)
+    {
+        startActivity(new Intent(context, HistoricoBabaActivity.class));
+    }
+
     private class RemoverBabaTask extends AsyncTask<Void, Void, Void>
     {
         @Override
