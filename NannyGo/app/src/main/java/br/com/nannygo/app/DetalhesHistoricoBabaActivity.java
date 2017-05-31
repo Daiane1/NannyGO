@@ -1,18 +1,15 @@
 package br.com.nannygo.app;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.TextView;
 
-public class DetalhesTransacaoEsperaActivity extends AppCompatActivity
+public class DetalhesHistoricoBabaActivity extends AppCompatActivity
 {
+
     String valor, horaInicio, dataTransacao, dataServico, metodoPagamento, nome;
     Integer idTransacao, idUsuario, idBaba, qntdHoras, statusAprovado;
     TextView text_view_nome, text_view_data_transacao, text_view_data_servico, text_view_hora_inicio, text_view_qntd_horas, text_view_metodo_pagamento, text_view_valor;
@@ -22,7 +19,7 @@ public class DetalhesTransacaoEsperaActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detalhes_transacao_espera);
+        setContentView(R.layout.activity_detalhes_historico_baba);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -82,80 +79,4 @@ public class DetalhesTransacaoEsperaActivity extends AppCompatActivity
         nome = intent.getStringExtra("nome");
         horaInicio = intent.getStringExtra("horaInicio");
     }
-
-    public void aprovarTransacao(View view)
-    {
-        new AlertDialog.Builder(context)
-                .setTitle("Aprovar")
-                .setMessage("Tem certeza que deseja aprovar essa transação?")
-                .setIcon(R.drawable.done)
-                .setNegativeButton("NÃO", null)
-                .setPositiveButton("SIM", new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i)
-                    {
-                        new AprovarTransacaoTask().execute();
-                    }
-                })
-                .show();
-    }
-
-    public void rejeitarTransacao(View view)
-    {
-        new AlertDialog.Builder(context)
-                .setTitle("Rejeitar")
-                .setMessage("Tem certeza que deseja rejeitar essa transação?")
-                .setIcon(android.R.drawable.ic_delete)
-                .setNegativeButton("NÃO", null)
-                .setPositiveButton("SIM", new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i)
-                    {
-                        new RejeitarTransacaoTask().execute();
-                    }
-                })
-                .show();
-    }
-
-    private class AprovarTransacaoTask extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected Void doInBackground(Void... params) {
-            String href = getResources().getString(R.string.linkLocal);
-            String link = String.format("%saprovarTransacao.php?id_transacao=%s",
-                    href,
-                    idTransacao
-            );
-            HttpConnection.get(link);
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            startActivity(new Intent(context, TransacoesEsperaActivity.class));
-        }
-    }
-
-    private class RejeitarTransacaoTask extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected Void doInBackground(Void... params) {
-            String href = getResources().getString(R.string.linkLocal);
-            String link = String.format("%srejeitarTransacao.php?id_transacao=%s",
-                    href,
-                    idTransacao
-            );
-            HttpConnection.get(link);
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            startActivity(new Intent(context, TransacoesEsperaActivity.class));
-        }
-    }
-
-
 }
