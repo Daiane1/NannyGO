@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_detalhes_historico_baba"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="br.com.nannygo.app.DetalhesHistoricoBabaActivity"
+    tools:showIn="@layout/activity_detalhes_historico_baba"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/text_view_nome"
+        android:textSize="12pt"
+        android:fontFamily="sans-serif-smallcaps"
+        android:maxLines="1"/>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp">
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data da Transação"
+                android:textSize="8pt"
+                android:textColor="@color/rosa"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="8pt"
+                android:hint="00/00/0000"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:id="@+id/text_view_data_transacao"
+                android:textColor="@color/preto"/>
+        </TableRow>
+        <TableRow
+            android:layout_marginTop="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data do Serviço"
+                android:textSize="8pt"
+                android:textColor="@color/rosa"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="8pt"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:hint="00/00/0000"
+                android:textColor="@color/preto"
+                android:id="@+id/text_view_data_servico"/>
+        </TableRow>
+        <TableRow
+            android:layout_marginTop="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hora de Início"
+                android:textSize="8pt"
+                android:textColor="@color/rosa"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="8pt"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:hint="00:00"
+                android:textColor="@color/preto"
+                android:id="@+id/text_view_hora_inicio"/>
+        </TableRow>
+        <TableRow
+            android:layout_marginTop="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quantidade de horas"
+                android:textSize="8pt"
+                android:textColor="@color/rosa"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="8pt"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:hint="00 hora(s)"
+                android:textColor="@color/preto"
+                android:id="@+id/text_view_qntd_horas"/>
+        </TableRow>
+        <TableRow
+            android:layout_marginTop="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Método de pagamento"
+                android:textSize="8pt"
+                android:textColor="@color/rosa"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="8pt"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:hint="Crédito"
+                android:textColor="@color/preto"
+                android:id="@+id/text_view_metodo_pagamento"/>
+        </TableRow>
+        <TableRow
+            android:layout_marginTop="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Valor (Bruto)"
+                android:textSize="8pt"
+                android:textColor="@color/rosa"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="8pt"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:hint="R$ 0.00"
+                android:textColor="@color/preto"
+                android:id="@+id/text_view_valor"/>
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>

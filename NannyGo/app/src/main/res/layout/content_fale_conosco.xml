@@ -90,7 +90,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="jsdkfnkj@djf.com"
+            android:text="nannygo@gmail.com"
             android:textSize="18dp"
             android:layout_marginLeft="10dp"/>
 
@@ -110,10 +110,10 @@
             android:layout_marginBottom="10dp"/>
 
         <TextView
+            android:textSize="18dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Avenida Paulista, 1002 - SP"
-            android:textSize="18dp"
             android:layout_marginLeft="10dp"/>
 
     </LinearLayout>

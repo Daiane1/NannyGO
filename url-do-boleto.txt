@@ -1,0 +1,1 @@
+http://localhost/20171sem/Forma%20de%20Pagamento.php?valor=521&cpf_cnpj_pagador=11254684525&vencimento=10/05/17&cedente=Eilane&Ag%C3%AAncia=52459&dataDoc=09/05/17&Cedente=FulanodeTal

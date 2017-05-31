@@ -7,7 +7,7 @@ package br.com.nannygo.app;
 public class FaleConosco {
 
     private static String comentario;
-    private static String id_faleconosco;
+    private static Integer id_faleconosco;
 
     public static String getComentario(){
         return comentario;
@@ -17,11 +17,11 @@ public class FaleConosco {
         FaleConosco.comentario = comentario;
     }
 
-    public static String getId_faleconosco(){
+    public static Integer getId_faleconosco(){
         return id_faleconosco;
     }
 
-    public static void setId_faleconosco(String id_faleconosco) {
+    public static void setId_faleconosco(Integer id_faleconosco) {
         FaleConosco.id_faleconosco = id_faleconosco;
     }
 }
