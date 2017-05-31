@@ -9,36 +9,38 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/nome_item_baba"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nome"
             android:textSize="10pt"
-            android:textStyle="bold"/>
+            android:layout_weight="1"
+            android:maxLength="30"
+            android:maxLines="1"/>
         <TextView
             android:id="@+id/preco_hora_baba"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
+            android:layout_weight="1"
             android:gravity="end"
             android:textSize="10pt"
-            android:layout_marginTop="-25dp"
             android:text="R$ 100,00" />
         <TextView
-            android:id="@+id/id_transacao"
+            android:id="@+id/text_view_id_transacao"
             android:layout_width="175dp"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:visibility="gone" />
         <TextView
-            android:id="@+id/id_usuario"
+            android:id="@+id/text_view_id_usuario"
             android:layout_width="175dp"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:visibility="gone" />
         <TextView
-            android:id="@+id/id_baba"
+            android:id="@+id/text_view_id_baba"
             android:layout_width="175dp"
             android:layout_height="wrap_content"
             android:layout_gravity="end"

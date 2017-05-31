@@ -11,6 +11,7 @@ import android.widget.TextView;
 import java.util.List;
 
 public class TransacaoAdapter extends ArrayAdapter<Transacao> {
+
     int resource;
     View view;
     TextView id_transacao, id_usuario, id_baba, nome, data_transacao, metodo_pagamento, valor, nome_item_baba;
@@ -47,9 +48,9 @@ public class TransacaoAdapter extends ArrayAdapter<Transacao> {
     }
 
     public void pegarView(){
-        id_transacao = (TextView) view.findViewById(R.id.id_transacao);
-        id_usuario = (TextView) view.findViewById(R.id.id_usuario);
-        id_baba = (TextView) view.findViewById(R.id.id_baba);
+        id_transacao = (TextView) view.findViewById(R.id.text_view_id_transacao);
+        id_usuario = (TextView) view.findViewById(R.id.text_view_id_usuario);
+        id_baba = (TextView) view.findViewById(R.id.text_view_id_baba);
         nome_item_baba = (TextView) view.findViewById(R.id.nome_item_baba);
         valor = (TextView) view.findViewById(R.id.preco_hora_baba);
     }

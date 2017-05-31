@@ -14,10 +14,11 @@
     tools:showIn="@layout/activity_historico_cliente"
     android:orientation="vertical"
     >
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/list_view_babas">
+        android:id="@+id/list_view_baba">
     </ListView>
 
 </LinearLayout>

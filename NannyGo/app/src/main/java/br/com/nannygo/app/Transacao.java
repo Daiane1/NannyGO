@@ -1,8 +1,10 @@
 package br.com.nannygo.app;
 
+import android.content.Context;
+
 public class Transacao {
 
-    private Integer idTransacao;
+    private static Integer idTransacao;
     private Integer idUsuario;
     private Integer idBaba;
     private String dataTransacao;
@@ -14,8 +16,14 @@ public class Transacao {
     private String horaInicio;
     private Integer qntdHoras;
 
+    public Context getContext() {
+        return context;
+    }
 
-    public Integer getIdTransacao()
+    private Context context;
+
+
+    public static Integer getIdTransacao()
     {
         return idTransacao;
     }

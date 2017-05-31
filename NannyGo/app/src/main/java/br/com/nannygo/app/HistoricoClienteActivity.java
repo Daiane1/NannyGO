@@ -7,12 +7,17 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -22,14 +27,11 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
-import static br.com.nannygo.app.BabasActivity.lstBabas;
-
 public class HistoricoClienteActivity extends AppCompatActivity {
 
-    ListView list_view_babas;
+    ListView list_view_baba;
     static List<Transacao> lstHistorico = new ArrayList<>();
     Context context;
-    String retornoJson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,23 +43,10 @@ public class HistoricoClienteActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        list_view_babas = (ListView) findViewById(R.id.list_view_babas);
-        abrirDetalhesBaba();
+        list_view_baba = (ListView) findViewById(R.id.list_view_babas);
 
-        //new ConfigurarHistoricoClienteTask().execute();
+        new ConfigurarHistoricoClienteTask().execute();
 
-    }
-
-    private void abrirDetalhesBaba() {
-        list_view_babas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(context, DetalhesBabaActivity.class);
-                intent.putExtra("nome", lstHistorico.get(position).getNome());
-                intent.putExtra("idusuario", lstHistorico.get(position).getIdUsuario());
-                startActivity(intent);
-            }
-        });
     }
 
     @Override
@@ -67,19 +56,20 @@ public class HistoricoClienteActivity extends AppCompatActivity {
     }
 
     private void configurarAdapter() {
-        TransacaoAdapter adapter = new TransacaoAdapter(this, R.layout.list_view_historico_cliente, lstHistorico);
-        list_view_babas.setAdapter(adapter);
+        list_view_baba = (ListView) findViewById(R.id.list_view_baba);
+        TransacaoEsperaAdapter adapter = new TransacaoEsperaAdapter(this, R.layout.list_view_historico_cliente, lstHistorico);
+        list_view_baba.setAdapter(adapter);
     }
 
     private class ConfigurarHistoricoClienteTask extends AsyncTask<Void, Void, Void> {
-        ProgressDialog dialog = new ProgressDialog(context);
 
+        String retornoJson;
+        ProgressDialog dialog = new ProgressDialog(context);
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-
             dialog.setTitle("Aguarde");
-            dialog.setMessage("O app está carregando o histórico de transação!");
+            dialog.setMessage("O app está carregando a lista de transações!");
             dialog.setIcon(R.drawable.ic_update_black_24dp);
             dialog.show();
         }
@@ -87,8 +77,8 @@ public class HistoricoClienteActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params) {
             String href = getResources().getString(R.string.linkLocal);
-            //String link = String.format("%configurarHistoricoCliente.php?", href, Transacao.getIdTransacao());
-            //retornoJson = HttpConnection.get(link);
+            String link = String.format("%sconfigurarHistoricoCliente.php?id_transacao=%s", href, Transacao.getIdTransacao());
+            retornoJson = HttpConnection.get(link);
             return null;
         }
 
@@ -98,27 +88,28 @@ public class HistoricoClienteActivity extends AppCompatActivity {
             Gson gson = new GsonBuilder().excludeFieldsWithModifiers(Modifier.VOLATILE).create();
             dialog.dismiss();
             if (retornoJson != null) {
-                if (retornoJson.isEmpty()) {
-                    new AlertDialog.Builder(context)
+                if (retornoJson.isEmpty() || retornoJson == null) {
+                    new android.support.v7.app.AlertDialog.Builder(context)
                             .setTitle("Erro")
-                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener()
+                            {
                                 @Override
-                                public void onClick(DialogInterface dialog, int which) {
+                                public void onClick(DialogInterface dialog, int which)
+                                {
                                     startActivity(new Intent(context, AreaUsuarioActivity.class));
                                 }
                             })
                             .setIcon(android.R.drawable.ic_delete)
-                            .setMessage("Houve um erro em acessar o histórico de transação. Tente novamente.")
+                            .setMessage("Houve um erro em acessar a lista de transações. Tente novamente.")
                             .show();
                 } else {
                     Log.d("json", retornoJson);
-                    lstBabas = gson.fromJson(retornoJson, new TypeToken<List<Baba>>() {
+                    lstHistorico = gson.fromJson(retornoJson, new TypeToken<List<Transacao>>() {
                     }.getType());
                     configurarAdapter();
                 }
             }
         }
-
     }
 }
 
