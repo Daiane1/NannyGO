@@ -71,7 +71,8 @@ td.BoletoValorSacador{font-size: 3mm; font-family: arial, verdana; vertical-alig
 					padding-bottom : 0.15mm; border-bottom: 0.15mm solid #000000;
 					 font-weight: bold; text-align: left}	
 td.BoletoPontilhado{border-top: 0.3mm dashed #000000; font-size: 1mm}
-ul.BoletoInstrucoes{font-size : 3mm; font-family : verdana, arial}	  
+ul.BoletoInstrucoes{font-size : 3mm; font-family : verdana, arial}
+	  
 </STYLE>
 </HEAD>
 <BODY>
@@ -105,97 +106,60 @@ ul.BoletoInstrucoes{font-size : 3mm; font-family : verdana, arial}
   </TR>
   <tr><td colspan=11 class=BoletoPontilhado>&nbsp;</td></tr>
   <TR>
-    <TD colspan=4 class=BoletoLogo><img src='imagens/104.jpg'></TD>
+    <TD colspan=4 class=BoletoLogo><img src='imagens/Caixa.jpg' width="160" height="38"></TD>
     <TD colspan=2 class=BoletoCodigoBanco>104-0</TD>
     <TD colspan=6 class=BoletoLinhaDigitavel>10491.2346.600000.200042 00000.1234147 7 62000000</TD>
   </TR>
   <TR>
-	<TD colspan=10 class=BoletoTituloEsquerdo>Cedente</TD>
+	<TD colspan=9 class=BoletoTituloEsquerdo>Beneficiário</TD>
     <TD class=BoletoTituloDireito>Agência/Código do Cedente</TD>
   </TR>
   <TR>
-    <TD colspan=10 class=BoletoValorEsquerdo style='text-align: left; padding-left : 0.1cm'><?php echo($Cedente); ?></TD>
-    <TD class=BoletoValorDireito><?php echo($Agência); ?></TD>
+    <TD colspan=9 class=BoletoValorEsquerdo style='text-align: left; padding-left : 0.1cm'>NannyGO</TD>
+    <TD class=BoletoValorDireito colspan="2">1234 / 123456-0</TD>
   </TR>   
   <TR>
     <TD colspan=3 class=BoletoTituloEsquerdo>Data do Documento</TD>
     <TD colspan=4 class=BoletoTituloEsquerdo>Número do Documento</TD>
     <TD class=BoletoTituloEsquerdo>Espécie</TD>
-    <TD class=BoletoTituloEsquerdo>Aceite</TD>
     <TD class=BoletoTituloEsquerdo>Data do Processamento</TD>
-    <TD class=BoletoTituloDireito>Nosso Numero</TD>
+    <TD class=BoletoTituloDireito colspan="3">Nosso Numero</TD>
   </TR>
   <TR>
     <TD colspan=3 class=BoletoValorEsquerdo><?php echo($dataDoc)?></TD>
-    <TD colspan=4 class=BoletoValorEsquerdo><?php echo($NossoNumero);?></TD>
-    <TD class=BoletoValorEsquerdo>Real</TD>
-    <TD class=BoletoValorEsquerdo>S</TD>
+    <TD colspan=4 class=BoletoValorEsquerdo>1234567890</TD>
+    <TD class=BoletoValorEsquerdo>R$</TD>
     <TD class=BoletoValorEsquerdo><?php echo($DataDoProces); ?></TD>
-    <TD class=BoletoValorDireito>1223</TD>
+    <TD class=BoletoValorDireito colspan="3">12345678901234567890</TD>
   </TR>  
   <TR>
     <TD colspan=3 class=BoletoTituloEsquerdo>Uso do Banco</TD>
-    <TD colspan=2 class=BoletoTituloEsquerdo>Carteira</TD>
-    <TD colspan=2 class=BoletoTituloEsquerdo>Moeda</TD>
-    <TD colspan=2 class=BoletoTituloEsquerdo>Quantidade</TD>
-    <TD class=BoletoTituloEsquerdo>(x) Valor</TD>
-    <TD class=BoletoTituloDireito>(=) Valor do Documento</TD>
+    <TD class=BoletoTituloEsquerdo colspan="4">Vencimento</TD>
+	<TD colspan=1 class=BoletoTituloEsquerdo>Moeda</TD>
+    <TD colspan=1 class=BoletoTituloEsquerdo>Quantidade</TD>
+    <TD class=BoletoTituloDireito colspan="3">(=) Valor do Documento</TD>
   </TR>
   <TR>
     <TD colspan=3 class=BoletoValorEsquerdo>&nbsp;</TD>
-    <TD colspan=2 class=BoletoValorEsquerdo>SR</TD>
-    <TD colspan=2 class=BoletoValorEsquerdo>R$</TD>
-    <TD colspan=2 class=BoletoValorEsquerdo>&nbsp;</TD>
-    <TD class=BoletoValorEsquerdo>R$ <?php echo($valor); ?></TD>
-    <TD class=BoletoValorDireito>R$ <?php echo($valor); ?></TD>
+    <TD colspan=4 class=BoletoValorEsquerdo>&nbsp;</TD>
+    <TD colspan=1 class=BoletoValorEsquerdo>R$</TD>
+    <TD colspan=1 class=BoletoValorEsquerdo></TD>
+    <TD class=BoletoValorDireito colspan="3">R$ <?php echo($valor); ?></TD>
   </TR>  
   <TR>
-    <TD colspan=10 class=BoletoTituloEsquerdo>Instruções</TD>
-    <TD class=BoletoTituloDireito>(-) Desconto</TD>
+    <TD class=BoletoTituloEsquerdo colspan="3">Desconto</TD>
+	<TD class=BoletoTituloEsquerdo colspan="2">Outras Deduções</TD>
+	<TD class=BoletoTituloEsquerdo colspan="2">Mora/Multa/Juros</TD>
+	<TD class=BoletoTituloEsquerdo colspan="2">Outros Acréscimos</TD>
+	<TD class=BoletoTituloDireito colspan="3">Valor Cobrado</TD>
   </TR>
-  <TR>
-    <TD colspan=10 rowspan=9 class=BoletoValorEsquerdo style='text-align: left; vertical-align:top; padding-left : 0.1cm'>Instruções</TD>
-    <TD class=BoletoValorDireito>&nbsp;</TD>
-  </TR>  
-  <TR>
-    <TD class=BoletoTituloDireito>(-) Outras Deduções/Abatimento</TD>
-  </TR>  
-  <TR>
-    <TD class=BoletoValorDireito>&nbsp;</TD>
-  </TR>  
-  <TR>
-    <TD class=BoletoTituloDireito>(+) Mora/Multa/Juros</TD>
-  </TR>  
-  <TR>
-    <TD class=BoletoValorDireito>&nbsp;</TD>
-  </TR>  
-  <TR>
-    <TD class=BoletoTituloDireito>(+) Outros Acréscimos</TD>
-  </TR>  
-  <TR>
-    <TD class=BoletoValorDireito>&nbsp;</TD>
-  </TR>  
-  <TR>
-    <TD class=BoletoTituloDireito>(=) Valor Cobrado</TD>
-  </TR>  
-  <TR>
-    <TD class=BoletoValorDireito>&nbsp;</TD>
-  </TR>                
-  <TR>
-    <TD rowspan=3 Class=BoletoTituloSacado>Sacado:</TD>
-    <TD colspan=8 Class=BoletoValorSacado><?php echo($Sacado)?></TD>
-	<TD colspan=10 Class=BoletoValorSacado><?php echo($cpf_cnpj_pagador)?></TD>
-  </TR> 
-  <TR>
-    <TD colspan=10 Class=BoletoValorSacado><?php echo($Rua);?> <?php echo($Numero)?> <?php echo($Bairro)?></TD>
-  </TR>
-  <TR>
-    <TD colspan=10 Class=BoletoValorSacado><?php echo($Cidade)?> <?php echo($Uf)?> <?php echo($CEP)?></TD>
-  </TR>  
-  <TR>
-    <TD colspan=2 Class=BoletoTituloSacador>Sacador / Avalista:</TD>
-    <TD colspan=9 Class=BoletoValorSacador><?php echo($Sacado)?></TD>
-  </TR>
+  <tr>
+	<TD class=BoletoValorEsquerdo colspan="3">&nbsp;</TD>
+	<TD class=BoletoValorEsquerdo colspan="2">&nbsp;</TD>
+	<TD class=BoletoValorEsquerdo colspan="2">&nbsp;</TD>
+	<TD class=BoletoValorEsquerdo colspan="2">&nbsp;</TD>
+	<TD class=BoletoValorDireito colspan="3">&nbsp;</TD>
+  </tr>
   <TR>
     <TD colspan=11 class=BoletoTituloDireito style='text-align: right; padding-right: 0.1cm'>Recibo do Sacado - Autenticação Mecânica</TD>
   </TR>
@@ -204,9 +168,9 @@ ul.BoletoInstrucoes{font-size : 3mm; font-family : verdana, arial}
   </TR>
   <tr><td colspan=11 class=BoletoPontilhado>&nbsp;</td></tr>  
   <TR>
-    <TD colspan=4 class=BoletoLogo><img src='imagens/Caixa.jpg'></TD>
+    <TD colspan=4 class=BoletoLogo><img src='imagens/Caixa.jpg' width="160" height="38"></TD>
     <TD colspan=2 class=BoletoCodigoBanco>104-0</TD>
-    <TD colspan=6 class=BoletoLinhaDigitavel>LinhaDigitavel</TD>
+    <TD colspan=6 class=BoletoLinhaDigitavel>10491.2346.600000.200042 00000.1234147 7 62000000</TD>
   </TR>
   <TR>
     <TD colspan=10 class=BoletoTituloEsquerdo>Local de Pagamento</TD>
@@ -214,31 +178,31 @@ ul.BoletoInstrucoes{font-size : 3mm; font-family : verdana, arial}
   </TR>
   <TR>
     <TD colspan=10 class=BoletoValorEsquerdo style='text-align: left; padding-left : 0.1cm'>Pagável em qualquer banco até o vencimento.</TD>
-    <TD class=BoletoValorDireito><?php echo($datavenc); ?></TD>
+    <TD class=BoletoValorDireito></TD>
   </TR>  
   <TR>
-    <TD colspan=10 class=BoletoTituloEsquerdo>Cedente</TD>
+    <TD colspan=10 class=BoletoTituloEsquerdo>Beneficiário</TD>
     <TD class=BoletoTituloDireito>Agência/Código do Cedente</TD>
   </TR>
   <TR>
-    <TD colspan=10 class=BoletoValorEsquerdo style='text-align: left; padding-left : 0.1cm'><?php echo($Cedente); ?> </TD>
-    <TD class=BoletoValorDireito><?php echo($Agência); ?></TD>
+    <TD colspan=10 class=BoletoValorEsquerdo style='text-align: left; padding-left : 0.1cm'>NannyGO</TD>
+    <TD class=BoletoValorDireito>1234 / 123456-0</TD>
   </TR>   
   <TR>
     <TD colspan=3 class=BoletoTituloEsquerdo>Data do Documento</TD>
     <TD colspan=4 class=BoletoTituloEsquerdo>Número do Documento</TD>
-    <TD class=BoletoTituloEsquerdo>Espécie</TD>
+    <TD class=BoletoTituloEsquerdo>Espécie doc.</TD>
     <TD class=BoletoTituloEsquerdo>Aceite</TD>
     <TD class=BoletoTituloEsquerdo>Data do Processamento</TD>
     <TD class=BoletoTituloDireito>Nosso Numero</TD>
   </TR>
   <TR>
-    <TD colspan=3 class=BoletoValorEsquerdo> <?php echo($dataDoc)?></TD>
-    <TD colspan=4 class=BoletoValorEsquerdo><?php echo($NossoNumero);?></TD>
-    <TD class=BoletoValorEsquerdo>RC</TD>
-    <TD class=BoletoValorEsquerdo>N</TD>
+    <TD colspan=3 class=BoletoValorEsquerdo></TD>
+    <TD colspan=4 class=BoletoValorEsquerdo>1234567890</TD>
+    <TD class=BoletoValorEsquerdo>Real</TD>
+    <TD class=BoletoValorEsquerdo></TD>
     <TD class=BoletoValorEsquerdo><?php echo($DataDoProces); ?></TD>
-    <TD class=BoletoValorDireito><?php echo($NossoNumero);?></TD>
+    <TD class=BoletoValorDireito>12345678901234567890</TD>
   </TR>  
   <TR>
     <TD colspan=3 class=BoletoTituloEsquerdo>Uso do Banco</TD>
@@ -261,7 +225,7 @@ ul.BoletoInstrucoes{font-size : 3mm; font-family : verdana, arial}
     <TD class=BoletoTituloDireito>(-) Desconto</TD>
   </TR>
   <TR>
-    <TD colspan=10 rowspan=9 class=BoletoValorEsquerdo style='text-align: left; vertical-align:top; padding-left : 0.1cm'>Ins</TD>
+    <TD colspan=10 rowspan=9 class=BoletoValorEsquerdo style='text-align: left; vertical-align:top; padding-left : 0.1cm'></TD>
     <TD class=BoletoValorDireito>&nbsp;</TD>
   </TR>  
   <TR>
@@ -307,7 +271,7 @@ ul.BoletoInstrucoes{font-size : 3mm; font-family : verdana, arial}
     <TD colspan=11 class=BoletoTituloDireito style='text-align: right; padding-right: 0.1cm'>Ficha de Compensação - Autenticação Mecânica</TD>
   </TR>
   <TR>
-    <TD colspan=11 height=60 valign=top><img src='imagens/codbar.jpg'></TD>
+    <TD colspan=11 height=60 valign=top><img src='imagens/codigobarra.png'></TD>
   </TR>
   <tr><td colspan=11 class=BoletoPontilhado>&nbsp;</td></tr>  
   </TABLE></P>
