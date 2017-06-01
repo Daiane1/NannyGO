@@ -24,4 +24,5 @@
     <string name="title_activity_detalhes_transacao_espera">Detalhes da Transação</string>
     <string name="title_activity_historico_baba">Histórico de Transações</string>
     <string name="title_activity_detalhes_historico_baba">Detalhes da Transação</string>
+    <string name="title_activity_detalhes_historico_cliente">Detalhes da Transação</string>
 </resources>

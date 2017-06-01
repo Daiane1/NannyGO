@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class TransacaoEsperaAdapter extends ArrayAdapter<Transacao>
     View view;
     Transacao transacao;
     TextView text_view_id_transacao, text_view_id_baba, text_view_id_usuario, text_view_preco, text_view_nome_cliente;
+    LinearLayout linear_layout_transacao_espera;
 
     public TransacaoEsperaAdapter(Context context, int resource, List<Transacao> objects) {
         super(context, resource, objects);
@@ -32,8 +34,18 @@ public class TransacaoEsperaAdapter extends ArrayAdapter<Transacao>
         }
 
         transacao = getItem(position);
+
         pegarView();
         inserirCamposLayout();
+
+        if(transacao.getStatusAprovado() == 1)
+        {
+            linear_layout_transacao_espera.setBackgroundColor(view.getResources().getColor(R.color.verde, null));
+        }
+        else if (transacao.getStatusAprovado() == -1)
+        {
+            linear_layout_transacao_espera.setBackgroundColor(view.getResources().getColor(R.color.vermelho, null));
+        }
 
         return view;
     }
@@ -52,7 +64,8 @@ public class TransacaoEsperaAdapter extends ArrayAdapter<Transacao>
         text_view_id_baba = (TextView) view.findViewById(R.id.text_view_id_baba);
         text_view_nome_cliente = (TextView) view.findViewById(R.id.text_view_nome_cliente);
         text_view_preco = (TextView) view.findViewById(R.id.text_view_preco);
+        linear_layout_transacao_espera = (LinearLayout) view.findViewById(R.id.linear_layout_transacao_espera);
 
     }
 
-    }
+}

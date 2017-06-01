@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
-public class DetalhesHistoricoBabaActivity extends AppCompatActivity
+public class DetalhesHistoricoClienteActivity extends AppCompatActivity
 {
 
     String valor, horaInicio, dataTransacao, dataServico, metodoPagamento, nome;
@@ -19,7 +19,7 @@ public class DetalhesHistoricoBabaActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detalhes_historico_baba);
+        setContentView(R.layout.activity_detalhes_historico_cliente);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -88,4 +88,5 @@ public class DetalhesHistoricoBabaActivity extends AppCompatActivity
         nome = intent.getStringExtra("nome");
         horaInicio = intent.getStringExtra("horaInicio");
     }
+
 }

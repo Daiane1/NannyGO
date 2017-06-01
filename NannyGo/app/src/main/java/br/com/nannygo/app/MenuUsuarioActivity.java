@@ -89,6 +89,7 @@ public class MenuUsuarioActivity extends AppCompatActivity {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(context)
                 .setTitle("Sair")
                 .setMessage("Deseja mesmo sair?")
+                .setIcon(R.drawable.ic_directions_run_black_24dp)
                 .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

@@ -4,7 +4,7 @@ import android.content.Context;
 
 public class Transacao {
 
-    private static Integer idTransacao;
+    private Integer idTransacao;
     private Integer idUsuario;
     private Integer idBaba;
     private String dataTransacao;
@@ -23,7 +23,7 @@ public class Transacao {
     private Context context;
 
 
-    public static Integer getIdTransacao()
+    public Integer getIdTransacao()
     {
         return idTransacao;
     }

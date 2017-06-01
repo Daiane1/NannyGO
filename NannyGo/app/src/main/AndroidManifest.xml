@@ -209,6 +209,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.nannygo.app.HistoricoBabaActivity"/>
         </activity>
+        <activity
+            android:name=".DetalhesHistoricoClienteActivity"
+            android:label="@string/title_activity_detalhes_historico_cliente"
+            android:parentActivityName=".HistoricoClienteActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.nannygo.app.HistoricoClienteActivity"/>
+        </activity>
     </application>
 
 </manifest>

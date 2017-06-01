@@ -1,23 +1,17 @@
 package br.com.nannygo.app;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -27,9 +21,11 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
+import static br.com.nannygo.app.HistoricoBabaActivity.lstHistoricoBaba;
+
 public class HistoricoClienteActivity extends AppCompatActivity {
 
-    ListView list_view_baba;
+    ListView list_view_historico_cliente;
     static List<Transacao> lstHistorico = new ArrayList<>();
     Context context;
 
@@ -43,7 +39,7 @@ public class HistoricoClienteActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        list_view_baba = (ListView) findViewById(R.id.list_view_babas);
+
 
         new ConfigurarHistoricoClienteTask().execute();
 
@@ -54,11 +50,33 @@ public class HistoricoClienteActivity extends AppCompatActivity {
         super.onResume();
         configurarAdapter();
     }
-
     private void configurarAdapter() {
-        list_view_baba = (ListView) findViewById(R.id.list_view_baba);
-        TransacaoEsperaAdapter adapter = new TransacaoEsperaAdapter(this, R.layout.list_view_historico_cliente, lstHistorico);
-        list_view_baba.setAdapter(adapter);
+        list_view_historico_cliente = (ListView) findViewById(R.id.list_view_historico_cliente);
+
+        TransacaoEsperaAdapter adapter = new TransacaoEsperaAdapter(this, R.layout.list_view_item_transacao_espera, lstHistorico);
+        list_view_historico_cliente.setAdapter(adapter);
+
+        list_view_historico_cliente.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                Intent intent = new Intent(context, DetalhesHistoricoClienteActivity.class);
+                intent.putExtra("valor", lstHistorico.get(position).getValor());
+                intent.putExtra("idTransacao", lstHistorico.get(position).getIdTransacao());
+                intent.putExtra("idUsuario", lstHistorico.get(position).getIdUsuario());
+                intent.putExtra("idBaba", lstHistorico.get(position).getIdBaba());
+                intent.putExtra("dataTransacao", lstHistorico.get(position).getDataTransacao());
+                intent.putExtra("dataServico", lstHistorico.get(position).getDataServico());
+                intent.putExtra("statusAprovado", lstHistorico.get(position).getStatusAprovado());
+                intent.putExtra("metodoPagamento", lstHistorico.get(position).getMetodoPagamento());
+                intent.putExtra("nome", lstHistorico.get(position).getNome());
+                intent.putExtra("horaInicio", lstHistorico.get(position).getHoraInicio());
+                intent.putExtra("qntdHoras", lstHistorico.get(position).getQntdHoras());
+                startActivity(intent);
+
+            }
+        });
     }
 
     private class ConfigurarHistoricoClienteTask extends AsyncTask<Void, Void, Void> {
@@ -77,7 +95,7 @@ public class HistoricoClienteActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params) {
             String href = getResources().getString(R.string.linkLocal);
-            String link = String.format("%sconfigurarHistoricoCliente.php?id_transacao=%s", href, Transacao.getIdTransacao());
+            String link = String.format("%sconfigurarHistoricoCliente.php?id_usuario=%s", href, UsuarioFinal.getIdUsuario());
             retornoJson = HttpConnection.get(link);
             return null;
         }

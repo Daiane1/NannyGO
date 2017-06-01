@@ -1,43 +1,27 @@
 <?php
 	require_once('conexao.php');
-	$idorigem = $_GET['origem'];
+	$id_usuario = $_GET['id_usuario'];
 	
-	$sql = "SELECT t.valor,
-					u.nome
-					FROM 
-					tbl_transacao as t
-					inner join
-					tbl_usuario as u
-					on t.idUsuario = t.idUsuario
-					;";
-	
-	$selectHistoricoCliente = mysqli_query($conexao, $sql);
+	$sql = "SELECT t.id_transacao, t.id_usuario, t.id_baba, t.data_transacao, t.status_aprovado, t.metodo_pagamento, t.valor, t.data_servico, u.nome, t.hora_inicio, t.qntd_horas FROM tbl_transacoes AS t INNER JOIN tbl_babas AS b ON b.id_baba=t.id_baba INNER JOIN tbl_usuarios AS u ON u.id_usuario=b.id_usuario WHERE t.status_aprovado != 0 AND t.id_usuario = ".$id_usuario.";";
+	$select = mysqli_query($conexao, $sql);
 	
 	$array = array();
-	
-	while($resultado=mysqli_fetch_array($selectHistoricoCliente)){
-		$HistoricoCliente = array(
+	while($resultado=mysqli_fetch_array($select))
+	{	
+		$transacao = array(
 			"idTransacao"=>$resultado['id_transacao'],
 			"idUsuario"=>$resultado['id_usuario'],
 			"idBaba"=>$resultado['id_baba'],
+			"dataTransacao"=>$resultado['data_transacao'],
+			"dataServico"=>$resultado['data_servico'],
+			"statusAprovado"=>$resultado['status_aprovado'],
+			"metodoPagamento"=>$resultado['metodo_pagamento'],
 			"nome"=>$resultado['nome'],
 			"valor"=>$resultado['valor'],
-		$array[] = $HistoricoCliente;
+			"horaInicio"=>$resultado['hora_inicio'],
+			"qntdHoras"=>$resultado['qntd_horas']);	
+		$array[] = $transacao;
 	}
-	
-	usort($array, function($a, $b){
-		if ($a == $b)
-		{
-			return 0;
-		}
-		else if ($a > $b)
-		{
-			return 1;
-		}
-		else {              
-			return -1;
-		}
-	});
 	
 	$arrayJSON = json_encode($array);
 	
