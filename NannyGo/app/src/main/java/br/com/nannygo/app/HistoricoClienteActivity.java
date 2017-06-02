@@ -21,8 +21,6 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
-import static br.com.nannygo.app.HistoricoBabaActivity.lstHistoricoBaba;
-
 public class HistoricoClienteActivity extends AppCompatActivity {
 
     ListView list_view_historico_cliente;

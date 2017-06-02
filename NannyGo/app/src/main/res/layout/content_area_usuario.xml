@@ -170,16 +170,6 @@
             android:id="@+id/text_view_status"
             />
     </LinearLayout>
-    <Button
-        android:layout_width="150dp"
-        android:layout_height="60dp"
-        android:background="@color/rosa"
-        android:textColor="@color/branco"
-        android:text="Editar"
-        android:textSize="8pt"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:onClick="abrirTelaEditarUsuario"/>
 
 
 </LinearLayout>

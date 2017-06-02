@@ -22,8 +22,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class ContratacaoActivity extends AppCompatActivity
@@ -38,6 +41,7 @@ public class ContratacaoActivity extends AppCompatActivity
     double valor, preco;
     Integer idBaba, horas;
     String metodoPagamento, dataServico, dataFinal, horaInicio;
+    boolean statusValidacao, statusData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -135,35 +139,94 @@ public class ContratacaoActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                AlertDialog.Builder dialogFinalizar = new AlertDialog.Builder(context);
-                dialogFinalizar.setPositiveButton("OK", new DialogInterface.OnClickListener()
+                statusValidacao = true;
+                statusData = true;
+                validarCampos();
+
+                if(!statusData)
                 {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which)
-                    {
-                        metodoPagamento = spinner_forma_pagamento.getSelectedItem().toString();
-                        metodoPagamento = metodoPagamento.replaceAll("é", "e");
-                        dataServico = text_view_data.getText().toString();
-                        String data[] = dataServico.split("/");
-                        dataFinal = String.format("%s-%s-%s", data[2], data[1], data[0]);
+                    new AlertDialog.Builder(context)
+                            .setIcon(R.drawable.ic_warning_black_24dp)
+                            .setTitle("Houve um erro")
+                            .setMessage("Selecione uma data válida!")
+                            .setNeutralButton("OK", null)
+                            .show();
 
+                }
 
-                        horas = Integer.parseInt(spinner_horas.getSelectedItem().toString());
-                        preco = horas*valor;
+                if (!statusValidacao)
+                {
+                    new AlertDialog.Builder(context)
+                            .setIcon(R.drawable.ic_alarm_on_black_24dp)
+                            .setTitle("Houve um erro")
+                            .setMessage("Preencha todos os campos!")
+                            .setNeutralButton("OK", null)
+                            .show();
+                }
 
-                        horaInicio = text_view_hora_inicio.getText().toString();
+                if (statusValidacao && statusData)
+                {
+                    metodoPagamento = spinner_forma_pagamento.getSelectedItem().toString();
+                    metodoPagamento = metodoPagamento.replaceAll("é", "e");
 
-                        new InserirHistoricoTask().execute();
-                        startActivity(new Intent(context, BabasActivity.class));
-                    }
-                })
-                        .setTitle("Contratação finalizada!")
-                        .setIcon(R.drawable.done)
-                        .setMessage("Aguarde a aprovação da babá.")
-                        .show();
+                    horas = Integer.parseInt(spinner_horas.getSelectedItem().toString());
+                    preco = horas * valor;
+
+                    horaInicio = text_view_hora_inicio.getText().toString();
+                    AlertDialog.Builder dialogFinalizar = new AlertDialog.Builder(context);
+                    dialogFinalizar.setTitle("Contratação finalizada!")
+                            .setIcon(R.drawable.done)
+                            .setMessage("Aguarde a aprovação da babá.")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener()
+                            {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i)
+                                {
+                                    new InserirHistoricoTask().execute();
+                                    startActivity(new Intent(context, BabasActivity.class));
+                                }
+                            })
+                            .show();
+                }
             }
         });
     }
+
+    private void validarCampos()
+    {
+        if (text_view_data == null || text_view_data.getText().toString().isEmpty())
+        {
+            statusValidacao = false;
+        }
+        else
+        {
+            dataServico = text_view_data.getText().toString();
+            String data[] = dataServico.split("/");
+            dataFinal = String.format("%s-%s-%s", data[2], data[1], data[0]);
+
+            Calendar cal = Calendar.getInstance();
+            Date hoje = cal.getTime();
+
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            try
+            {
+                Date dataSelecionada = formato.parse(dataServico);
+                if (dataSelecionada.before(hoje))
+                {
+                    statusData = false;
+                }
+            } catch (ParseException e)
+            {
+                Log.e("erro data", e.toString());
+            }
+        }
+
+        if (text_view_hora_inicio == null || text_view_hora_inicio.getText().toString().isEmpty())
+        {
+            statusValidacao = false;
+        }
+    }
+
 
     public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener
     {
@@ -210,9 +273,11 @@ public class ContratacaoActivity extends AppCompatActivity
         }
     }
 
-    private class InserirHistoricoTask extends AsyncTask<Void, Void, Void> {
+    private class InserirHistoricoTask extends AsyncTask<Void, Void, Void>
+    {
         @Override
-        protected Void doInBackground(Void... params) {
+        protected Void doInBackground(Void... params)
+        {
             String href = getResources().getString(R.string.linkLocal);
             String link = String.format("%sregistrarTransacao.php?id_usuario=%s&id_baba=%d&metodo_pagamento=%s&valor=%f&data_servico=%s&hora_inicio=%s&qntd_horas=%s",
                     href,
@@ -223,7 +288,7 @@ public class ContratacaoActivity extends AppCompatActivity
                     dataFinal,
                     horaInicio,
                     horas
-                    );
+            );
             HttpConnection.get(link);
             return null;
         }

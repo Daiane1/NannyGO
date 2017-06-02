@@ -78,7 +78,6 @@ public class AreaUsuarioActivity extends AppCompatActivity {
     }
 
     public void abrirTelaEditarUsuario(View view) {
-        Intent intent = new Intent(context, EditarUsuarioActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(context, EditarUsuarioActivity.class));
     }
 }

@@ -26,7 +26,10 @@ import android.widget.TextView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 public class RegistroActivity extends AppCompatActivity {
@@ -40,6 +43,7 @@ public class RegistroActivity extends AppCompatActivity {
     Intent intentCidade;
 
     boolean statusValidacao = true;
+    boolean statusData = true;
 
     ImageView img_upload;
     private static final int RESULT_LOAD_IMAGE = 1;
@@ -128,13 +132,18 @@ public class RegistroActivity extends AppCompatActivity {
         idCidade = intent.getStringExtra("idcidade");
 
         validarCampos();
-        if (statusValidacao)
+        if(!statusData)
+        {
+            new AlertDialog.Builder(context).setTitle("Data inválida!").setIcon(R.drawable.ic_warning_black_24dp).setMessage("Selecione uma data de nascimento válida").setPositiveButton("OK", null).show();
+        }
+        if(!statusValidacao)
+        {
+            new AlertDialog.Builder(context).setTitle("Registro inválido!").setIcon(R.drawable.ic_warning_black_24dp).setMessage("Preencha todos os campos!").setPositiveButton("OK", null).show();
+        }
+
+        if (statusValidacao && statusData)
         {
             new RegistroUsuarioTask().execute();
-        }
-        else
-        {
-            new AlertDialog.Builder(context).setTitle("Registro inválido!").setMessage("Preencha todos os campos!").setPositiveButton("OK", null).show();
         }
     }
 
@@ -159,22 +168,26 @@ public class RegistroActivity extends AppCompatActivity {
         {
             statusValidacao = false;
         }
-        Calendar cal = Calendar.getInstance();
-        int ano = cal.get(Calendar.YEAR);
         if (text_view_data_nascimento==null || text_view_data_nascimento.getText().toString().isEmpty())
         {
             statusValidacao = false;
         }
         else
         {
-            String dataFormatada[] = text_view_data_nascimento.getText().toString().split("-");
-            if(Integer.parseInt(dataFormatada[2])<ano)
+            Calendar cal = Calendar.getInstance();
+            Date hoje = cal.getTime();
+
+            SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+            try
             {
-                formatarData();
-            }
-            else
+                Date dataSelecionada = formato.parse(text_view_data_nascimento.getText().toString());
+                if (dataSelecionada.before(hoje))
+                {
+                    statusData = false;
+                }
+            } catch (ParseException e)
             {
-                statusValidacao = false;
+                Log.e("erro data", e.toString());
             }
         }
 
@@ -183,7 +196,7 @@ public class RegistroActivity extends AppCompatActivity {
             statusValidacao = false;
         }
 
-        if (edit_text_cidade==null || edit_text_cidade.getText().toString().isEmpty())
+        if (edit_text_cidade==null)
         {
             statusValidacao = false;
         }

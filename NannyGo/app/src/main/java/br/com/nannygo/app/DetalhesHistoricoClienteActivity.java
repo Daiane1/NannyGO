@@ -48,6 +48,10 @@ public class DetalhesHistoricoClienteActivity extends AppCompatActivity
         {
             text_view_status.setText("Rejeitado");
         }
+        else if (statusAprovado == 0)
+        {
+            text_view_status.setText("Em espera");
+        }
     }
 
     private void formatarDatas()

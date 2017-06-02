@@ -1,5 +1,6 @@
 package br.com.nannygo.app;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -14,14 +15,16 @@ import com.google.gson.GsonBuilder;
 
 import java.lang.reflect.Modifier;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+{
 
     Context context;
     EditText edit_text_login, edit_text_senha;
     String login, senha;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -35,37 +38,62 @@ public class MainActivity extends AppCompatActivity {
         edit_text_senha = (EditText) findViewById(R.id.edit_text_senha);
     }
 
-    public void abrirTelaRegistro(View view) {
+    public void abrirTelaRegistro(View view)
+    {
         Intent intent = new Intent(context, RegistroActivity.class);
         startActivity(intent);
     }
 
-    public void abrirTelaBabas(View view) {
+    public void abrirTelaBabas(View view)
+    {
         login = edit_text_login.getText().toString();
         senha = edit_text_senha.getText().toString();
 
         new AutenticarUsuarioTask().execute();
     }
 
-    private class AutenticarUsuarioTask extends AsyncTask<Void, Void, Void> {
+    private class AutenticarUsuarioTask extends AsyncTask<Void, Void, Void>
+    {
         String retornoJson;
+        ProgressDialog dialog = new ProgressDialog(context);
 
         @Override
-        protected Void doInBackground(Void... params) {
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+            dialog.setTitle("Aguarde");
+            dialog.setMessage("Tentando realizar seu login...");
+            dialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params)
+        {
             String href = getResources().getString(R.string.linkLocal);
             String link = String.format("%sautenticarUsuario.php?login=%s&senha=%s", href, login, senha);
+
             retornoJson = HttpConnection.get(link);
             return null;
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
+        protected void onPostExecute(Void aVoid)
+        {
             super.onPostExecute(aVoid);
-
+            dialog.dismiss();
             Gson gson = new GsonBuilder().excludeFieldsWithModifiers(Modifier.VOLATILE).create();
 
-
-            if (retornoJson.isEmpty() || retornoJson == null)
+            if (retornoJson == null)
+            {
+                //Criação de dialog caso o login não foi bem sucedido.
+                new AlertDialog.Builder(context)
+                        .setTitle("Erro de conexão")
+                        .setNeutralButton("OK", null)
+                        .setIcon(android.R.drawable.ic_delete)
+                        .setMessage("Houve um erro ao tentar conectar com o servidor.\nVerifique se está com utilizando plano de dados ou Wi-fi.")
+                        .show();
+            }
+            else if (retornoJson.isEmpty())
             {
                 //Criação de dialog caso o login não foi bem sucedido.
                 new AlertDialog.Builder(context)
@@ -88,7 +116,8 @@ public class MainActivity extends AppCompatActivity {
     //  Criação de uma classe com atributos estáticos, para que os dados do usuário sejam utilizados
     //no aplicativo sejam iguais, uma vez que a classe implementada pelo Gson não implementa campos
     //estáticos.
-    private void criarUsuarioFinal(Usuario usuario) {
+    private void criarUsuarioFinal(Usuario usuario)
+    {
         UsuarioFinal.setIdUsuario(usuario.getIdUsuario());
         UsuarioFinal.setNome(usuario.getNome());
         UsuarioFinal.setSexo(usuario.getSexo());
