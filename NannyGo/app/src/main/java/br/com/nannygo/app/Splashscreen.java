@@ -9,6 +9,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class Splashscreen extends Activity {
     public void onAttachedToWindow() {
@@ -26,6 +29,7 @@ public class Splashscreen extends Activity {
     }
     private void StartAnimations() {
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.alpha);
+
         anim.reset();
         LinearLayout l=(LinearLayout) findViewById(R.id.lin_lay);
         l.clearAnimation();
@@ -36,6 +40,10 @@ public class Splashscreen extends Activity {
         ImageView iv = (ImageView) findViewById(R.id.splash);
         iv.clearAnimation();
         iv.startAnimation(anim);
+
+        TextView tv = (TextView) findViewById(R.id.textSplash);
+        tv.clearAnimation();
+        tv.startAnimation(anim);
 
         splashTread = new Thread() {
             @Override
