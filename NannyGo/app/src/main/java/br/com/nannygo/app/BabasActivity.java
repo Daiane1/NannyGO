@@ -9,7 +9,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -124,7 +123,6 @@ public class BabasActivity extends AppCompatActivity
                             .show();
                 } else
                 {
-                    Log.d("json", retornoJson);
                     lstBabas = gson.fromJson(retornoJson, new TypeToken<List<Baba>>()
                     {
                     }.getType());

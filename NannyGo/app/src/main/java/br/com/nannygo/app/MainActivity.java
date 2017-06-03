@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -56,7 +57,6 @@ public class MainActivity extends AppCompatActivity
 
         new AutenticarUsuarioTask().execute();
 
-        popup();
     }
 
     public void abrirTelaSobre(View view)
@@ -119,6 +119,7 @@ public class MainActivity extends AppCompatActivity
             {
                 Usuario usuario = gson.fromJson(retornoJson, Usuario.class);
                 criarUsuarioFinal(usuario);
+                popup();
                 Intent intent = new Intent(context, VerificacaoActivity.class);
                 startActivity(intent);
             }
@@ -128,12 +129,21 @@ public class MainActivity extends AppCompatActivity
     //Notificação de Login - Uma aviso de login que é apresentado instantaneamente
     //na notificationbar quando o usuário loga.
     private void popup(){
+        String texto;
+        if(UsuarioFinal.getSexo().equals("F"))
+        {
+            texto = String.format("Bem vinda ao NannyGO %s", UsuarioFinal.getNome());
+        }
+        else
+        {
+            texto = String.format("Bem vindo ao NannyGO %s", UsuarioFinal.getNome());
+        }
 
         NotificationCompat.Builder mBuilder =
                 (NotificationCompat.Builder) new NotificationCompat.Builder(this)
                     .setSmallIcon(R.drawable.logo)
                     .setContentTitle("NannyGO")
-                    .setContentText("Bem vindo(a) "+(UsuarioFinal.getNome()));
+                    .setContentText(texto);
                 NotificationManager notificationManager = (NotificationManager)
                         getSystemService(Context.NOTIFICATION_SERVICE);
                 notificationManager.notify(0, mBuilder.build());
@@ -157,5 +167,6 @@ public class MainActivity extends AppCompatActivity
         UsuarioFinal.setEstado(usuario.getEstado());
         UsuarioFinal.setUf(usuario.getUf());
         UsuarioFinal.setIdCidade(usuario.getIdCidade());
+        UsuarioFinal.setLogradouro(usuario.getLogradouro());
     }
 }

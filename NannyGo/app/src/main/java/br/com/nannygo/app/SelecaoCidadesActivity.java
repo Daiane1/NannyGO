@@ -47,7 +47,14 @@ public class SelecaoCidadesActivity extends AppCompatActivity
 
         pegarView();
         intentRegistro = getIntent();
-        intent = new Intent(context, RegistroActivity.class);
+        if (intentRegistro.getStringExtra("activity").equals("RegistroActivity"))
+        {
+            intent = new Intent(context, RegistroActivity.class);
+        }
+        else if (intentRegistro.getStringExtra("activity").equals("EditarUsuarioActivity"))
+        {
+            intent = new Intent(context, EditarUsuarioActivity.class);
+        }
 
         preencherIntent();
 

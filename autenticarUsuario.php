@@ -24,7 +24,8 @@
 			"cidade"=>$rs['cidade'],
 			"estado"=>$rs['estado'],
 			"uf"=>$rs['uf'],
-			"idCidade"=>$rs['idCidade']);
+			"idCidade"=>$rs['idCidade'],
+			"logradouro"=>$rs['logradouro']);
 			
 		$usuarioJSON = json_encode($usuario);
 		

@@ -300,13 +300,16 @@ public class RegistroActivity extends AppCompatActivity {
 
     private class RegistroUsuarioTask extends AsyncTask<Void, Void, Void>
     {
-        ProgressDialog progress;
+        ProgressDialog progress = new ProgressDialog(context);
 
         @Override
         protected void onPreExecute()
         {
             super.onPreExecute();
-            progress = ProgressDialog.show(context, "Aguarde", "Registrando...");
+            progress.setMessage("Registrando...");
+            progress.setIcon(R.drawable.ic_update_black_24dp);
+            progress.setTitle("Aguarde");
+            progress.show();
         }
 
         @Override
@@ -314,7 +317,6 @@ public class RegistroActivity extends AppCompatActivity {
         {
             String link = String.format("http://10.0.2.2/20171sem/NannyGO/registroUsuario.php?nome=%s&login=%s&senha=%s&sexo=%s&telefone=%s&email=%s&data_nascimento=%s&cidade=%s&logradouro=%s&foto=%s",
                     nome, login, senha, sexo, telefone, email, dataNascimentoBanco, idCidade, logradouro, imagem);
-            Log.d("link", link);
             HttpConnection.get(link);
             return null;
         }
@@ -323,6 +325,7 @@ public class RegistroActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid)
         {
             super.onPostExecute(aVoid);
+            progress.dismiss();
             startActivity(new Intent(context, MainActivity.class));
         }
     }

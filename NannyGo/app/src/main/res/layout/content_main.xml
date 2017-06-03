@@ -76,9 +76,7 @@
         android:textColor="@color/branco"
         android:onClick="abrirTelaRegistro"
         android:text="registrar" />
-<<<<<<< HEAD
 
-=======
     <Button
         android:layout_width="120dp"
         android:layout_height="wrap_content"
@@ -89,5 +87,4 @@
         android:textColor="@color/branco"
         android:onClick="abrirTelaSobre"
         android:text="sobre" />
->>>>>>> 5a36476ccdcbb41a0d33fce60943e2365331bfb2
 </LinearLayout>

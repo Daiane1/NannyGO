@@ -17,6 +17,9 @@ public class Usuario
     private String cidade;
     private String estado;
     private String uf;
+    private String logradouro;
+
+
 
 
     public String getNome()
@@ -124,6 +127,11 @@ public class Usuario
     public void setUf(String uf)
     {
         this.uf = uf;
+    }
+
+    public String getLogradouro()
+    {
+        return logradouro;
     }
 }
 

@@ -16,6 +16,9 @@ public class UsuarioFinal
     private static String cidade;
     private static String estado;
     private static String uf;
+    private static String logradouro;
+
+
 
     public static void logout()
     {
@@ -187,4 +190,13 @@ public class UsuarioFinal
         UsuarioFinal.uf = uf;
     }
 
+    public static String getLogradouro()
+    {
+        return logradouro;
+    }
+
+    public static void setLogradouro(String logradouro)
+    {
+        UsuarioFinal.logradouro = logradouro;
+    }
 }

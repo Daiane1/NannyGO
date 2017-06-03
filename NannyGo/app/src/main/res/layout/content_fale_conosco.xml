@@ -176,6 +176,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Sim, o aplicativo permite qualquer usuário se registrar como uma babá em qualquer momento, assim como retirar seu registro."/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Quem desenvolveu o aplicativo?"
+                android:textColor="@color/azul"
+                android:textSize="18dp"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text='O aplicativo foi desenvolvido por alunos da Escola SENAI "Prof. Vicente Amato" de Jandira/SP em 2017.'/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
