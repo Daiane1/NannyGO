@@ -62,6 +62,7 @@
         android:background="@color/azul"
         android:onClick="abrirTelaBabas"
         android:text="login"
+        android:id="@+id/btnLogar"
         android:textColor="@color/branco" />
 
     <Button

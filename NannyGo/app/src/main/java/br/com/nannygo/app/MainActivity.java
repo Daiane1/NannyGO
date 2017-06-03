@@ -1,5 +1,6 @@
 package br.com.nannygo.app;
 
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.NotificationCompat;
 import android.view.View;
 import android.widget.EditText;
 
@@ -50,6 +52,8 @@ public class MainActivity extends AppCompatActivity
         senha = edit_text_senha.getText().toString();
 
         new AutenticarUsuarioTask().execute();
+
+        popup();
     }
 
     private class AutenticarUsuarioTask extends AsyncTask<Void, Void, Void>
@@ -111,6 +115,19 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         }
+    }
+
+    //Notificação de Login
+    private void popup(){
+
+        NotificationCompat.Builder mBuilder =
+                (NotificationCompat.Builder) new NotificationCompat.Builder(this)
+                    .setSmallIcon(R.drawable.logo)
+                    .setContentTitle("NannyGO")
+                    .setContentText("Perfil acessado recentemente.");
+                NotificationManager notificationManager = (NotificationManager)
+                        getSystemService(Context.NOTIFICATION_SERVICE);
+                notificationManager.notify(0, mBuilder.build());
     }
 
     //  Criação de uma classe com atributos estáticos, para que os dados do usuário sejam utilizados
