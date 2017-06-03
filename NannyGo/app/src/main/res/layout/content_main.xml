@@ -72,6 +72,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginTop="20dp"
         android:background="@color/cinza"
+        android:textColor="@color/branco"
         android:onClick="abrirTelaRegistro"
         android:text="registrar" />
     <Button

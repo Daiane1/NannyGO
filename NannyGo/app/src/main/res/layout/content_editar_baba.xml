@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="br.com.nannygo.app.EditarBabaActivity"
+    tools:showIn="@layout/activity_editar_baba"
+    android:padding="16dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="EDITAR PERFIL"
+        android:textSize="12pt"
+        android:fontFamily="sans-serif-smallcaps"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp">
+        <TableRow
+            android:layout_marginTop="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Preço/hora"
+                android:textSize="8pt"
+                android:textColor="@color/rosa"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="10,00"
+                android:gravity="end"
+                android:layout_marginEnd="25dp"
+                android:inputType="numberDecimal"
+                android:digits="0123456789.,"
+                android:id="@+id/edit_text_preco"
+                />
+
+        </TableRow>
+        <TableRow
+            android:layout_marginTop="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hora Início"
+                android:textSize="8pt"
+                android:textColor="@color/rosa"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="8pt"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:hint="00:00"
+                android:textColor="@color/preto"
+                android:id="@+id/text_view_hora_inicio"/>
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/ic_alarm_on_black_24dp"
+                android:adjustViewBounds="true"
+                android:id="@+id/img_hora_inicio"/>
+        </TableRow>
+        <TableRow
+            android:layout_marginTop="5dp">
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="wrap_content"
+                android:text="Hora Fim"
+                android:textSize="8pt"
+                android:textColor="@color/rosa"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="8pt"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:hint="00:00"
+                android:textColor="@color/preto"
+                android:id="@+id/text_view_hora_fim"/>
+            <ImageView
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/ic_alarm_on_black_24dp"
+                android:adjustViewBounds="true"
+                android:id="@+id/img_hora_fim"
+                />
+
+        </TableRow>
+        <TableRow
+            android:layout_marginTop="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Disponibilidade"
+                android:textSize="8pt"
+                android:textColor="@color/rosa"/>
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinner_disponibilidade"
+                android:paddingStart="85dp"
+                android:layout_weight="1"/>
+        </TableRow>
+    </TableLayout>
+
+</LinearLayout>
