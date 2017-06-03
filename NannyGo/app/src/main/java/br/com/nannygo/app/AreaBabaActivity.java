@@ -21,6 +21,7 @@ public class AreaBabaActivity extends AppCompatActivity
     ImageView img_baba;
     Context context;
     Baba baba;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -102,6 +103,22 @@ public class AreaBabaActivity extends AppCompatActivity
     {
         startActivity(new Intent(this, RegistroBabaActivity.class));
     }
+
+    public void abrirTelaEditarBaba(View view)
+    {
+        preencherIntent();
+        startActivity(intent);
+    }
+
+    private void preencherIntent()
+    {
+        intent = new Intent(context, EditarBabaActivity.class);
+        intent.putExtra("preco", baba.getPreco());
+        intent.putExtra("horaInicio", baba.getHoraInicio());
+        intent.putExtra("horaFim", baba.getHoraFim());
+        intent.putExtra("diasDisponiveis", baba.getDiasDisponiveis());
+    }
+
 
     private class PegarDadosBabaTask extends AsyncTask<Void, Void, Void>
     {

@@ -2,79 +2,69 @@ package br.com.nannygo.app;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
-public class FaleConoscoActivity extends AppCompatActivity {
+public class FaleConoscoActivity extends AppCompatActivity
+{
 
     EditText edit_comentario;
     Context context;
-    FloatingActionButton botao;
     String comentario;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fale_conosco);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         context = this;
 
-        edit_comentario = (EditText)findViewById(R.id.edit_comentario);
-
-        inserirCampos();
-    }
-
-    private void inserirCampos() {
-
-        edit_comentario.setText(FaleConosco.getComentario());
-    }
-
-    private void configurarBotaoConfirmar() {
-        botao = (FloatingActionButton) findViewById(R.id.botao);
-        botao.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v) {
-                inserirBanco();
-            }
-        });
-    }
-
-    private void inserirBanco() {
-        pegarDados();
+        edit_comentario = (EditText) findViewById(R.id.edit_comentario);
 
     }
 
-    private void pegarDados() {
-        comentario = edit_comentario.getText().toString();
-    }
-
-    private class RegistroUsuarioTask extends AsyncTask<Void, Void, Void>
+    public void enviarComentario(View view)
     {
-        ProgressDialog progress;
+        comentario = edit_comentario.getText().toString();
+        if(comentario != null || !comentario.isEmpty())
+        {
+            comentario = comentario.replaceAll(" ", "_");
+            new EnviarFeedbackTask().execute();
+        }
+    }
+
+    private class EnviarFeedbackTask extends AsyncTask<Void, Void, Void>
+    {
+        ProgressDialog progress = new ProgressDialog(context);
 
         @Override
         protected void onPreExecute()
         {
             super.onPreExecute();
-            progress = ProgressDialog.show(context, "Aguarde", "Registrando...");
+            progress.setMessage("Enviando seu feedback, por favor aguarde...");
+            progress.setIcon(R.drawable.ic_update_black_24dp);
+            progress.setTitle("Aguarde");
+            progress.show();
         }
 
         @Override
         protected Void doInBackground(Void... params)
         {
-            String link = String.format("http://10.0.2.2/20171sem/NannyGO/registroUsuario.php?comentario=%s",
+            String href = getResources().getString(R.string.linkLocal);
+            String link = String.format("%sfaleconosco.php?comentario=%s",
+                    href,
                     comentario);
-            Log.d("link", link);
             HttpConnection.get(link);
             return null;
         }
@@ -83,7 +73,19 @@ public class FaleConoscoActivity extends AppCompatActivity {
         protected void onPostExecute(Void aVoid)
         {
             super.onPostExecute(aVoid);
-            startActivity(new Intent(context, VerificacaoActivity.class));
+            progress.dismiss();
+            new AlertDialog.Builder(context)
+                    .setIcon(R.drawable.done)
+                    .setTitle("Sucesso!")
+                    .setMessage("Seu feedback foi enviado com sucesso!")
+                    .setNeutralButton("OK", new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i)
+                        {
+                            startActivity(new Intent(context, FaleConoscoActivity.class));
+                        }
+                    }).show();
         }
     }
 

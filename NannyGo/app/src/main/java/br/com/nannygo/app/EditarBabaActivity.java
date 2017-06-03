@@ -2,6 +2,7 @@ package br.com.nannygo.app;
 
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -22,7 +23,7 @@ import android.widget.TimePicker;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RegistroBabaActivity extends AppCompatActivity
+public class EditarBabaActivity extends AppCompatActivity
 {
     Spinner spinner_disponibilidade;
     static int condicaoHora;
@@ -32,12 +33,13 @@ public class RegistroBabaActivity extends AppCompatActivity
     Context context;
     String preco, horaInicio, horaFim, diasDisponiveis;
     boolean statusValidacao = true;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registro_baba);
+        setContentView(R.layout.activity_editar_baba);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -49,8 +51,27 @@ public class RegistroBabaActivity extends AppCompatActivity
         abrirDialogHora();
         preencherSpinner();
         configurarBotaoConfirma();
+        pegarIntent();
+        preencherCampos();
 
     }
+
+    private void pegarIntent()
+    {
+        intent = getIntent();
+        preco = intent.getStringExtra("preco");
+        horaInicio = intent.getStringExtra("horaInicio");
+        horaFim = intent.getStringExtra("horaFim");
+        diasDisponiveis = intent.getStringExtra("diasDisponiveis");
+    }
+
+    private void preencherCampos()
+    {
+        edit_text_preco.setText(preco);
+        text_view_hora_inicio.setText(horaInicio);
+        text_view_hora_fim.setText(horaFim);
+    }
+
 
     private void configurarBotaoConfirma()
     {
@@ -63,7 +84,7 @@ public class RegistroBabaActivity extends AppCompatActivity
                 validarCampos();
                 if (statusValidacao)
                 {
-                    new RegistrarBabaTask().execute();
+                    new EditarBabaTask().execute();
                 }
                 else
                 {
@@ -173,17 +194,28 @@ public class RegistroBabaActivity extends AppCompatActivity
         }
     }
 
-    private class RegistrarBabaTask extends AsyncTask<Void, Void, Void>
+    private class EditarBabaTask extends AsyncTask<Void, Void, Void>
     {
+        ProgressDialog dialog = new ProgressDialog(context);
+        @Override
+        protected void onPreExecute()
+        {
+            super.onPreExecute();
+            dialog.setMessage("Editando seu perfil...");
+            dialog.setIcon(R.drawable.ic_update_black_24dp);
+            dialog.setTitle("Aguarde");
+            dialog.show();
+
+        }
+
         @Override
         protected Void doInBackground(Void... params)
         {
             String href = getResources().getString(R.string.linkLocal);
-            String link = String.format("%sregistrarBaba.php?id_usuario=%s&preco=%s&horaInicio=%s&horaFim=%s&diasDisponiveis=%s&id_cidade=%s",
+            String link = String.format("%seditarBaba.php?id_usuario=%s&preco=%s&horaInicio=%s&horaFim=%s&diasDisponiveis=%s",
                     href,
                     UsuarioFinal.getIdUsuario(),
-                    preco, horaInicio, horaFim, diasDisponiveis,
-                    UsuarioFinal.getIdCidade());
+                    preco, horaInicio, horaFim, diasDisponiveis);
             HttpConnection.get(link);
             return null;
         }
@@ -192,9 +224,9 @@ public class RegistroBabaActivity extends AppCompatActivity
         protected void onPostExecute(Void aVoid)
         {
             super.onPostExecute(aVoid);
-            UsuarioFinal.setStatusBaba("1");
-            startActivity(new Intent(context, MenuBabaActivity.class));
+            dialog.dismiss();
+            startActivity(new Intent(context, AreaBabaActivity.class));
         }
     }
-
 }
+

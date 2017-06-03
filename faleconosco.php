@@ -1,13 +1,11 @@
 <?php 
-	
 	require_once('conexao.php');
 	
 	$comentario = $_GET['comentario'];
-	$id_usuario = $_GET['id_usuario'];
 	
-	$sql = "insert into tbl_faleconosco(comentario, id_usuario) values('".$comentario."','".$id_usuario."')"
+	$comentario = str_replace('_', ' ', $comentario);
 	
-	echo $sql;
+	$sql = "INSERT INTO tbl_faleconosco(comentario) values('".$comentario."')";
 	
 	mysqli_query($conexao, $sql);
 	

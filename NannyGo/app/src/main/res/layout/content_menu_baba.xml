@@ -64,6 +64,7 @@
         android:text="Perfil"
         android:textColor="@color/branco"
         android:onClick="abrirTelaPerfil"
+        android:id="@+id/btn_perfil"
         />
 
     <Button
@@ -75,6 +76,7 @@
         android:text="Histórico"
         android:textColor="@color/branco"
         android:onClick="abrirTelaHistoricoBaba"
+        android:id="@+id/btn_historico"
         />
     <Button
         android:layout_width="200dp"
@@ -85,6 +87,7 @@
         android:text="Esperando aprovação"
         android:textColor="@color/branco"
         android:onClick="abrirTelaTransacoesEspera"
+        android:id="@+id/btn_espera"
         />
     <Button
         android:layout_width="200dp"
