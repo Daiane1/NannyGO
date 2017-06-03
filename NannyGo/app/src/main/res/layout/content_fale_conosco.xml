@@ -1,121 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/content_fale_conosco"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="br.com.nannygo.app.FaleConoscoActivity"
-    tools:showIn="@layout/activity_fale_conosco"
-    android:orientation="vertical">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/content_fale_conosco"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              app:layout_behavior="@string/appbar_scrolling_view_behavior"
+              tools:context="br.com.nannygo.app.FaleConoscoActivity"
+              tools:showIn="@layout/activity_fale_conosco">
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Comentários:"
-        android:textSize="20dp"
-        android:textColor="@color/colorAccent"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        >
 
-    <EditText
-        android:id="@+id/edit_comentario"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:hint="Dê sua opinião sobre nosso aplicativo"
-        android:inputType="text|textMultiLine"
-        android:gravity="top"
-        android:maxLength="200"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="235dp"
-        android:layout_marginTop="10dp"
-        android:text="enviar"
-        android:background="@color/colorAccent"
-        android:textColor="@color/branco"
-        android:id="@+id/btn_enviar_comentario"/>
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Entre em Contato Conosco"
-        android:textSize="20dp"
-        android:textColor="@color/colorAccent"
-        android:layout_marginTop="80dp"
-        android:layout_marginBottom="10dp"
-        android:textStyle="bold"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Telefone:"
-            android:textColor="@color/azul"
-            android:textSize="20dp"
-            android:layout_marginBottom="10dp"/>
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="5546465"
-            android:textSize="18dp"
-            android:layout_marginLeft="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Comentários:"
+                android:textColor="@color/colorAccent"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
 
-    </LinearLayout>
+            <EditText
+                android:id="@+id/edit_comentario"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:gravity="top"
+                android:hint="Dê sua opinião sobre nosso aplicativo"
+                android:inputType="text|textMultiLine"
+                android:maxLength="200"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            <Button
+                android:id="@+id/btn_enviar_comentario"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorAccent"
+                android:text="enviar"
+                android:textColor="@color/branco"
+                android:onClick="enviarComentario"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Email:"
-            android:textColor="@color/azul"
-            android:textSize="20dp"
-            android:layout_marginBottom="10dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="nannygo@gmail.com"
-            android:textSize="18dp"
-            android:layout_marginLeft="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="40dp"
+                android:text="Entre em Contato Conosco"
+                android:textColor="@color/colorAccent"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
 
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="3"
+                    android:text="Telefone"
+                    android:textColor="@color/azul"
+                    android:textSize="20dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Endereço:"
-            android:textColor="@color/azul"
-            android:textSize="20dp"
-            android:layout_marginBottom="10dp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="(11) 1234-5678"
+                    android:textSize="18dp"/>
 
-        <TextView
-            android:textSize="18dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Avenida Paulista, 1002 - SP"
-            android:layout_marginLeft="10dp"/>
+            </LinearLayout>
 
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="3"
+                    android:text="Email"
+                    android:textColor="@color/azul"
+                    android:textSize="20dp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="contato@nannygo.com"
+                    android:textSize="18dp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="40dp"
+                android:text="FAQ - Perguntas Frequentes"
+                android:textColor="@color/colorAccent"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="O aplicativo é gratuito?"
+                android:textColor="@color/azul"
+                android:textSize="18dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sim, o aplicativo é gratuito para usuários e babás, porém é aplicado uma taxa de 10% por transação."/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="É possível ser um usuário e uma babá?"
+                android:textColor="@color/azul"
+                android:textSize="18dp"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sim, o aplicativo permite qualquer usuário se registrar como uma babá, além de permitir que uma babá contrate outra."/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="É necessário uma conexão de Internet?"
+                android:textColor="@color/azul"
+                android:textSize="18dp"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sim, o aplicativo necessita de uma conexão ativa com a Internet para utilizar de seus serviços."/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Que métodos de pagamento são suportados?"
+                android:textColor="@color/azul"
+                android:textSize="18dp"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cartões de crédito, débito, Paypal e boleto bancário."/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="É possível que uma babá retire seu registro?"
+                android:textColor="@color/azul"
+                android:textSize="18dp"
+                android:layout_marginTop="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sim, o aplicativo permite qualquer usuário se registrar como uma babá em qualquer momento, assim como retirar seu registro."/>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

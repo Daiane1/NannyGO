@@ -152,7 +152,7 @@
         <activity
             android:name=".FaleConoscoActivity"
             android:label="@string/title_activity_fale_conosco"
-            android:parentActivityName=".VerificacaoActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

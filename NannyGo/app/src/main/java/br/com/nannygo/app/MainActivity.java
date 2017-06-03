@@ -56,6 +56,11 @@ public class MainActivity extends AppCompatActivity
         popup();
     }
 
+    public void abrirTelaSobre(View view)
+    {
+        startActivity(new Intent(context, FaleConoscoActivity.class));
+    }
+
     private class AutenticarUsuarioTask extends AsyncTask<Void, Void, Void>
     {
         String retornoJson;
