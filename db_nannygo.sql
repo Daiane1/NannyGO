@@ -35,7 +35,7 @@ CREATE TABLE `tbl_babas` (
   KEY `fk_baba_cidade_idx` (`idCidade`),
   CONSTRAINT `fk_bab_cidade` FOREIGN KEY (`idCidade`) REFERENCES `tbl_cidade` (`id_cidade`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_baba_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `tbl_usuarios` (`id_usuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `tbl_babas` (
 
 LOCK TABLES `tbl_babas` WRITE;
 /*!40000 ALTER TABLE `tbl_babas` DISABLE KEYS */;
-INSERT INTO `tbl_babas` VALUES (2,31,4965,5.00,'00:00','23:59','Sempre'),(3,37,4965,50.00,'19:00','23:59','Semana'),(6,40,4991,2.50,'23:59','00:00','Sempre'),(8,44,5353,5.40,'23:59','00:01','Finais de semana');
+INSERT INTO `tbl_babas` VALUES (2,31,4965,5.00,'00:00','23:59','Sempre'),(3,37,4965,50.00,'19:00','23:59','Semana'),(6,40,4991,2.50,'23:59','00:00','Sempre'),(8,44,5353,5.40,'23:59','00:01','Finais de semana'),(14,1,4991,5.00,'00:00','00:00','Finais de semana');
 /*!40000 ALTER TABLE `tbl_babas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -211,7 +211,7 @@ CREATE TABLE `tbl_usuarios` (
 
 LOCK TABLES `tbl_usuarios` WRITE;
 /*!40000 ALTER TABLE `tbl_usuarios` DISABLE KEYS */;
-INSERT INTO `tbl_usuarios` VALUES (1,4991,'Daiane Nascimento Rosa','dai','123','F','(11)91234-5678','daai@email.com','2000-01-30','Rua Antonio Lopes Tempos, 133','imagens/menina.png',0),(31,4965,'Biel Santos','glsantos','123','M','011986394488','gabriel._.lima@hotmail.com','1990-01-01','Rua, 000','imagens/menino.png',1),(35,4965,'Eilane Alves','eilane','321','F','43251671','eilane02@terra.com','2017-04-10','Rua, 000','imagens/menina.png',0),(37,4965,'Andrey','drey','123','M','01145452687','andrey@outlook.com','2000-04-12','Rua, 000','imagens/menino.png',1),(38,4851,'kassiano','kassiano','1234','M','11999999','kassiano.resende@gmail.com','1987-04-12','Rua, 000','imagens/menino.png',0),(40,4991,'Joyce','Joyce','negro','F','011948188045','joyce@gmail.com','2000-10-05','Rua, 000','',1),(41,4991,'Daiane','dailinda','10093454','F','011974565231','dai@email.com','2000-01-30','Rua Antonio Lopes Tempos, 133','R.drawable.babyF',0),(42,4770,'Gabriel Testa','gtesta','123','M','011986394488','gabrieltesta@email.com','1999-08-13','Rua Antonio Chalupe, 312','R.drawable.babyM',0),(43,4991,'Daiane Rosa','daairosa','123','F','0111564864','daairosa@email.com','2000-01-30','Rua Antonio Lopes Tempos, 133','R.drawable.babyF',0),(44,5353,'Rafael Vieira','baeu','123','M','048415648651','asd@hsduif.com','2017-04-11','Rua blablabla, 123','R.drawable.babyM',1),(45,4770,'Gabriel Reder','sinep','123sinep','M','1191234567','sinep@email.com','2000-08-22','Rua Brasil, 304','R.drawable.babyM',0),(46,698,'aasd','aasd','a1234','F','1342','a@as.com','2016-06-16','a3asd','R.drawable.babyF',0);
+INSERT INTO `tbl_usuarios` VALUES (1,4991,'Daiane Nascimento Rosa','dai','123','F','11912345678','daai@email.com','2000-01-30','Rua Antonio Lopes Tempos, 133','imagens/menina.png',1),(31,4965,'Biel Santos','glsantos','123','M','011986394488','gabriel._.lima@hotmail.com','1990-01-01','Rua, 000','imagens/menino.png',1),(35,4965,'Eilane Alves','eilane','321','F','43251671','eilane02@terra.com','2017-04-10','Rua, 000','imagens/menina.png',0),(37,4965,'Andrey','drey','123','M','01145452687','andrey@outlook.com','2000-04-12','Rua, 000','imagens/menino.png',1),(38,4851,'kassiano','kassiano','1234','M','11999999','kassiano.resende@gmail.com','1987-04-12','Rua, 000','imagens/menino.png',0),(40,4991,'Joyce','Joyce','negro','F','011948188045','joyce@gmail.com','2000-10-05','Rua, 000','',1),(41,4991,'Daiane','dailinda','10093454','F','011974565231','dai@email.com','2000-01-30','Rua Antonio Lopes Tempos, 133','R.drawable.babyF',0),(42,4770,'Gabriel Testa','gtesta','123','M','011986394488','gabrieltesta@email.com','1999-08-13','Rua Antonio Chalupe, 312','R.drawable.babyM',0),(43,4991,'Daiane Rosa','daairosa','123','F','0111564864','daairosa@email.com','2000-01-30','Rua Antonio Lopes Tempos, 133','R.drawable.babyF',0),(44,5353,'Rafael Vieira','baeu','123','M','048415648651','asd@hsduif.com','2017-04-11','Rua blablabla, 123','R.drawable.babyM',1),(45,4770,'Gabriel Reder','sinep','123sinep','M','1191234567','sinep@email.com','2000-08-22','Rua Brasil, 304','R.drawable.babyM',0),(46,698,'aasd','aasd','a1234','F','1342','a@as.com','2016-06-16','a3asd','R.drawable.babyF',0);
 /*!40000 ALTER TABLE `tbl_usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -277,7 +277,8 @@ SET character_set_client = utf8;
  1 AS `cidade`,
  1 AS `estado`,
  1 AS `uf`,
- 1 AS `idCidade`*/;
+ 1 AS `idCidade`,
+ 1 AS `logradouro`*/;
 SET character_set_client = @saved_cs_client;
 
 --
@@ -329,7 +330,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `vw_usuario` AS select `u`.`id_usuario` AS `id_usuario`,`u`.`nome` AS `nome`,`u`.`sexo` AS `sexo`,`u`.`telefone` AS `telefone`,`u`.`email` AS `email`,`u`.`login` AS `login`,`u`.`senha` AS `senha`,`u`.`data_nascimento` AS `data_nascimento`,`u`.`imagem` AS `imagem`,`u`.`statusBaba` AS `statusBaba`,`c`.`nome` AS `cidade`,`e`.`nome` AS `estado`,`e`.`uf` AS `uf`,`u`.`idCidade` AS `idCidade` from ((`tbl_usuarios` `u` join `tbl_cidade` `c` on((`u`.`idCidade` = `c`.`id_cidade`))) join `tbl_estado` `e` on((`c`.`estado` = `e`.`id_estado`))) */;
+/*!50001 VIEW `vw_usuario` AS select `u`.`id_usuario` AS `id_usuario`,`u`.`nome` AS `nome`,`u`.`sexo` AS `sexo`,`u`.`telefone` AS `telefone`,`u`.`email` AS `email`,`u`.`login` AS `login`,`u`.`senha` AS `senha`,`u`.`data_nascimento` AS `data_nascimento`,`u`.`imagem` AS `imagem`,`u`.`statusBaba` AS `statusBaba`,`c`.`nome` AS `cidade`,`e`.`nome` AS `estado`,`e`.`uf` AS `uf`,`u`.`idCidade` AS `idCidade`,`u`.`logradouro` AS `logradouro` from ((`tbl_usuarios` `u` join `tbl_cidade` `c` on((`u`.`idCidade` = `c`.`id_cidade`))) join `tbl_estado` `e` on((`c`.`estado` = `e`.`id_estado`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -343,4 +344,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-03 16:24:46
+-- Dump completed on 2017-06-03 20:53:54
