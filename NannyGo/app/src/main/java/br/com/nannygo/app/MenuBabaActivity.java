@@ -20,7 +20,7 @@ public class MenuBabaActivity extends AppCompatActivity
 {
     TextView text_view_nome;
     ImageView img_baba;
-    Button btn_disponivel, btn_indisponivel;
+    Button btn_disponivel, btn_indisponivel, btn_perfil, btn_historico, btn_espera;
     Context context;
 
     @Override
@@ -46,11 +46,15 @@ public class MenuBabaActivity extends AppCompatActivity
         {
             btn_disponivel.setVisibility(GONE);
             btn_indisponivel.setVisibility(View.VISIBLE);
+
         }
         else
         {
             btn_disponivel.setVisibility(View.VISIBLE);
             btn_indisponivel.setVisibility(GONE);
+            btn_espera.setVisibility(GONE);
+            btn_perfil.setVisibility(GONE);
+            btn_historico.setVisibility(GONE);
         }
     }
 
@@ -60,6 +64,9 @@ public class MenuBabaActivity extends AppCompatActivity
         img_baba = (ImageView) findViewById(R.id.img_baba);
         btn_disponivel = (Button) findViewById(R.id.btn_disponivel);
         btn_indisponivel = (Button) findViewById(R.id.btn_indisponivel);
+        btn_historico = (Button) findViewById(R.id.btn_historico);
+        btn_espera = (Button) findViewById(R.id.btn_espera);
+        btn_perfil = (Button) findViewById(R.id.btn_perfil);
     }
 
     private void formatarNome()
@@ -161,7 +168,7 @@ public class MenuBabaActivity extends AppCompatActivity
         {
             super.onPostExecute(aVoid);
             UsuarioFinal.setStatusBaba("0");
-            startActivity(new Intent(context, VerificacaoActivity.class));
+            startActivity(new Intent(context, MenuBabaActivity.class));
         }
     }
 }

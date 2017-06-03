@@ -8,9 +8,9 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -31,6 +31,8 @@ public class RegistroBabaActivity extends AppCompatActivity
     static TextView text_view_hora_inicio, text_view_hora_fim;
     Context context;
     String preco, horaInicio, horaFim, diasDisponiveis;
+    boolean statusValidacao = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -53,32 +55,72 @@ public class RegistroBabaActivity extends AppCompatActivity
     private void configurarBotaoConfirma()
     {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
-                preco = edit_text_preco.getText().toString();
-                horaInicio = text_view_hora_inicio.getText().toString();
-                horaFim = text_view_hora_fim.getText().toString();
-                diasDisponiveis = spinner_disponibilidade.getSelectedItem().toString();
+            public void onClick(View v)
+            {
+                validarCampos();
+                if (statusValidacao)
+                {
+                    new RegistrarBabaTask().execute();
+                }
+                else
+                {
+                    new AlertDialog.Builder(context)
+                            .setIcon(R.drawable.ic_warning_black_24dp)
+                            .setTitle("Houve um erro")
+                            .setMessage("Preencha todos os campos!")
+                            .setNeutralButton("OK", null)
+                            .show();
+                }
 
-                diasDisponiveis = diasDisponiveis.replaceAll(" ", "_");
-                new RegistrarBabaTask().execute();
             }
         });
     }
 
-    private void abrirDialogHora() {
-        img_hora_inicio.setOnClickListener(new View.OnClickListener() {
+    private void validarCampos()
+    {
+        preco = edit_text_preco.getText().toString();
+        horaInicio = text_view_hora_inicio.getText().toString();
+        horaFim = text_view_hora_fim.getText().toString();
+        diasDisponiveis = spinner_disponibilidade.getSelectedItem().toString();
+
+        diasDisponiveis = diasDisponiveis.replaceAll(" ", "_");
+
+        if (preco == null || preco.isEmpty())
+        {
+            statusValidacao = false;
+        }
+        if (horaInicio == null || horaInicio.isEmpty())
+        {
+            statusValidacao = false;
+        }
+        if (horaFim == null || horaFim.isEmpty())
+        {
+            statusValidacao = false;
+        }
+
+
+    }
+
+    private void abrirDialogHora()
+    {
+        img_hora_inicio.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 DialogFragment time = new TimePickerFragment();
                 condicaoHora = 0;
                 time.show(getFragmentManager(), "timePickerInicio");
             }
         });
-        img_hora_fim.setOnClickListener(new View.OnClickListener() {
+        img_hora_fim.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 DialogFragment time = new TimePickerFragment();
                 condicaoHora = 1;
                 time.show(getFragmentManager(), "timePickerFim");
@@ -86,16 +128,18 @@ public class RegistroBabaActivity extends AppCompatActivity
         });
     }
 
-    private void pegarView() {
+    private void pegarView()
+    {
         spinner_disponibilidade = (Spinner) findViewById(R.id.spinner_disponibilidade);
         img_hora_inicio = (ImageView) findViewById(R.id.img_hora_inicio);
         img_hora_fim = (ImageView) findViewById(R.id.img_hora_fim);
         text_view_hora_fim = (TextView) findViewById(R.id.text_view_hora_fim);
         text_view_hora_inicio = (TextView) findViewById(R.id.text_view_hora_inicio);
-        edit_text_preco = (EditText)findViewById(R.id.edit_text_preco);
+        edit_text_preco = (EditText) findViewById(R.id.edit_text_preco);
     }
 
-    private void preencherSpinner() {
+    private void preencherSpinner()
+    {
         List<String> lstDiasSemana = new ArrayList<>();
         lstDiasSemana.add("Semana");
         lstDiasSemana.add("Finais de semana");
@@ -105,19 +149,25 @@ public class RegistroBabaActivity extends AppCompatActivity
         spinner_disponibilidade.setAdapter(adapter);
     }
 
-    public static class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
+    public static class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener
+    {
         @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
+        public Dialog onCreateDialog(Bundle savedInstanceState)
+        {
             return new TimePickerDialog(getActivity(), android.R.style.Theme_Holo_Light_Dialog
                     , this, 00, 00, true);
         }
 
         @Override
-        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute)
+        {
             String text_hora = String.format("%02d:%02d", hourOfDay, minute);
-            if (condicaoHora == 0) {
+            if (condicaoHora == 0)
+            {
                 text_view_hora_inicio.setText(text_hora);
-            } else if (condicaoHora == 1) {
+            }
+            else if (condicaoHora == 1)
+            {
                 text_view_hora_fim.setText(text_hora);
             }
         }
@@ -143,7 +193,7 @@ public class RegistroBabaActivity extends AppCompatActivity
         {
             super.onPostExecute(aVoid);
             UsuarioFinal.setStatusBaba("1");
-            startActivity(new Intent(context, BabasActivity.class));
+            startActivity(new Intent(context, MenuBabaActivity.class));
         }
     }
 

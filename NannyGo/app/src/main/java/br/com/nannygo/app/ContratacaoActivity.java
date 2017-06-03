@@ -157,7 +157,7 @@ public class ContratacaoActivity extends AppCompatActivity
                 if (!statusValidacao)
                 {
                     new AlertDialog.Builder(context)
-                            .setIcon(R.drawable.ic_alarm_on_black_24dp)
+                            .setIcon(R.drawable.ic_warning_black_24dp)
                             .setTitle("Houve um erro")
                             .setMessage("Preencha todos os campos!")
                             .setNeutralButton("OK", null)
