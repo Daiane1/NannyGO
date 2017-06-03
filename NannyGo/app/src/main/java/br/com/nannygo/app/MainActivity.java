@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity
     Context context;
     EditText edit_text_login, edit_text_senha;
     String login, senha;
+
+    TextView text_view_nome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -117,14 +120,15 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    //Notificação de Login
+    //Notificação de Login - Uma aviso de login que é apresentado instantaneamente
+    //na notificationbar quando o usuário loga.
     private void popup(){
 
         NotificationCompat.Builder mBuilder =
                 (NotificationCompat.Builder) new NotificationCompat.Builder(this)
                     .setSmallIcon(R.drawable.logo)
                     .setContentTitle("NannyGO")
-                    .setContentText("Perfil acessado recentemente.");
+                    .setContentText("Bem vindo(a) "+(UsuarioFinal.getNome()));
                 NotificationManager notificationManager = (NotificationManager)
                         getSystemService(Context.NOTIFICATION_SERVICE);
                 notificationManager.notify(0, mBuilder.build());

@@ -159,10 +159,34 @@
     <Button
         android:layout_width="200dp"
         android:layout_height="75dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:text="Contratar esta babá"
         android:backgroundTint="@color/rosa"
         android:textColor="#fff"
         android:layout_gravity="center_horizontal"
         android:onClick="abrirTelaConfirmacao" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:id="@+id/idrating"
+        android:stepSize="0.25"
+        android:numStars="5"
+        android:rating="0"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Enviar"
+        android:textColor="@color/branco"
+        android:background="@color/azul"
+        android:onClick="enviarAvaliacao"
+        android:id="@+id/btnAvaliacao"
+        android:layout_below="@+id/idrating"
+        />
+
 </LinearLayout>

@@ -13,6 +13,7 @@
     tools:context="br.com.nannygo.app.MainActivity"
     tools:showIn="@layout/activity_main">
 
+
     <ImageView
         android:layout_width="225dp"
         android:layout_height="225dp"
@@ -74,4 +75,5 @@
         android:background="@color/cinza"
         android:onClick="abrirTelaRegistro"
         android:text="registrar" />
+
 </LinearLayout>
