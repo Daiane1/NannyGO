@@ -132,6 +132,9 @@ public class TransacoesEsperaActivity extends AppCompatActivity
                             intent.putExtra("nome", lstTransacoesEspera.get(position).getNome());
                             intent.putExtra("horaInicio", lstTransacoesEspera.get(position).getHoraInicio());
                             intent.putExtra("qntdHoras", lstTransacoesEspera.get(position).getQntdHoras());
+                            intent.putExtra("logradouro", lstTransacoesEspera.get(position).getLogradouro());
+                            intent.putExtra("cidade", lstTransacoesEspera.get(position).getCidade());
+                            intent.putExtra("estado", lstTransacoesEspera.get(position).getEstado());
                             startActivity(intent);
                         }
                     });

@@ -15,6 +15,11 @@ public class Transacao {
     private String valor;
     private String horaInicio;
     private Integer qntdHoras;
+    private String logradouro;
+    private String cidade;
+    private String estado;
+
+
 
     public Context getContext() {
         return context;
@@ -131,5 +136,35 @@ public class Transacao {
     public void setQntdHoras(Integer qntdHoras)
     {
         this.qntdHoras = qntdHoras;
+    }
+
+    public String getLogradouro()
+    {
+        return logradouro;
+    }
+
+    public void setLogradouro(String logradouro)
+    {
+        this.logradouro = logradouro;
+    }
+
+    public String getCidade()
+    {
+        return cidade;
+    }
+
+    public void setCidade(String cidade)
+    {
+        this.cidade = cidade;
+    }
+
+    public String getEstado()
+    {
+        return estado;
+    }
+
+    public void setEstado(String estado)
+    {
+        this.estado = estado;
     }
 }

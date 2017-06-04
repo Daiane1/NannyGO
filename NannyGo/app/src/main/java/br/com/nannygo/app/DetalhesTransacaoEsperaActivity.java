@@ -13,9 +13,11 @@ import android.widget.TextView;
 
 public class DetalhesTransacaoEsperaActivity extends AppCompatActivity
 {
-    String valor, horaInicio, dataTransacao, dataServico, metodoPagamento, nome;
+    String valor, horaInicio, dataTransacao, dataServico, metodoPagamento, nome, logradouro, estado, cidade;
     Integer idTransacao, idUsuario, idBaba, qntdHoras, statusAprovado;
-    TextView text_view_nome, text_view_data_transacao, text_view_data_servico, text_view_hora_inicio, text_view_qntd_horas, text_view_metodo_pagamento, text_view_valor;
+    TextView text_view_nome, text_view_data_transacao, text_view_data_servico, text_view_hora_inicio,
+            text_view_qntd_horas, text_view_metodo_pagamento, text_view_valor, text_view_logradouro,
+            text_view_cidade, text_view_estado;
     Context context;
 
     @Override
@@ -43,6 +45,9 @@ public class DetalhesTransacaoEsperaActivity extends AppCompatActivity
         text_view_qntd_horas.setText(String.format("%d hora(s)", qntdHoras));
         text_view_metodo_pagamento.setText(metodoPagamento);
         text_view_valor.setText(String.format("R$ %.2f", Double.parseDouble(valor)));
+        text_view_logradouro.setText(logradouro);
+        text_view_cidade.setText(cidade);
+        text_view_estado.setText(estado);
     }
 
     private void formatarDatas()
@@ -63,6 +68,9 @@ public class DetalhesTransacaoEsperaActivity extends AppCompatActivity
         text_view_metodo_pagamento = (TextView) findViewById(R.id.text_view_metodo_pagamento);
         text_view_qntd_horas = (TextView) findViewById(R.id.text_view_qntd_horas);
         text_view_valor = (TextView) findViewById(R.id.text_view_valor);
+        text_view_logradouro = (TextView) findViewById(R.id.text_view_logradouro);
+        text_view_cidade = (TextView) findViewById(R.id.text_view_cidade);
+        text_view_estado = (TextView) findViewById(R.id.text_view_estado);
     }
 
     public void pegarIntent()
@@ -81,6 +89,9 @@ public class DetalhesTransacaoEsperaActivity extends AppCompatActivity
         metodoPagamento = intent.getStringExtra("metodoPagamento");
         nome = intent.getStringExtra("nome");
         horaInicio = intent.getStringExtra("horaInicio");
+        logradouro = intent.getStringExtra("logradouro");
+        cidade = intent.getStringExtra("cidade");
+        estado = intent.getStringExtra("estado");
     }
 
     public void aprovarTransacao(View view)

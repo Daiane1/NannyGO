@@ -129,7 +129,9 @@ public class EditarUsuarioActivity extends AppCompatActivity
 
         //Substitui todos ' ' para '_' para o funcionamento do link PhP
         nome = nome.replaceAll(" ", "_");
+        nome = nome.replaceAll("ã", "a");
         logradouro = logradouro.replaceAll(" ", "_");
+        logradouro = logradouro.replaceAll("ã", "a");
 
         if(intent.getStringExtra("idcidade")!= null)
         {
@@ -309,6 +311,7 @@ public class EditarUsuarioActivity extends AppCompatActivity
         {
             String link = String.format("http://10.0.2.2/20171sem/NannyGO/editarUsuario.php?id_usuario=%s&nome=%s&sexo=%s&telefone=%s&email=%s&data_nascimento=%s&cidade=%s&logradouro=%s",
                     UsuarioFinal.getIdUsuario(), nome, sexo, telefone, email, dataNascimentoBanco, idCidade, logradouro);
+            Log.d("link", link);
             HttpConnection.get(link);
             return null;
         }

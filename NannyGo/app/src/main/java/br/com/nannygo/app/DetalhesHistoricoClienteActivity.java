@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.TextView;
 
 public class DetalhesHistoricoClienteActivity extends AppCompatActivity
@@ -40,6 +41,7 @@ public class DetalhesHistoricoClienteActivity extends AppCompatActivity
         text_view_qntd_horas.setText(String.format("%d hora(s)", qntdHoras));
         text_view_metodo_pagamento.setText(metodoPagamento);
         text_view_valor.setText(String.format("R$ %.2f", Double.parseDouble(valor)));
+        Log.d("status", statusAprovado.toString());
         if (statusAprovado == 1)
         {
             text_view_status.setText("Aprovado");

@@ -11,10 +11,13 @@
 	
 	date_default_timezone_set('America/Sao_Paulo');
 	$data = date('Y-m-d');
+	$valor = str_replace(',', '.', $valor);
 	
 	
 	$sql = "INSERT INTO tbl_transacoes(id_usuario, id_baba, data_transacao, metodo_pagamento, valor, data_servico, hora_inicio, qntd_horas) VALUES('".$id_usuario."', '".$id_baba."', '".$data."', '".$metodo_pagamento."', '".$valor."', '".$data_servico."', '".$hora_inicio."', '".$qntd_horas."');";
 	mysqli_query($conexao, $sql);
+	
+	echo $sql;
 	
 	mysqli_close($conexao);
 ?>

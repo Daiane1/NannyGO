@@ -132,7 +132,8 @@
             android:name=".EditarUsuarioActivity"
             android:label="@string/title_activity_editar_usuario"
             android:parentActivityName=".AreaUsuarioActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.nannygo.app.RegistroActivity"/>
@@ -232,7 +233,8 @@
             android:name=".EditarBabaActivity"
             android:label="@string/title_activity_editar_baba"
             android:parentActivityName=".AreaBabaActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.com.nannygo.app.AreaBabaActivity"/>

@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -328,7 +329,20 @@ public class RegistroActivity extends AppCompatActivity {
         {
             super.onPostExecute(aVoid);
             progress.dismiss();
-            startActivity(new Intent(context, MainActivity.class));
+            new AlertDialog.Builder(context)
+                    .setIcon(R.drawable.done)
+                    .setTitle("Sucesso")
+                    .setMessage("Você pode efetuar o login agora.")
+                    .setNeutralButton("OK", new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i)
+                        {
+                            startActivity(new Intent(context, MainActivity.class));
+                        }
+                    })
+                    .show();
+
         }
     }
 

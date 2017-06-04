@@ -13,7 +13,7 @@
 	$nome = str_replace('_', ' ', $nome);
 	$logradouro = str_replace('_', ' ', $logradouro);
 	
-	$sql = "UPDATE tbl_usuarios SET nome='".$nome."', sexo='".$sexo."', telefone='".$telefone."', email='".$email."', data_nascimento='".$data_nascimento."', logradouro='".$logradouro."' WHERE id_usuario=".$id_usuario.";"; 
+	$sql = "UPDATE tbl_usuarios SET nome='".$nome."', sexo='".$sexo."', telefone='".$telefone."', email='".$email."', data_nascimento='".$data_nascimento."', logradouro='".$logradouro."', idCidade='".$cidade."' WHERE id_usuario=".$id_usuario.";"; 
 	
 	echo $sql;
 	mysqli_query($conexao, $sql);
