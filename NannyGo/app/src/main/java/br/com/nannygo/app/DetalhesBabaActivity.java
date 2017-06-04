@@ -9,11 +9,13 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 
 public class DetalhesBabaActivity extends AppCompatActivity {
@@ -22,6 +24,7 @@ public class DetalhesBabaActivity extends AppCompatActivity {
     Integer idUsuario, idBaba;
     String preco;
     static TextView text_view_nome, text_view_sexo, text_view_email, text_view_preco, text_view_telefone, text_view_idade, text_view_estado, text_view_cidade;
+    ImageView img_baba;
     Usuario usuario;
 
     Button btn;
@@ -38,8 +41,8 @@ public class DetalhesBabaActivity extends AppCompatActivity {
 
         context = this;
 
-        btn = (Button) findViewById(R.id.btnAvaliacao);
-        ratingBar = (RatingBar) findViewById(R.id.idrating);
+        /*btn = (Button) findViewById(R.id.btnAvaliacao);
+        ratingBar = (RatingBar) findViewById(R.id.idrating);*/
 
         intent = getIntent();
         idUsuario = intent.getIntExtra("idusuario", -1);
@@ -72,6 +75,7 @@ public class DetalhesBabaActivity extends AppCompatActivity {
         text_view_preco = (TextView) findViewById(R.id.text_view_preco);
         text_view_cidade = (TextView) findViewById(R.id.text_view_cidade);
         text_view_estado = (TextView) findViewById(R.id.text_view_estado);
+        img_baba = (ImageView) findViewById(R.id.img_baba);
 
     }
 
@@ -93,6 +97,30 @@ public class DetalhesBabaActivity extends AppCompatActivity {
         text_view_estado.setText(usuario.getEstado());
         text_view_preco.setText(String.format("R$ %s/hora", preco));
 
+        inserirImagem();
+
+    }
+
+    private void inserirImagem()
+    {
+            String href = getResources().getString(R.string.linkLocal);
+            String link = String.format("%s/usuario/%s.jpg", href, usuario.getLogin());
+            if (usuario.getSexo().equals("F"))
+            {
+                Picasso.with(context)
+                        .load(link)
+                        .error(R.drawable.babyf)
+                        .placeholder(R.drawable.babym)
+                        .into(img_baba);
+            }
+            else if (usuario.getSexo().equals("M"))
+            {
+                Picasso.with(context)
+                        .load(link)
+                        .error(R.drawable.babym)
+                        .placeholder(R.drawable.babym)
+                        .into(img_baba);
+            }
     }
 
     private class PegarUsuarioTask extends AsyncTask<Void, Void, Void>

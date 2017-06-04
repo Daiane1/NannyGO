@@ -21,7 +21,6 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/baba"
                 android:id="@+id/img_baba"
                 />
             <TableLayout>
@@ -165,7 +164,7 @@
         android:textColor="#fff"
         android:layout_gravity="center_horizontal"
         android:onClick="abrirTelaConfirmacao" />
-
+<!--
     <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -188,5 +187,6 @@
         android:id="@+id/btnAvaliacao"
         android:layout_below="@+id/idrating"
         />
+        -->
 
 </LinearLayout>

@@ -106,7 +106,7 @@ public class ContratacaoActivity extends AppCompatActivity
     {
         spinner_horas = (Spinner) findViewById(R.id.spinner_horas);
         int i = 1;
-        while (i <= 24)
+        while (i <= 8)
         {
             lstHoras.add(String.valueOf(i));
             i++;
@@ -289,6 +289,7 @@ public class ContratacaoActivity extends AppCompatActivity
                     horaInicio,
                     horas
             );
+            Log.d("link", link);
             HttpConnection.get(link);
             return null;
         }

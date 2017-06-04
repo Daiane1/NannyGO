@@ -143,6 +143,7 @@ public class RegistroActivity extends AppCompatActivity {
 
         if (statusValidacao && statusData)
         {
+            formatarData();
             new RegistroUsuarioTask().execute();
         }
     }
@@ -181,7 +182,7 @@ public class RegistroActivity extends AppCompatActivity {
             try
             {
                 Date dataSelecionada = formato.parse(text_view_data_nascimento.getText().toString());
-                if (dataSelecionada.before(hoje))
+                if (hoje.getTime()<=dataSelecionada.getTime())
                 {
                     statusData = false;
                 }
@@ -296,6 +297,7 @@ public class RegistroActivity extends AppCompatActivity {
         intentCidade.putExtra("telefone", telefone);
         intentCidade.putExtra("email", email);
         intentCidade.putExtra("logradouro", logradouro);
+        intentCidade.putExtra("activity", "RegistroActivity");
     }
 
     private class RegistroUsuarioTask extends AsyncTask<Void, Void, Void>
@@ -315,8 +317,8 @@ public class RegistroActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... params)
         {
-            String link = String.format("http://10.0.2.2/20171sem/NannyGO/registroUsuario.php?nome=%s&login=%s&senha=%s&sexo=%s&telefone=%s&email=%s&data_nascimento=%s&cidade=%s&logradouro=%s&foto=%s",
-                    nome, login, senha, sexo, telefone, email, dataNascimentoBanco, idCidade, logradouro, imagem);
+            String link = String.format("http://10.0.2.2/20171sem/NannyGO/registroUsuario.php?nome=%s&login=%s&senha=%s&sexo=%s&telefone=%s&email=%s&data_nascimento=%s&cidade=%s&logradouro=%s",
+                    nome, login, senha, sexo, telefone, email, dataNascimentoBanco, idCidade, logradouro);
             HttpConnection.get(link);
             return null;
         }
