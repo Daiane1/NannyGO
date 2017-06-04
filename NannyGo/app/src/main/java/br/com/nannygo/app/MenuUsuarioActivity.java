@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import static br.com.nannygo.app.R.id.img_user;
 
 public class MenuUsuarioActivity extends AppCompatActivity {
@@ -35,7 +37,30 @@ public class MenuUsuarioActivity extends AppCompatActivity {
         pegarObjetosView();
         formatarNome();
         configurarBotaoFlutuanteLogout();
+        inserirImagem();
 
+    }
+
+    private void inserirImagem()
+    {
+        String href = getResources().getString(R.string.linkLocal);
+        String link = String.format("%s/usuario/%s.jpg", href, UsuarioFinal.getLogin());
+        if (UsuarioFinal.getSexo().equals("F"))
+        {
+            Picasso.with(context)
+                    .load(link)
+                    .error(R.drawable.babyf)
+                    .placeholder(R.drawable.babym)
+                    .into(img_usuario);
+        }
+        else if (UsuarioFinal.getSexo().equals("M"))
+        {
+            Picasso.with(context)
+                    .load(link)
+                    .error(R.drawable.babym)
+                    .placeholder(R.drawable.babym)
+                    .into(img_usuario);
+        }
     }
 
     // Codigo desenvolvido para pegar campos do banco

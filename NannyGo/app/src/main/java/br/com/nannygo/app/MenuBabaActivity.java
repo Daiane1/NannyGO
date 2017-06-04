@@ -14,12 +14,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import static android.view.View.GONE;
 
 public class MenuBabaActivity extends AppCompatActivity
 {
     TextView text_view_nome;
-    ImageView img_baba;
+    ImageView img_user;
     Button btn_disponivel, btn_indisponivel, btn_perfil, btn_historico, btn_espera;
     Context context;
 
@@ -38,7 +40,30 @@ public class MenuBabaActivity extends AppCompatActivity
         formatarNome();
         configurarBotaoFlutuanteLogout();
         configurarBotaoRegistro();
+        inserirImagem();
     }
+    private void inserirImagem()
+    {
+        String href = getResources().getString(R.string.linkLocal);
+        String link = String.format("%s/usuario/%s.jpg", href, UsuarioFinal.getLogin());
+        if (UsuarioFinal.getSexo().equals("F"))
+        {
+            Picasso.with(context)
+                    .load(link)
+                    .error(R.drawable.babyf)
+                    .placeholder(R.drawable.babym)
+                    .into(img_user);
+        }
+        else if (UsuarioFinal.getSexo().equals("M"))
+        {
+            Picasso.with(context)
+                    .load(link)
+                    .error(R.drawable.babym)
+                    .placeholder(R.drawable.babym)
+                    .into(img_user);
+        }
+    }
+
 
     private void configurarBotaoRegistro()
     {
@@ -61,7 +86,7 @@ public class MenuBabaActivity extends AppCompatActivity
     private void pegarObjetosView()
     {
         text_view_nome = (TextView) findViewById(R.id.text_view_nome);
-        img_baba = (ImageView) findViewById(R.id.img_baba);
+        img_user = (ImageView) findViewById(R.id.img_user);
         btn_disponivel = (Button) findViewById(R.id.btn_disponivel);
         btn_indisponivel = (Button) findViewById(R.id.btn_indisponivel);
         btn_historico = (Button) findViewById(R.id.btn_historico);

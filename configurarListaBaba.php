@@ -47,7 +47,8 @@
 			"horaFim"=>$resultado['horaFim'],
 			"diasDisponiveis"=>$resultado['diasDisponiveis'],
 			"idCidade"=>$resultado['idCidade'],
-			"imagem"=>$resultado['imagem']);	
+			"login"=>$resultado['login'],
+			"sexo"=>$resultado['sexo']);	
 		$array[] = $baba;
 	}
 	

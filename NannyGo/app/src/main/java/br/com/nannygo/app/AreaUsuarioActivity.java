@@ -9,11 +9,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import static br.com.nannygo.app.R.id.img_user;
 
 public class AreaUsuarioActivity extends AppCompatActivity {
 
-    TextView text_view_nome, text_view_telefone, text_view_email, text_view_idade, text_view_cidade, text_view_estado, text_view_status;
+    TextView text_view_nome, text_view_telefone, text_view_email, text_view_idade, text_view_cidade, text_view_estado, text_view_status, text_view_logradouro;
     ImageView img_usuario;
     Context context;
     Intent intent;
@@ -30,6 +32,29 @@ public class AreaUsuarioActivity extends AppCompatActivity {
 
         pegarObjetosView();
         inserirCampos();
+        inserirImagem();
+    }
+
+    private void inserirImagem()
+    {
+        String href = getResources().getString(R.string.linkLocal);
+        String link = String.format("%s/usuario/%s.jpg", href, UsuarioFinal.getLogin());
+        if (UsuarioFinal.getSexo().equals("F"))
+        {
+            Picasso.with(context)
+                    .load(link)
+                    .error(R.drawable.babyf)
+                    .placeholder(R.drawable.babym)
+                    .into(img_usuario);
+        }
+        else if (UsuarioFinal.getSexo().equals("M"))
+        {
+            Picasso.with(context)
+                    .load(link)
+                    .error(R.drawable.babym)
+                    .placeholder(R.drawable.babym)
+                    .into(img_usuario);
+        }
     }
 
     private void pegarObjetosView() {
@@ -41,6 +66,7 @@ public class AreaUsuarioActivity extends AppCompatActivity {
         text_view_cidade = (TextView) findViewById(R.id.text_view_cidade);
         text_view_estado = (TextView) findViewById(R.id.text_view_estado);
         text_view_status = (TextView) findViewById(R.id.text_view_status);
+        text_view_logradouro = (TextView) findViewById(R.id.text_view_logradouro);
     }
 
     private void inserirCampos() {
@@ -50,6 +76,7 @@ public class AreaUsuarioActivity extends AppCompatActivity {
         text_view_telefone.setText(UsuarioFinal.getTelefone());
         text_view_cidade.setText(UsuarioFinal.getCidade());
         text_view_estado.setText(UsuarioFinal.getEstado());
+        text_view_logradouro.setText(UsuarioFinal.getLogradouro());
 
         if (UsuarioFinal.getStatusBaba().equals("0")){
             text_view_status.setText("Indisponível");

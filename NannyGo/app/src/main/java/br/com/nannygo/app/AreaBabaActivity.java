@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 public class AreaBabaActivity extends AppCompatActivity
 {
@@ -35,8 +36,31 @@ public class AreaBabaActivity extends AppCompatActivity
         context = this;
 
         pegarObjetosView();
+        inserirImagem();
 
         new PegarDadosBabaTask().execute();
+    }
+
+    private void inserirImagem()
+    {
+        String href = getResources().getString(R.string.linkLocal);
+        String link = String.format("%s/usuario/%s.jpg", href, UsuarioFinal.getLogin());
+        if (UsuarioFinal.getSexo().equals("F"))
+        {
+            Picasso.with(context)
+                    .load(link)
+                    .error(R.drawable.babyf)
+                    .placeholder(R.drawable.babym)
+                    .into(img_baba);
+        }
+        else if (UsuarioFinal.getSexo().equals("M"))
+        {
+            Picasso.with(context)
+                    .load(link)
+                    .error(R.drawable.babym)
+                    .placeholder(R.drawable.babym)
+                    .into(img_baba);
+        }
     }
 
 

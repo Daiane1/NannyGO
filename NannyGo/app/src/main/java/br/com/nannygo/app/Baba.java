@@ -12,6 +12,11 @@ public class Baba {
     private Integer idUsuario;
     private double distancia;
     private double distanciaKm;
+    private String login;
+    private String sexo;
+
+
+
 
 
     public String getImagem() {
@@ -60,4 +65,23 @@ public class Baba {
         return km;
     }
 
+    public String getLogin()
+    {
+        return login;
+    }
+
+    public void setLogin(String login)
+    {
+        this.login = login;
+    }
+
+    public String getSexo()
+    {
+        return sexo;
+    }
+
+    public void setSexo(String sexo)
+    {
+        this.sexo = sexo;
+    }
 }

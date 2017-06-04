@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class BabaAdapter extends ArrayAdapter<Baba>
@@ -19,11 +21,13 @@ public class BabaAdapter extends ArrayAdapter<Baba>
     TextView hora_baba, dia_semana_baba, preco_hora_baba, id_baba, nome_item_baba, distancia_baba;
     String hora, preco;
     Baba baba;
+    Context context;
 
     public BabaAdapter(Context context, int resource, List<Baba> objects)
     {
         super(context, resource, objects);
         this.resource = resource;
+        this.context = context;
     }
 
     @NonNull
@@ -51,8 +55,26 @@ public class BabaAdapter extends ArrayAdapter<Baba>
         id_baba.setText(baba.getIdUsuario().toString());
         preco_hora_baba.setText(preco);
         nome_item_baba.setText(baba.getNome());
-        img_baba.setImageResource(R.drawable.babym);
 
+        String href = view.getResources().getString(R.string.linkLocal);
+        String link = String.format("%s/usuario/%s.jpg", href, baba.getLogin());
+
+        if (baba.getSexo().equals("F"))
+        {
+            Picasso.with(context)
+                    .load(link)
+                    .error(R.drawable.babyf)
+                    .placeholder(R.drawable.babym)
+                    .into(img_baba);
+        }
+        else if (baba.getSexo().equals("M"))
+        {
+            Picasso.with(context)
+                    .load(link)
+                    .error(R.drawable.babym)
+                    .placeholder(R.drawable.babym)
+                    .into(img_baba);
+        }
 
 
         String distancia = String.format("%.2f km", baba.getDistanciaKm());

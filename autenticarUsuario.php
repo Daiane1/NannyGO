@@ -19,7 +19,6 @@
 			"login"=>$rs['login'],
 			"senha"=>$rs['senha'],
 			"dataNascimento"=>$rs['data_nascimento'],
-			"imagem"=>$rs['imagem'],
 			"statusBaba"=>$rs['statusBaba'],
 			"cidade"=>$rs['cidade'],
 			"estado"=>$rs['estado'],

@@ -10,7 +10,6 @@
 	$data_nascimento = $_GET['data_nascimento'];
 	$cidade = $_GET['cidade'];
 	$logradouro = $_GET['logradouro'];
-	$imagem = "";
 	
 	$nome = str_replace('_',' ',$nome);
 	$logradouro = str_replace('_', ' ', $logradouro);
@@ -24,7 +23,7 @@
 		$imagem = 'R.drawable.babyF';
 	}
 	
-	$sql = "INSERT INTO tbl_usuarios(nome, login, senha, sexo, telefone, email, data_nascimento, idCidade, imagem, logradouro) VALUES('".$nome."','".$login."','".$senha."','".$sexo."','".$telefone."','".$email."','".$data_nascimento."', '".$cidade."', '".$imagem."', '".$logradouro."');";
+	$sql = "INSERT INTO tbl_usuarios(nome, login, senha, sexo, telefone, email, data_nascimento, idCidade, logradouro) VALUES('".$nome."','".$login."','".$senha."','".$sexo."','".$telefone."','".$email."','".$data_nascimento."', '".$cidade."', '".$logradouro."');";
 	
 	echo $sql;
 	
