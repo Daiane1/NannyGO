@@ -48,6 +48,7 @@ public class BabaAdapter extends ArrayAdapter<Baba>
         return view;
     }
 
+    //Insere os campos com os dados do banco de dados
     private void inserirCamposLayout()
     {
         hora_baba.setText(hora);
@@ -56,9 +57,11 @@ public class BabaAdapter extends ArrayAdapter<Baba>
         preco_hora_baba.setText(preco);
         nome_item_baba.setText(baba.getNome());
 
+        //Link do servidor
         String href = view.getResources().getString(R.string.linkLocal);
         String link = String.format("%s/usuario/%s.jpg", href, baba.getLogin());
 
+        //Preeche a ImageView com a imagem vinda do banco de dados
         if (baba.getSexo().equals("F"))
         {
             Picasso.with(context)

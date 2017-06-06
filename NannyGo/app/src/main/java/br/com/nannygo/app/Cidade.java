@@ -1,5 +1,6 @@
 package br.com.nannygo.app;
 
+//Classe modelo Cidade
 public class Cidade
 {
     private String idCidade;

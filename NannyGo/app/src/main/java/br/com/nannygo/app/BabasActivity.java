@@ -53,6 +53,7 @@ public class BabasActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
+                //Preenche os dados para a página de detalhes
                 Intent intent = new Intent(context, DetalhesBabaActivity.class);
                 intent.putExtra("preco", lstBabas.get(position).getPreco());
                 intent.putExtra("idusuario", lstBabas.get(position).getIdUsuario());
@@ -75,6 +76,7 @@ public class BabasActivity extends AppCompatActivity
         list_view_babas.setAdapter(adapter);
     }
 
+    //Classe pega os dados do banco de dados para incluir na lista
     private class ConfigurarListaBabasTask extends AsyncTask<Void, Void, Void>
     {
         ProgressDialog dialog = new ProgressDialog(context);

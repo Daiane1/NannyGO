@@ -1,5 +1,6 @@
 package br.com.nannygo.app;
 
+//Classe modelo de Contato
 public class Contato {
 
     private int imagem;

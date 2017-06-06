@@ -35,6 +35,7 @@ public class AreaUsuarioActivity extends AppCompatActivity {
         inserirImagem();
     }
 
+    //Método baixa a imagem do usuário no servidor Web e insere na ImageView
     private void inserirImagem()
     {
         String href = getResources().getString(R.string.linkLocal);
@@ -57,6 +58,7 @@ public class AreaUsuarioActivity extends AppCompatActivity {
         }
     }
 
+    //Pega os objetos do arquivo XML
     private void pegarObjetosView() {
         img_usuario = (ImageView) findViewById(img_user);
         text_view_nome = (TextView) findViewById(R.id.text_view_nome);
@@ -69,6 +71,7 @@ public class AreaUsuarioActivity extends AppCompatActivity {
         text_view_logradouro = (TextView) findViewById(R.id.text_view_logradouro);
     }
 
+    //Insere os dados do usuário nos TextView
     private void inserirCampos() {
         formatarNome();
         text_view_idade.setText(UsuarioFinal.getIdade());
@@ -85,9 +88,9 @@ public class AreaUsuarioActivity extends AppCompatActivity {
             text_view_status.setText("Disponível");
         }
 
-        //TODO: implementar foto babá
     }
 
+    //Mostra apenas o primeiro e último nome do usuário
     private void formatarNome()
     {
         text_view_nome = (TextView) findViewById(R.id.text_view_nome);

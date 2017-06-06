@@ -1,8 +1,8 @@
 package br.com.nannygo.app;
 
+//Classe modelo Babá
 public class Baba {
 
-    private String imagem;
     private String nome;
     private String preco;
     private String horaInicio;
@@ -15,13 +15,6 @@ public class Baba {
     private String login;
     private String sexo;
 
-
-
-
-
-    public String getImagem() {
-        return imagem;
-    }
 
     public String getNome() {
         return nome;
@@ -61,27 +54,23 @@ public class Baba {
     }
 
     public double getDistanciaKm() {
-        double km = distancia/1000;
+        double km = distancia / 1000;
         return km;
     }
 
-    public String getLogin()
-    {
+    public String getLogin() {
         return login;
     }
 
-    public void setLogin(String login)
-    {
+    public void setLogin(String login) {
         this.login = login;
     }
 
-    public String getSexo()
-    {
+    public String getSexo() {
         return sexo;
     }
 
-    public void setSexo(String sexo)
-    {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 }

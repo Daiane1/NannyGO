@@ -41,6 +41,7 @@ public class AreaBabaActivity extends AppCompatActivity
         new PegarDadosBabaTask().execute();
     }
 
+    //Método baixa a imagem do usuário no servidor Web e insere na ImageView
     private void inserirImagem()
     {
         String href = getResources().getString(R.string.linkLocal);
@@ -64,6 +65,7 @@ public class AreaBabaActivity extends AppCompatActivity
     }
 
 
+    //Método pega os objetos do arquivo XML
     private void pegarObjetosView()
     {
         text_view_nome = (TextView) findViewById(R.id.text_view_nome);
@@ -81,6 +83,7 @@ public class AreaBabaActivity extends AppCompatActivity
         text_view_disponibilidade = (TextView) findViewById(R.id.text_view_disponibilidade);
     }
 
+    //Insere os dados do usuário nos TextView
     private void inserirCampos()
     {
         formatarNome();
@@ -104,9 +107,9 @@ public class AreaBabaActivity extends AppCompatActivity
         text_view_hora_fim.setText(baba.getHoraFim());
         text_view_preco.setText(String.format("R$ %.2f/hora",Double.parseDouble(baba.getPreco())));
 
-        //TODO: implementar foto babá
     }
 
+    //Mostra apenas o primeiro e último nome do usuário
     private void formatarNome()
     {
         text_view_nome = (TextView) findViewById(R.id.text_view_nome);
@@ -134,6 +137,7 @@ public class AreaBabaActivity extends AppCompatActivity
         startActivity(intent);
     }
 
+    //Preenche o Intent com dados para a página de edição
     private void preencherIntent()
     {
         intent = new Intent(context, EditarBabaActivity.class);
@@ -144,6 +148,7 @@ public class AreaBabaActivity extends AppCompatActivity
     }
 
 
+    //Tarefa assíncrona que pega os dados da babá no banco de dados
     private class PegarDadosBabaTask extends AsyncTask<Void, Void, Void>
     {
         String retornoJson;
