@@ -139,15 +139,6 @@
                 android:value="br.com.nannygo.app.RegistroActivity"/>
         </activity>
         <activity
-            android:name=".Teste2Activity"
-            android:label="@string/title_activity_editar_usuario"
-            android:parentActivityName=".VerificacaoActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="br.com.nannygo.app.AreaUsuarioActivity"/>
-        </activity>
-        <activity
             android:name=".FaleConoscoActivity"
             android:label="@string/title_activity_fale_conosco"
             android:parentActivityName=".MainActivity"

@@ -8,15 +8,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
@@ -25,13 +22,10 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 
 public class RegistroActivity extends AppCompatActivity {
     EditText edit_text_nome, edit_text_login, edit_text_senha, edit_text_confirmar, edit_text_telefone, edit_text_email, edit_text_cidade, edit_text_logradouro;
@@ -68,18 +62,6 @@ public class RegistroActivity extends AppCompatActivity {
         intentCidade = new Intent(context, SelecaoCidadesActivity.class);
 
         preencherCampos();
-
-        /*img_upload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Select Picture"), RESULT_LOAD_IMAGE);
-            }
-        });*/
     }
 
     private void preencherCampos()
@@ -261,7 +243,6 @@ public class RegistroActivity extends AppCompatActivity {
         edit_text_cidade = (EditText) findViewById(R.id.edit_text_cidade);
         edit_text_cidade.setKeyListener(null);
         edit_text_logradouro = (EditText) findViewById(R.id.edit_text_logradouro);
-        img_upload = (ImageView)findViewById(R.id.img_upload);
     }
 
     public void abrirSelecaoData(View view)
@@ -367,58 +348,4 @@ public class RegistroActivity extends AppCompatActivity {
         }
     }
 
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && data !=null){
-
-
-            Uri imagem_selecionada = data.getData();
-
-            try {
-
-                foto_perfil = MediaStore.Images.Media.getBitmap(getContentResolver(), imagem_selecionada);
-
-                // Log.d("onActivityResult", imagem_selecionada.toString());
-                img_upload.setImageBitmap(foto_perfil);
-
-
-                new AsyncTask<Void,Void,Void>(){
-
-                    @Override
-                    protected Void doInBackground(Void... params) {
-
-                        String link = "http://10.0.2.2/20171sem/NannyGO/uploadImagem.php";
-
-                        HashMap<String,String> p = new HashMap<String, String>();
-                        p.put("imagem", getStringImage(foto_perfil));
-
-                        imagem = HttpConnection.post(link,p);
-
-
-                        Log.d("imagem", imagem);
-
-                        return null;
-                    }
-
-
-                }.execute();
-
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-
-    public String getStringImage(Bitmap bmp){
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
-        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        byte[] imageBytes = baos.toByteArray();
-        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-        return encodedImage;
-    }
 }
