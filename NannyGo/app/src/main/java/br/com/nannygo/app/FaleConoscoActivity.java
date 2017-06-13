@@ -37,7 +37,7 @@ public class FaleConoscoActivity extends AppCompatActivity
     public void enviarComentario(View view)
     {
         comentario = edit_comentario.getText().toString();
-        if(comentario != null || !comentario.isEmpty())
+        if (comentario != null || !comentario.isEmpty())
         {
             comentario = comentario.replaceAll(" ", "_");
             new EnviarFeedbackTask().execute();

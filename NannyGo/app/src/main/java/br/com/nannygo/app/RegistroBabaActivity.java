@@ -24,11 +24,11 @@ import java.util.List;
 
 public class RegistroBabaActivity extends AppCompatActivity
 {
-    Spinner spinner_disponibilidade;
     static int condicaoHora;
+    static TextView text_view_hora_inicio, text_view_hora_fim;
+    Spinner spinner_disponibilidade;
     ImageView img_hora_inicio, img_hora_fim;
     EditText edit_text_preco;
-    static TextView text_view_hora_inicio, text_view_hora_fim;
     Context context;
     String preco, horaInicio, horaFim, diasDisponiveis;
     boolean statusValidacao = true;
@@ -64,8 +64,7 @@ public class RegistroBabaActivity extends AppCompatActivity
                 if (statusValidacao)
                 {
                     new RegistrarBabaTask().execute();
-                }
-                else
+                } else
                 {
                     new AlertDialog.Builder(context)
                             .setIcon(R.drawable.ic_warning_black_24dp)
@@ -79,6 +78,7 @@ public class RegistroBabaActivity extends AppCompatActivity
         });
     }
 
+    //Verifica se os campos digitados estão nulos ou em branco
     private void validarCampos()
     {
         preco = edit_text_preco.getText().toString();
@@ -101,9 +101,11 @@ public class RegistroBabaActivity extends AppCompatActivity
             statusValidacao = false;
         }
 
-
     }
 
+    //Abre o fragmento de seleção de hora
+    //Variável condicaoHora especifica o campo a ser preenchido com a hora selecionada para utilização
+    //de apenas um fragmento
     private void abrirDialogHora()
     {
         img_hora_inicio.setOnClickListener(new View.OnClickListener()
@@ -128,6 +130,7 @@ public class RegistroBabaActivity extends AppCompatActivity
         });
     }
 
+    //Pega os dados do arquivo XML
     private void pegarView()
     {
         spinner_disponibilidade = (Spinner) findViewById(R.id.spinner_disponibilidade);
@@ -138,6 +141,7 @@ public class RegistroBabaActivity extends AppCompatActivity
         edit_text_preco = (EditText) findViewById(R.id.edit_text_preco);
     }
 
+    //Cria a lista e preenche o spinner com as opções de seleção de disponibilidade
     private void preencherSpinner()
     {
         List<String> lstDiasSemana = new ArrayList<>();
@@ -165,8 +169,7 @@ public class RegistroBabaActivity extends AppCompatActivity
             if (condicaoHora == 0)
             {
                 text_view_hora_inicio.setText(text_hora);
-            }
-            else if (condicaoHora == 1)
+            } else if (condicaoHora == 1)
             {
                 text_view_hora_fim.setText(text_hora);
             }

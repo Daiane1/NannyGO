@@ -27,8 +27,8 @@ import java.util.Date;
 
 public class EditarUsuarioActivity extends AppCompatActivity
 {
-    EditText edit_text_nome, edit_text_telefone, edit_text_email, edit_text_cidade, edit_text_logradouro;
     static TextView text_view_data_nascimento;
+    EditText edit_text_nome, edit_text_telefone, edit_text_email, edit_text_cidade, edit_text_logradouro;
     RadioButton radio_masculino, radio_feminino;
     String nome, login, telefone, email, sexo, dataNascimentoBanco, senha, dataNascimento, idCidade, logradouro, imagem;
     FloatingActionButton fab;
@@ -58,6 +58,7 @@ public class EditarUsuarioActivity extends AppCompatActivity
         preencherCampos();
     }
 
+    //Preenche os campos com os dados do usuário
     private void preencherCampos()
     {
         edit_text_nome.setText(UsuarioFinal.getNome());
@@ -81,12 +82,17 @@ public class EditarUsuarioActivity extends AppCompatActivity
         if (UsuarioFinal.getSexo().equals("F"))
         {
             radio_feminino.toggle();
-        }
-        else if(UsuarioFinal.getSexo().equals("M"))
+        } else if (UsuarioFinal.getSexo().equals("M"))
         {
             radio_masculino.toggle();
         }
 
+        pegarIntent();
+    }
+
+    //Pega a Intent da página de seleção de imagens
+    private void pegarIntent()
+    {
         if (intent.getStringExtra("cidade") != null)
         {
             edit_text_nome.setText(intent.getStringExtra("nome"));
@@ -99,8 +105,7 @@ public class EditarUsuarioActivity extends AppCompatActivity
             if (intent.getStringExtra("sexo").equals("F"))
             {
                 radio_feminino.toggle();
-            }
-            else if (intent.getStringExtra("sexo").equals("M"))
+            } else if (intent.getStringExtra("sexo").equals("M"))
             {
                 radio_masculino.toggle();
             }
@@ -133,18 +138,19 @@ public class EditarUsuarioActivity extends AppCompatActivity
         logradouro = logradouro.replaceAll(" ", "_");
         logradouro = logradouro.replaceAll("ã", "a");
 
-        if(intent.getStringExtra("idcidade")!= null)
+        if (intent.getStringExtra("idcidade") != null)
         {
             idCidade = intent.getStringExtra("idcidade");
         }
 
 
         validarCampos();
-        if(!statusData)
+        //Verifica se a validação dos campos foi bem sucedida
+        if (!statusData)
         {
             new AlertDialog.Builder(context).setTitle("Data inválida!").setIcon(R.drawable.ic_warning_black_24dp).setMessage("Selecione uma data de nascimento válida").setPositiveButton("OK", null).show();
         }
-        if(!statusValidacao)
+        if (!statusValidacao)
         {
             new AlertDialog.Builder(context).setTitle("Registro inválido!").setIcon(R.drawable.ic_warning_black_24dp).setMessage("Preencha todos os campos!").setPositiveButton("OK", null).show();
         }
@@ -156,6 +162,7 @@ public class EditarUsuarioActivity extends AppCompatActivity
         }
     }
 
+    //Verifica se os campos estão nulos ou vazios
     private void validarCampos()
     {
         if (nome.isEmpty() || nome == null)
@@ -167,11 +174,10 @@ public class EditarUsuarioActivity extends AppCompatActivity
         {
             statusValidacao = false;
         }
-        if (text_view_data_nascimento==null || text_view_data_nascimento.getText().toString().isEmpty())
+        if (text_view_data_nascimento == null || text_view_data_nascimento.getText().toString().isEmpty())
         {
             statusValidacao = false;
-        }
-        else
+        } else
         {
             Calendar cal = Calendar.getInstance();
             Date hoje = cal.getTime();
@@ -180,7 +186,7 @@ public class EditarUsuarioActivity extends AppCompatActivity
             try
             {
                 Date dataSelecionada = formato.parse(text_view_data_nascimento.getText().toString());
-                if (hoje.getTime()<=dataSelecionada.getTime())
+                if (hoje.getTime() <= dataSelecionada.getTime())
                 {
                     statusData = false;
                 }
@@ -195,7 +201,7 @@ public class EditarUsuarioActivity extends AppCompatActivity
             statusValidacao = false;
         }
 
-        if (edit_text_cidade==null)
+        if (edit_text_cidade == null)
         {
             statusValidacao = false;
         }
@@ -211,6 +217,7 @@ public class EditarUsuarioActivity extends AppCompatActivity
         }
     }
 
+    //Pega os dados inseridos nos campos
     private void pegarDados()
     {
         nome = edit_text_nome.getText().toString();
@@ -240,6 +247,7 @@ public class EditarUsuarioActivity extends AppCompatActivity
         dataNascimentoBanco = String.format("%s-%s-%s", data_nascimento[2], data_nascimento[1], data_nascimento[0]);
     }
 
+    //Pega os objetos do arquivo XML
     private void encontrarObjetosView()
     {
         edit_text_nome = (EditText) findViewById(R.id.edit_text_nome);
@@ -267,6 +275,7 @@ public class EditarUsuarioActivity extends AppCompatActivity
         startActivity(intentCidade);
     }
 
+    //Preenche o intent para salvar os dados preenchidos até o momento na abertura da página de seleção de cidades
     private void preencherIntent()
     {
         nome = "";
@@ -290,6 +299,27 @@ public class EditarUsuarioActivity extends AppCompatActivity
         intentCidade.putExtra("email", email);
         intentCidade.putExtra("logradouro", logradouro);
         intentCidade.putExtra("activity", "EditarUsuarioActivity");
+    }
+
+    public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener
+    {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState)
+        {
+            final Calendar c = Calendar.getInstance();
+            int ano = c.get(Calendar.YEAR);
+            int mes = c.get(Calendar.MONTH);
+            int dia = c.get(Calendar.DAY_OF_MONTH);
+
+            return new DatePickerDialog(getActivity(), this, ano, mes, dia);
+        }
+
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth)
+        {
+            String dataSelecionada = String.format("%02d-%02d-%d", dayOfMonth, ++month, year);
+            text_view_data_nascimento.setText(dataSelecionada);
+        }
     }
 
     private class EditarUsuarioTask extends AsyncTask<Void, Void, Void>
@@ -326,35 +356,14 @@ public class EditarUsuarioActivity extends AppCompatActivity
                     .setTitle("Sucesso!")
                     .setMessage("Seus dados foram editados com sucesso.\nPor favor, efetue o login novamente.")
                     .setNeutralButton("OK", new DialogInterface.OnClickListener()
-            {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i)
-                {
-                    UsuarioFinal.logout();
-                    startActivity(new Intent(context, MainActivity.class));
-                }
-            }).show();
-        }
-    }
-
-    public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener
-    {
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState)
-        {
-            final Calendar c = Calendar.getInstance();
-            int ano = c.get(Calendar.YEAR);
-            int mes = c.get(Calendar.MONTH);
-            int dia = c.get(Calendar.DAY_OF_MONTH);
-
-            return new DatePickerDialog(getActivity(), this, ano, mes, dia);
-        }
-
-        @Override
-        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth)
-        {
-            String dataSelecionada = String.format("%02d-%02d-%d", dayOfMonth, ++month, year);
-            text_view_data_nascimento.setText(dataSelecionada);
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i)
+                        {
+                            UsuarioFinal.logout();
+                            startActivity(new Intent(context, MainActivity.class));
+                        }
+                    }).show();
         }
     }
 

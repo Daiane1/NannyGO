@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.widget.TextView;
 
 public class DetalhesHistoricoClienteActivity extends AppCompatActivity
@@ -13,7 +12,9 @@ public class DetalhesHistoricoClienteActivity extends AppCompatActivity
 
     String valor, horaInicio, dataTransacao, dataServico, metodoPagamento, nome;
     Integer idTransacao, idUsuario, idBaba, qntdHoras, statusAprovado;
-    TextView text_view_nome, text_view_data_transacao, text_view_data_servico, text_view_hora_inicio, text_view_qntd_horas, text_view_metodo_pagamento, text_view_valor, text_view_status;
+    TextView text_view_nome, text_view_data_transacao, text_view_data_servico,
+            text_view_hora_inicio, text_view_qntd_horas, text_view_metodo_pagamento,
+            text_view_valor, text_view_status;
     Context context;
 
     @Override
@@ -33,6 +34,7 @@ public class DetalhesHistoricoClienteActivity extends AppCompatActivity
         inserirCampos();
     }
 
+    //Insere os dados da transação
     private void inserirCampos()
     {
         text_view_nome.setText(nome);
@@ -41,21 +43,19 @@ public class DetalhesHistoricoClienteActivity extends AppCompatActivity
         text_view_qntd_horas.setText(String.format("%d hora(s)", qntdHoras));
         text_view_metodo_pagamento.setText(metodoPagamento);
         text_view_valor.setText(String.format("R$ %.2f", Double.parseDouble(valor)));
-        Log.d("status", statusAprovado.toString());
         if (statusAprovado == 1)
         {
             text_view_status.setText("Aprovado");
-        }
-        else if (statusAprovado == -1)
+        } else if (statusAprovado == -1)
         {
             text_view_status.setText("Rejeitado");
-        }
-        else if (statusAprovado == 0)
+        } else if (statusAprovado == 0)
         {
             text_view_status.setText("Em espera");
         }
     }
 
+    //Formata as datas do formato yyyy-mm-dd para dd/mm/yyyy
     private void formatarDatas()
     {
         String dataServicoFormatado[] = dataServico.split("-");
@@ -65,6 +65,7 @@ public class DetalhesHistoricoClienteActivity extends AppCompatActivity
         text_view_data_transacao.setText(String.format("%s/%s/%s", dataTransacaoFormatado[2], dataTransacaoFormatado[1], dataTransacaoFormatado[0]));
     }
 
+    //Pega os dados do arquivo XML
     private void pegarView()
     {
         text_view_nome = (TextView) findViewById(R.id.text_view_nome);
@@ -77,6 +78,7 @@ public class DetalhesHistoricoClienteActivity extends AppCompatActivity
         text_view_status = (TextView) findViewById(R.id.text_view_status);
     }
 
+    //Pega os dados da intent provenientes da activity anterior
     public void pegarIntent()
     {
         Intent intent;

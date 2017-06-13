@@ -32,6 +32,7 @@ public class DetalhesHistoricoBabaActivity extends AppCompatActivity
         inserirCampos();
     }
 
+    //Insere os dados da transação selecionada
     private void inserirCampos()
     {
         text_view_nome.setText(nome);
@@ -43,13 +44,13 @@ public class DetalhesHistoricoBabaActivity extends AppCompatActivity
         if (statusAprovado == 1)
         {
             text_view_status.setText("Aprovado");
-        }
-        else if (statusAprovado == -1)
+        } else if (statusAprovado == -1)
         {
             text_view_status.setText("Rejeitado");
         }
     }
 
+    //Formata as datas do formato yyyy-mm-dd para dd/mm/yyyy
     private void formatarDatas()
     {
         String dataServicoFormatado[] = dataServico.split("-");
@@ -59,6 +60,7 @@ public class DetalhesHistoricoBabaActivity extends AppCompatActivity
         text_view_data_transacao.setText(String.format("%s/%s/%s", dataTransacaoFormatado[2], dataTransacaoFormatado[1], dataTransacaoFormatado[0]));
     }
 
+    //Pega os campos do arquivo XML
     private void pegarView()
     {
         text_view_nome = (TextView) findViewById(R.id.text_view_nome);
@@ -71,6 +73,7 @@ public class DetalhesHistoricoBabaActivity extends AppCompatActivity
         text_view_status = (TextView) findViewById(R.id.text_view_status);
     }
 
+    //Pega os dados do intent provenientes da activity anterior
     public void pegarIntent()
     {
         Intent intent;

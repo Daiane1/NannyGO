@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -24,8 +23,8 @@ import java.util.List;
 
 public class TransacoesEsperaActivity extends AppCompatActivity
 {
-    ListView list_view_transacoes_espera;
     static List<Transacao> lstTransacoesEspera = new ArrayList<>();
+    ListView list_view_transacoes_espera;
     Context context;
 
     @Override
@@ -42,7 +41,6 @@ public class TransacoesEsperaActivity extends AppCompatActivity
 
         new PegarTransacoesEsperaTask().execute();
 
-
     }
 
     @Override
@@ -52,6 +50,7 @@ public class TransacoesEsperaActivity extends AppCompatActivity
         configurarAdapter();
     }
 
+    //Configura a lista de transações
     private void configurarAdapter()
     {
         list_view_transacoes_espera = (ListView) findViewById(R.id.list_view_transacoes_espera);
@@ -64,8 +63,10 @@ public class TransacoesEsperaActivity extends AppCompatActivity
     {
         String retornoJson;
         ProgressDialog dialog = new ProgressDialog(context);
+
         @Override
-        protected void onPreExecute() {
+        protected void onPreExecute()
+        {
             super.onPreExecute();
 
             dialog.setTitle("Aguarde");
@@ -109,12 +110,13 @@ public class TransacoesEsperaActivity extends AppCompatActivity
                             .show();
                 } else
                 {
-                    Log.d("json", retornoJson);
+                    //Cria e preenche a lista de transações com os dados JSON do banco de dados
                     lstTransacoesEspera = gson.fromJson(retornoJson, new TypeToken<List<Transacao>>()
                     {
                     }.getType());
                     configurarAdapter();
 
+                    //Preenche o intent para abrir a activity de detalhe da posição selecionada
                     list_view_transacoes_espera.setOnItemClickListener(new AdapterView.OnItemClickListener()
                     {
                         @Override

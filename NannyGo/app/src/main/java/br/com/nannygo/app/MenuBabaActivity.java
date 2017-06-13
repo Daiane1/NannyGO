@@ -42,6 +42,7 @@ public class MenuBabaActivity extends AppCompatActivity
         configurarBotaoRegistro();
         inserirImagem();
     }
+
     private void inserirImagem()
     {
         String href = getResources().getString(R.string.linkLocal);
@@ -53,8 +54,7 @@ public class MenuBabaActivity extends AppCompatActivity
                     .error(R.drawable.babyf)
                     .placeholder(R.drawable.babym)
                     .into(img_user);
-        }
-        else if (UsuarioFinal.getSexo().equals("M"))
+        } else if (UsuarioFinal.getSexo().equals("M"))
         {
             Picasso.with(context)
                     .load(link)
@@ -67,13 +67,13 @@ public class MenuBabaActivity extends AppCompatActivity
 
     private void configurarBotaoRegistro()
     {
-        if(UsuarioFinal.getStatusBaba().equals("1"))
+        //Muda a visibilidade dos botões caso o usuário estiver cadastrado como babá
+        if (UsuarioFinal.getStatusBaba().equals("1"))
         {
             btn_disponivel.setVisibility(GONE);
             btn_indisponivel.setVisibility(View.VISIBLE);
 
-        }
-        else
+        } else
         {
             btn_disponivel.setVisibility(View.VISIBLE);
             btn_indisponivel.setVisibility(GONE);
@@ -83,6 +83,7 @@ public class MenuBabaActivity extends AppCompatActivity
         }
     }
 
+    //Pega os objetos do arquivo XML
     private void pegarObjetosView()
     {
         text_view_nome = (TextView) findViewById(R.id.text_view_nome);
@@ -94,17 +95,17 @@ public class MenuBabaActivity extends AppCompatActivity
         btn_perfil = (Button) findViewById(R.id.btn_perfil);
     }
 
+    //Formata a string de nome para exibição de apenas o primeiro e o último nome
     private void formatarNome()
     {
         text_view_nome = (TextView) findViewById(R.id.text_view_nome);
         String nome = UsuarioFinal.getNome();
         String nomeFormatado[] = nome.split(" ");
-        int len = nomeFormatado.length-1;
+        int len = nomeFormatado.length - 1;
         if (len > 1)
         {
             text_view_nome.setText(String.format("%s %s", nomeFormatado[0], nomeFormatado[len]));
-        }
-        else
+        } else
         {
             text_view_nome.setText(nome);
         }
@@ -117,33 +118,38 @@ public class MenuBabaActivity extends AppCompatActivity
     }
 
     //Codigo desenvolvido para o funcionamento do botão "Logout"
-    private void configurarBotaoFlutuanteLogout() {
+    private void configurarBotaoFlutuanteLogout()
+    {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.logout);
-        fab.setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view)
+            {
                 mostrarAlertaLogout();
             }
         });
 
     }
 
-    private void mostrarAlertaLogout() {
+    private void mostrarAlertaLogout()
+    {
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(context)
                 .setTitle("Sair")
                 .setMessage("Deseja mesmo sair?")
                 .setIcon(R.drawable.ic_directions_run_black_24dp)
-                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Sim", new DialogInterface.OnClickListener()
+                {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(DialogInterface dialog, int which)
+                    {
 
                         Intent intent = new Intent(context, MainActivity.class);
                         UsuarioFinal.logout();
                         startActivity(intent);
                     }
                 })
-                .setNegativeButton("Não", null)
-                ;
+                .setNegativeButton("Não", null);
         alertDialog.show();
     }
 

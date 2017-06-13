@@ -1,5 +1,6 @@
 package br.com.nannygo.app;
 
+//Classe modelo de usuário final(logado)
 public class UsuarioFinal
 {
     private static String idUsuario;
@@ -17,7 +18,6 @@ public class UsuarioFinal
     private static String estado;
     private static String uf;
     private static String logradouro;
-
 
 
     public static void logout()

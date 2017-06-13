@@ -33,6 +33,7 @@ public class SelecaoCidadesActivity extends AppCompatActivity
     ArrayAdapter<String> adapter;
     Intent intent;
     Intent intentRegistro;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -47,11 +48,12 @@ public class SelecaoCidadesActivity extends AppCompatActivity
 
         pegarView();
         intentRegistro = getIntent();
+
+        //Verifica a página que o usuário veio, para após a seleção da cidade retornar a página original
         if (intentRegistro.getStringExtra("activity").equals("RegistroActivity"))
         {
             intent = new Intent(context, RegistroActivity.class);
-        }
-        else if (intentRegistro.getStringExtra("activity").equals("EditarUsuarioActivity"))
+        } else if (intentRegistro.getStringExtra("activity").equals("EditarUsuarioActivity"))
         {
             intent = new Intent(context, EditarUsuarioActivity.class);
         }
@@ -63,6 +65,8 @@ public class SelecaoCidadesActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
+                //Pega o id da cidade selecionada.
+                //Ao realizar uma busca, a posição da cidade para de corresponder o id.
                 String cidade = adapter.getItem(position);
 
                 int i = 0;
@@ -86,6 +90,7 @@ public class SelecaoCidadesActivity extends AppCompatActivity
         new PreencherCidadeTask().execute();
     }
 
+    //Preenche o Intent para retornar os dados à pagina original
     private void preencherIntent()
     {
         intent.putExtra("nome", intentRegistro.getStringExtra("nome"));
@@ -98,12 +103,14 @@ public class SelecaoCidadesActivity extends AppCompatActivity
         intent.putExtra("logradouro", intentRegistro.getStringExtra("logradouro"));
     }
 
+    //Pega os dados do arquivo XML
     private void pegarView()
     {
         list_view_cidade = (ListView) findViewById(R.id.list_view_cidade);
         edit_text_cidade = (EditText) findViewById(R.id.edit_text_cidade);
     }
 
+    //Configura a busca da lista de cidades
     @NonNull
     private void configurarAdapter()
     {

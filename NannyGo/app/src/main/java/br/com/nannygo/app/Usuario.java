@@ -1,5 +1,6 @@
 package br.com.nannygo.app;
 
+//Classe modelo de usuário
 public class Usuario
 {
 
@@ -18,7 +19,6 @@ public class Usuario
     private String estado;
     private String uf;
     private String logradouro;
-
 
 
 

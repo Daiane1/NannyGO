@@ -2,7 +2,9 @@ package br.com.nannygo.app;
 
 import android.content.Context;
 
-public class Transacao {
+//Classe modelo de transação
+public class Transacao
+{
 
     private Integer idTransacao;
     private Integer idUsuario;
@@ -18,15 +20,12 @@ public class Transacao {
     private String logradouro;
     private String cidade;
     private String estado;
-
-
-
-    public Context getContext() {
-        return context;
-    }
-
     private Context context;
 
+    public Context getContext()
+    {
+        return context;
+    }
 
     public Integer getIdTransacao()
     {

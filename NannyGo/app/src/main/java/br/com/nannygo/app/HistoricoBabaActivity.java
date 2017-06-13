@@ -25,8 +25,8 @@ import java.util.List;
 public class HistoricoBabaActivity extends AppCompatActivity
 {
 
-    ListView list_view_historico_baba;
     static List<Transacao> lstHistoricoBaba = new ArrayList<>();
+    ListView list_view_historico_baba;
     Context context;
 
     @Override
@@ -64,6 +64,7 @@ public class HistoricoBabaActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
+                //Preenche o intent com os dados da transação para abertura da página de detalhes
                 Intent intent = new Intent(context, DetalhesHistoricoBabaActivity.class);
                 intent.putExtra("valor", lstHistoricoBaba.get(position).getValor());
                 intent.putExtra("idTransacao", lstHistoricoBaba.get(position).getIdTransacao());
@@ -133,10 +134,9 @@ public class HistoricoBabaActivity extends AppCompatActivity
                             .setIcon(android.R.drawable.ic_delete)
                             .setMessage("Houve um erro em acessar o histórico de transações. Tente novamente.")
                             .show();
-                }
-                else
+                } else
                 {
-                    Log.d("json", retornoJson);
+                    //Preenche a lista de babás com os dados JSON do banco de dados
                     lstHistoricoBaba = gson.fromJson(retornoJson, new TypeToken<List<Transacao>>()
                     {
                     }.getType());

@@ -19,7 +19,8 @@ public class TransacaoEsperaAdapter extends ArrayAdapter<Transacao>
     TextView text_view_id_transacao, text_view_id_baba, text_view_id_usuario, text_view_preco, text_view_nome_cliente;
     LinearLayout linear_layout_transacao_espera;
 
-    public TransacaoEsperaAdapter(Context context, int resource, List<Transacao> objects) {
+    public TransacaoEsperaAdapter(Context context, int resource, List<Transacao> objects)
+    {
         super(context, resource, objects);
         this.resource = resource;
     }
@@ -29,7 +30,8 @@ public class TransacaoEsperaAdapter extends ArrayAdapter<Transacao>
     public View getView(int position, View convertView, ViewGroup parent)
     {
         view = convertView;
-        if (view == null) {
+        if (view == null)
+        {
             view = LayoutInflater.from(getContext()).inflate(resource, null);
         }
 
@@ -38,11 +40,11 @@ public class TransacaoEsperaAdapter extends ArrayAdapter<Transacao>
         pegarView();
         inserirCamposLayout();
 
-        if(transacao.getStatusAprovado() == 1)
+        //Muda a cor de fundo da transação de acordo com o estado da transação
+        if (transacao.getStatusAprovado() == 1)
         {
             linear_layout_transacao_espera.setBackgroundColor(view.getResources().getColor(R.color.verde, null));
-        }
-        else if (transacao.getStatusAprovado() == -1)
+        } else if (transacao.getStatusAprovado() == -1)
         {
             linear_layout_transacao_espera.setBackgroundColor(view.getResources().getColor(R.color.vermelho, null));
         }
@@ -50,15 +52,19 @@ public class TransacaoEsperaAdapter extends ArrayAdapter<Transacao>
         return view;
     }
 
-    private void inserirCamposLayout() {
+    //Insere os campos do item da lista
+    private void inserirCamposLayout()
+    {
         text_view_id_baba.setText(transacao.getIdBaba().toString());
         text_view_id_usuario.setText(transacao.getIdUsuario().toString());
         text_view_id_transacao.setText(transacao.getIdTransacao().toString());
-        text_view_preco.setText(String.format("R$ %.2f",Double.parseDouble(transacao.getValor())));
+        text_view_preco.setText(String.format("R$ %.2f", Double.parseDouble(transacao.getValor())));
         text_view_nome_cliente.setText(transacao.getNome());
     }
 
-    public void pegarView(){
+    //Pega os dados do arquivo XML
+    public void pegarView()
+    {
         text_view_id_transacao = (TextView) view.findViewById(R.id.text_view_id_transacao);
         text_view_id_usuario = (TextView) view.findViewById(R.id.text_view_id_usuario);
         text_view_id_baba = (TextView) view.findViewById(R.id.text_view_id_baba);

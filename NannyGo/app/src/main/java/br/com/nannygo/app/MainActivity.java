@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -38,6 +37,7 @@ public class MainActivity extends AppCompatActivity
         pegarView();
     }
 
+    //Pega os dados do arquivo XML
     private void pegarView()
     {
         edit_text_login = (EditText) findViewById(R.id.edit_text_login);
@@ -62,6 +62,50 @@ public class MainActivity extends AppCompatActivity
     public void abrirTelaSobre(View view)
     {
         startActivity(new Intent(context, FaleConoscoActivity.class));
+    }
+
+    //Notificação de Login - Uma aviso de login que é apresentado instantaneamente
+    //na notificationbar quando o usuário loga.
+    private void popup()
+    {
+        String texto;
+        if (UsuarioFinal.getSexo().equals("F"))
+        {
+            texto = String.format("Bem vinda ao NannyGO %s", UsuarioFinal.getNome());
+        } else
+        {
+            texto = String.format("Bem vindo ao NannyGO %s", UsuarioFinal.getNome());
+        }
+
+        NotificationCompat.Builder mBuilder =
+                (NotificationCompat.Builder) new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.logo)
+                        .setContentTitle("NannyGO")
+                        .setContentText(texto);
+        NotificationManager notificationManager = (NotificationManager)
+                getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(0, mBuilder.build());
+    }
+
+    //  Criação de uma classe com atributos estáticos, para que os dados do usuário sejam utilizados
+    //no aplicativo sejam iguais, uma vez que a classe implementada pelo Gson não implementa campos
+    //estáticos.
+    private void criarUsuarioFinal(Usuario usuario)
+    {
+        UsuarioFinal.setIdUsuario(usuario.getIdUsuario());
+        UsuarioFinal.setNome(usuario.getNome());
+        UsuarioFinal.setSexo(usuario.getSexo());
+        UsuarioFinal.setTelefone(usuario.getTelefone());
+        UsuarioFinal.setEmail(usuario.getEmail());
+        UsuarioFinal.setLogin(usuario.getLogin());
+        UsuarioFinal.setSenha(usuario.getSenha());
+        UsuarioFinal.setDataNascimento(usuario.getDataNascimento());
+        UsuarioFinal.setStatusBaba(usuario.getStatusBaba());
+        UsuarioFinal.setCidade(usuario.getCidade());
+        UsuarioFinal.setEstado(usuario.getEstado());
+        UsuarioFinal.setUf(usuario.getUf());
+        UsuarioFinal.setIdCidade(usuario.getIdCidade());
+        UsuarioFinal.setLogradouro(usuario.getLogradouro());
     }
 
     private class AutenticarUsuarioTask extends AsyncTask<Void, Void, Void>
@@ -104,8 +148,7 @@ public class MainActivity extends AppCompatActivity
                         .setIcon(android.R.drawable.ic_delete)
                         .setMessage("Houve um erro ao tentar conectar com o servidor.\nVerifique se está com utilizando plano de dados ou Wi-fi.")
                         .show();
-            }
-            else if (retornoJson.isEmpty())
+            } else if (retornoJson.isEmpty())
             {
                 //Criação de dialog caso o login não foi bem sucedido.
                 new AlertDialog.Builder(context)
@@ -114,8 +157,7 @@ public class MainActivity extends AppCompatActivity
                         .setIcon(android.R.drawable.ic_delete)
                         .setMessage("Login ou senha inválidos.")
                         .show();
-            }
-            else
+            } else
             {
                 Usuario usuario = gson.fromJson(retornoJson, Usuario.class);
                 criarUsuarioFinal(usuario);
@@ -124,49 +166,5 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         }
-    }
-
-    //Notificação de Login - Uma aviso de login que é apresentado instantaneamente
-    //na notificationbar quando o usuário loga.
-    private void popup(){
-        String texto;
-        if(UsuarioFinal.getSexo().equals("F"))
-        {
-            texto = String.format("Bem vinda ao NannyGO %s", UsuarioFinal.getNome());
-        }
-        else
-        {
-            texto = String.format("Bem vindo ao NannyGO %s", UsuarioFinal.getNome());
-        }
-
-        NotificationCompat.Builder mBuilder =
-                (NotificationCompat.Builder) new NotificationCompat.Builder(this)
-                    .setSmallIcon(R.drawable.logo)
-                    .setContentTitle("NannyGO")
-                    .setContentText(texto);
-                NotificationManager notificationManager = (NotificationManager)
-                        getSystemService(Context.NOTIFICATION_SERVICE);
-                notificationManager.notify(0, mBuilder.build());
-    }
-
-    //  Criação de uma classe com atributos estáticos, para que os dados do usuário sejam utilizados
-    //no aplicativo sejam iguais, uma vez que a classe implementada pelo Gson não implementa campos
-    //estáticos.
-    private void criarUsuarioFinal(Usuario usuario)
-    {
-        UsuarioFinal.setIdUsuario(usuario.getIdUsuario());
-        UsuarioFinal.setNome(usuario.getNome());
-        UsuarioFinal.setSexo(usuario.getSexo());
-        UsuarioFinal.setTelefone(usuario.getTelefone());
-        UsuarioFinal.setEmail(usuario.getEmail());
-        UsuarioFinal.setLogin(usuario.getLogin());
-        UsuarioFinal.setSenha(usuario.getSenha());
-        UsuarioFinal.setDataNascimento(usuario.getDataNascimento());
-        UsuarioFinal.setStatusBaba(usuario.getStatusBaba());
-        UsuarioFinal.setCidade(usuario.getCidade());
-        UsuarioFinal.setEstado(usuario.getEstado());
-        UsuarioFinal.setUf(usuario.getUf());
-        UsuarioFinal.setIdCidade(usuario.getIdCidade());
-        UsuarioFinal.setLogradouro(usuario.getLogradouro());
     }
 }

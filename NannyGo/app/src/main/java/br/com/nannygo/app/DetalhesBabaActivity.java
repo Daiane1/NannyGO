@@ -6,33 +6,28 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 
-public class DetalhesBabaActivity extends AppCompatActivity {
+public class DetalhesBabaActivity extends AppCompatActivity
+{
+    static TextView text_view_nome, text_view_sexo, text_view_email, text_view_preco, text_view_telefone, text_view_idade, text_view_estado, text_view_cidade;
     Intent intent;
-    String retornoJson;
     Integer idUsuario, idBaba;
     String preco;
-    static TextView text_view_nome, text_view_sexo, text_view_email, text_view_preco, text_view_telefone, text_view_idade, text_view_estado, text_view_cidade;
     ImageView img_baba;
     Usuario usuario;
 
-    Button btn;
-    RatingBar ratingBar;
     Context context;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhes_baba);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -40,9 +35,6 @@ public class DetalhesBabaActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         context = this;
-
-        /*btn = (Button) findViewById(R.id.btnAvaliacao);
-        ratingBar = (RatingBar) findViewById(R.id.idrating);*/
 
         intent = getIntent();
         idUsuario = intent.getIntExtra("idusuario", -1);
@@ -52,19 +44,16 @@ public class DetalhesBabaActivity extends AppCompatActivity {
         new PegarUsuarioTask().execute();
     }
 
-    public void abrirTelaConfirmacao(View view) {
+    //Abre a tela de confirmação para contratar
+    public void abrirTelaConfirmacao(View view)
+    {
         Intent intent = new Intent(this, ContratacaoActivity.class);
         intent.putExtra("preco", preco);
         intent.putExtra("idbaba", idBaba);
         startActivity(intent);
     }
 
-    //Enviar Avaliação sobre a babá
-    public void enviarAvaliacao(View view){
-        float ratingvalor = ratingBar.getRating();
-        Toast.makeText(context, "Avaliado em: "+ratingvalor, Toast.LENGTH_SHORT).show();
-    }
-
+    //Pega os dados do usuário
     private void pegarUsuarioView()
     {
         text_view_nome = (TextView) findViewById(R.id.text_view_nome);
@@ -79,6 +68,7 @@ public class DetalhesBabaActivity extends AppCompatActivity {
 
     }
 
+    //Insere os dados da babá selecionada na lista
     public void inserirCampos()
     {
         text_view_nome.setText(usuario.getNome());
@@ -101,31 +91,33 @@ public class DetalhesBabaActivity extends AppCompatActivity {
 
     }
 
+    //Inseri as imagens desejadas
     private void inserirImagem()
     {
-            String href = getResources().getString(R.string.linkLocal);
-            String link = String.format("%s/usuario/%s.jpg", href, usuario.getLogin());
-            if (usuario.getSexo().equals("F"))
-            {
-                Picasso.with(context)
-                        .load(link)
-                        .error(R.drawable.babyf)
-                        .placeholder(R.drawable.babym)
-                        .into(img_baba);
-            }
-            else if (usuario.getSexo().equals("M"))
-            {
-                Picasso.with(context)
-                        .load(link)
-                        .error(R.drawable.babym)
-                        .placeholder(R.drawable.babym)
-                        .into(img_baba);
-            }
+        String href = getResources().getString(R.string.linkLocal);
+        String link = String.format("%s/usuario/%s.jpg", href, usuario.getLogin());
+        if (usuario.getSexo().equals("F"))
+        {
+            Picasso.with(context)
+                    .load(link)
+                    .error(R.drawable.babyf)
+                    .placeholder(R.drawable.babym)
+                    .into(img_baba);
+        } else if (usuario.getSexo().equals("M"))
+        {
+            Picasso.with(context)
+                    .load(link)
+                    .error(R.drawable.babym)
+                    .placeholder(R.drawable.babym)
+                    .into(img_baba);
+        }
     }
 
+    //Classe pega os dados da babá selecionada do banco de dados
     private class PegarUsuarioTask extends AsyncTask<Void, Void, Void>
     {
         String retornoJson;
+
         @Override
         protected Void doInBackground(Void... params)
         {
@@ -134,12 +126,12 @@ public class DetalhesBabaActivity extends AppCompatActivity {
                     href,
                     idUsuario);
             retornoJson = HttpConnection.get(link);
-            Log.d("json", retornoJson);
             return null;
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
+        protected void onPostExecute(Void aVoid)
+        {
             Gson gson = new Gson();
             usuario = gson.fromJson(retornoJson, Usuario.class);
             inserirCampos();

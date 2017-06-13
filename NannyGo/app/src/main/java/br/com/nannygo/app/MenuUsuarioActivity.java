@@ -41,6 +41,7 @@ public class MenuUsuarioActivity extends AppCompatActivity {
 
     }
 
+    //Insere a imagem vinda do banco de dados na ImageView
     private void inserirImagem()
     {
         String href = getResources().getString(R.string.linkLocal);
@@ -70,6 +71,7 @@ public class MenuUsuarioActivity extends AppCompatActivity {
 
     }
 
+    //Formata a string do nome do usuário para exibição de apenas o primeiro e o último nome
     private void formatarNome()
     {
         text_view_nome = (TextView) findViewById(R.id.text_view_nome);

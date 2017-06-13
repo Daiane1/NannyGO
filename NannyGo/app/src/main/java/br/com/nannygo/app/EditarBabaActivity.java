@@ -25,11 +25,11 @@ import java.util.List;
 
 public class EditarBabaActivity extends AppCompatActivity
 {
-    Spinner spinner_disponibilidade;
     static int condicaoHora;
+    static TextView text_view_hora_inicio, text_view_hora_fim;
+    Spinner spinner_disponibilidade;
     ImageView img_hora_inicio, img_hora_fim;
     EditText edit_text_preco;
-    static TextView text_view_hora_inicio, text_view_hora_fim;
     Context context;
     String preco, horaInicio, horaFim, diasDisponiveis;
     boolean statusValidacao = true;
@@ -56,6 +56,7 @@ public class EditarBabaActivity extends AppCompatActivity
 
     }
 
+    //Pega os dados da Intent provenientes da activity anterior
     private void pegarIntent()
     {
         intent = getIntent();
@@ -65,13 +66,13 @@ public class EditarBabaActivity extends AppCompatActivity
         diasDisponiveis = intent.getStringExtra("diasDisponiveis");
     }
 
+    //Preenche os campos com os dados da babá
     private void preencherCampos()
     {
         edit_text_preco.setText(preco);
         text_view_hora_inicio.setText(horaInicio);
         text_view_hora_fim.setText(horaFim);
     }
-
 
     private void configurarBotaoConfirma()
     {
@@ -82,11 +83,11 @@ public class EditarBabaActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 validarCampos();
+                //Verifica se a validação dos campos foi bem sucedida.
                 if (statusValidacao)
                 {
                     new EditarBabaTask().execute();
-                }
-                else
+                } else
                 {
                     new AlertDialog.Builder(context)
                             .setIcon(R.drawable.ic_warning_black_24dp)
@@ -100,6 +101,7 @@ public class EditarBabaActivity extends AppCompatActivity
         });
     }
 
+    //Verifica se os campos forem nulos ou em branco para inserção no banco de dados
     private void validarCampos()
     {
         preco = edit_text_preco.getText().toString();
@@ -122,9 +124,11 @@ public class EditarBabaActivity extends AppCompatActivity
             statusValidacao = false;
         }
 
-
     }
 
+    //Abre o fragmento de seleção de tempo
+    //Variável condicaoHora especifica o campo a ser preenchido para garantir que só um fragment
+    //precise ser criado.
     private void abrirDialogHora()
     {
         img_hora_inicio.setOnClickListener(new View.OnClickListener()
@@ -149,6 +153,7 @@ public class EditarBabaActivity extends AppCompatActivity
         });
     }
 
+    //Pega os dados do arquivo XML
     private void pegarView()
     {
         spinner_disponibilidade = (Spinner) findViewById(R.id.spinner_disponibilidade);
@@ -159,6 +164,7 @@ public class EditarBabaActivity extends AppCompatActivity
         edit_text_preco = (EditText) findViewById(R.id.edit_text_preco);
     }
 
+    //Cria uma lista e preenche os spinners com as opções de disponibilidade da babá
     private void preencherSpinner()
     {
         List<String> lstDiasSemana = new ArrayList<>();
@@ -186,8 +192,7 @@ public class EditarBabaActivity extends AppCompatActivity
             if (condicaoHora == 0)
             {
                 text_view_hora_inicio.setText(text_hora);
-            }
-            else if (condicaoHora == 1)
+            } else if (condicaoHora == 1)
             {
                 text_view_hora_fim.setText(text_hora);
             }
@@ -197,6 +202,7 @@ public class EditarBabaActivity extends AppCompatActivity
     private class EditarBabaTask extends AsyncTask<Void, Void, Void>
     {
         ProgressDialog dialog = new ProgressDialog(context);
+
         @Override
         protected void onPreExecute()
         {

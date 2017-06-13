@@ -11,8 +11,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 public class Splashscreen extends Activity {
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -27,6 +25,8 @@ public class Splashscreen extends Activity {
         setContentView(R.layout.activity_splashscreen);
         StartAnimations();
     }
+
+    //Início da animação
     private void StartAnimations() {
         Animation anim = AnimationUtils.loadAnimation(this, R.anim.alpha);
 

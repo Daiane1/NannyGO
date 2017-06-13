@@ -7,7 +7,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -18,7 +17,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -27,23 +25,18 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class RegistroActivity extends AppCompatActivity {
-    EditText edit_text_nome, edit_text_login, edit_text_senha, edit_text_confirmar, edit_text_telefone, edit_text_email, edit_text_cidade, edit_text_logradouro;
+public class RegistroActivity extends AppCompatActivity
+{
     static TextView text_view_data_nascimento;
+    EditText edit_text_nome, edit_text_login, edit_text_senha, edit_text_confirmar, edit_text_telefone, edit_text_email, edit_text_cidade, edit_text_logradouro;
     RadioButton radio_masculino, radio_feminino;
     String nome, login, telefone, email, sexo, dataNascimentoBanco, senha, dataNascimento, idCidade, logradouro, imagem;
     FloatingActionButton fab;
     Context context;
     Intent intent;
     Intent intentCidade;
-
     boolean statusValidacao = true;
     boolean statusData = true;
-
-    ImageView img_upload;
-    private static final int RESULT_LOAD_IMAGE = 1;
-
-    Bitmap foto_perfil;
 
 
     @Override
@@ -64,6 +57,7 @@ public class RegistroActivity extends AppCompatActivity {
         preencherCampos();
     }
 
+    //Preenche os campos com os dados da intent após o retorno da página de seleção de cidades
     private void preencherCampos()
     {
         if (intent.getStringExtra("cidade") != null)
@@ -80,8 +74,7 @@ public class RegistroActivity extends AppCompatActivity {
             if (intent.getStringExtra("sexo").equals("F"))
             {
                 radio_feminino.toggle();
-            }
-            else if (intent.getStringExtra("sexo").equals("M"))
+            } else if (intent.getStringExtra("sexo").equals("M"))
             {
                 radio_masculino.toggle();
             }
@@ -107,7 +100,6 @@ public class RegistroActivity extends AppCompatActivity {
 
         verificarSexoSelecionado();
 
-
         //Substitui todos ' ' para '_' para o funcionamento do link PhP
         nome = nome.replaceAll(" ", "_");
         logradouro = logradouro.replaceAll(" ", "_");
@@ -115,11 +107,12 @@ public class RegistroActivity extends AppCompatActivity {
         idCidade = intent.getStringExtra("idcidade");
 
         validarCampos();
-        if(!statusData)
+        //Verifica se a validação de data e dos campos foi bem sucedida
+        if (!statusData)
         {
             new AlertDialog.Builder(context).setTitle("Data inválida!").setIcon(R.drawable.ic_warning_black_24dp).setMessage("Selecione uma data de nascimento válida").setPositiveButton("OK", null).show();
         }
-        if(!statusValidacao)
+        if (!statusValidacao)
         {
             new AlertDialog.Builder(context).setTitle("Registro inválido!").setIcon(R.drawable.ic_warning_black_24dp).setMessage("Preencha todos os campos!").setPositiveButton("OK", null).show();
         }
@@ -131,6 +124,7 @@ public class RegistroActivity extends AppCompatActivity {
         }
     }
 
+    //Verifica se os campos estão nulos ou em branco
     private void validarCampos()
     {
         if (nome.isEmpty() || nome == null)
@@ -152,11 +146,10 @@ public class RegistroActivity extends AppCompatActivity {
         {
             statusValidacao = false;
         }
-        if (text_view_data_nascimento==null || text_view_data_nascimento.getText().toString().isEmpty())
+        if (text_view_data_nascimento == null || text_view_data_nascimento.getText().toString().isEmpty())
         {
             statusValidacao = false;
-        }
-        else
+        } else
         {
             Calendar cal = Calendar.getInstance();
             Date hoje = cal.getTime();
@@ -165,7 +158,7 @@ public class RegistroActivity extends AppCompatActivity {
             try
             {
                 Date dataSelecionada = formato.parse(text_view_data_nascimento.getText().toString());
-                if (hoje.getTime()<=dataSelecionada.getTime())
+                if (hoje.getTime() <= dataSelecionada.getTime())
                 {
                     statusData = false;
                 }
@@ -180,7 +173,7 @@ public class RegistroActivity extends AppCompatActivity {
             statusValidacao = false;
         }
 
-        if (edit_text_cidade==null)
+        if (edit_text_cidade == null)
         {
             statusValidacao = false;
         }
@@ -196,6 +189,7 @@ public class RegistroActivity extends AppCompatActivity {
         }
     }
 
+    //Pega os dados inseridos nos objetos
     private void pegarDados()
     {
         nome = edit_text_nome.getText().toString();
@@ -205,7 +199,6 @@ public class RegistroActivity extends AppCompatActivity {
         email = edit_text_email.getText().toString();
         logradouro = edit_text_logradouro.getText().toString();
         dataNascimento = text_view_data_nascimento.getText().toString();
-        //imagem = getStringImage(foto_perfil);
     }
 
     private void verificarSexoSelecionado()
@@ -228,6 +221,7 @@ public class RegistroActivity extends AppCompatActivity {
         dataNascimentoBanco = String.format("%s-%s-%s", data_nascimento[2], data_nascimento[1], data_nascimento[0]);
     }
 
+    //Encontra os objetos do arquivo XML
     private void encontrarObjetosView()
     {
         edit_text_nome = (EditText) findViewById(R.id.edit_text_nome);
@@ -257,6 +251,8 @@ public class RegistroActivity extends AppCompatActivity {
         startActivity(intentCidade);
     }
 
+    //Preenche o intent para inserção na página de seleção de cidades para armazenamento dos dados
+    //digitados nos objetos
     private void preencherIntent()
     {
         nome = "";
@@ -280,6 +276,27 @@ public class RegistroActivity extends AppCompatActivity {
         intentCidade.putExtra("email", email);
         intentCidade.putExtra("logradouro", logradouro);
         intentCidade.putExtra("activity", "RegistroActivity");
+    }
+
+    public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener
+    {
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState)
+        {
+            final Calendar c = Calendar.getInstance();
+            int ano = c.get(Calendar.YEAR);
+            int mes = c.get(Calendar.MONTH);
+            int dia = c.get(Calendar.DAY_OF_MONTH);
+
+            return new DatePickerDialog(getActivity(), this, ano, mes, dia);
+        }
+
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth)
+        {
+            String dataSelecionada = String.format("%02d-%02d-%d", dayOfMonth, ++month, year);
+            text_view_data_nascimento.setText(dataSelecionada);
+        }
     }
 
     private class RegistroUsuarioTask extends AsyncTask<Void, Void, Void>
@@ -324,27 +341,6 @@ public class RegistroActivity extends AppCompatActivity {
                     })
                     .show();
 
-        }
-    }
-
-    public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener
-    {
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState)
-        {
-            final Calendar c = Calendar.getInstance();
-            int ano = c.get(Calendar.YEAR);
-            int mes = c.get(Calendar.MONTH);
-            int dia = c.get(Calendar.DAY_OF_MONTH);
-
-            return new DatePickerDialog(getActivity(), this, ano, mes, dia);
-        }
-
-        @Override
-        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth)
-        {
-            String dataSelecionada = String.format("%02d-%02d-%d", dayOfMonth, ++month, year);
-            text_view_data_nascimento.setText(dataSelecionada);
         }
     }
 

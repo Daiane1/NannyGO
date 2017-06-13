@@ -8,7 +8,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -21,14 +20,16 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HistoricoClienteActivity extends AppCompatActivity {
+public class HistoricoClienteActivity extends AppCompatActivity
+{
 
-    ListView list_view_historico_cliente;
     static List<Transacao> lstHistorico = new ArrayList<>();
+    ListView list_view_historico_cliente;
     Context context;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_historico_cliente);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -37,18 +38,19 @@ public class HistoricoClienteActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
-
         new ConfigurarHistoricoClienteTask().execute();
 
     }
 
     @Override
-    protected void onResume() {
+    protected void onResume()
+    {
         super.onResume();
         configurarAdapter();
     }
-    private void configurarAdapter() {
+
+    private void configurarAdapter()
+    {
         list_view_historico_cliente = (ListView) findViewById(R.id.list_view_historico_cliente);
 
         TransacaoEsperaAdapter adapter = new TransacaoEsperaAdapter(this, R.layout.list_view_item_transacao_espera, lstHistorico);
@@ -59,6 +61,7 @@ public class HistoricoClienteActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
             {
+                //Preenche o intent com os dados para abertura da página de detalhes
                 Intent intent = new Intent(context, DetalhesHistoricoClienteActivity.class);
                 intent.putExtra("valor", lstHistorico.get(position).getValor());
                 intent.putExtra("idTransacao", lstHistorico.get(position).getIdTransacao());
@@ -77,12 +80,15 @@ public class HistoricoClienteActivity extends AppCompatActivity {
         });
     }
 
-    private class ConfigurarHistoricoClienteTask extends AsyncTask<Void, Void, Void> {
+    private class ConfigurarHistoricoClienteTask extends AsyncTask<Void, Void, Void>
+    {
 
         String retornoJson;
         ProgressDialog dialog = new ProgressDialog(context);
+
         @Override
-        protected void onPreExecute() {
+        protected void onPreExecute()
+        {
             super.onPreExecute();
             dialog.setTitle("Aguarde");
             dialog.setMessage("O app está carregando a lista de transações!");
@@ -91,7 +97,8 @@ public class HistoricoClienteActivity extends AppCompatActivity {
         }
 
         @Override
-        protected Void doInBackground(Void... params) {
+        protected Void doInBackground(Void... params)
+        {
             String href = getResources().getString(R.string.linkLocal);
             String link = String.format("%sconfigurarHistoricoCliente.php?id_usuario=%s", href, UsuarioFinal.getIdUsuario());
             retornoJson = HttpConnection.get(link);
@@ -99,12 +106,15 @@ public class HistoricoClienteActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
+        protected void onPostExecute(Void aVoid)
+        {
             super.onPostExecute(aVoid);
             Gson gson = new GsonBuilder().excludeFieldsWithModifiers(Modifier.VOLATILE).create();
             dialog.dismiss();
-            if (retornoJson != null) {
-                if (retornoJson.isEmpty() || retornoJson == null) {
+            if (retornoJson != null)
+            {
+                if (retornoJson.isEmpty() || retornoJson == null)
+                {
                     new android.support.v7.app.AlertDialog.Builder(context)
                             .setTitle("Erro")
                             .setPositiveButton("OK", new DialogInterface.OnClickListener()
@@ -118,9 +128,11 @@ public class HistoricoClienteActivity extends AppCompatActivity {
                             .setIcon(android.R.drawable.ic_delete)
                             .setMessage("Houve um erro em acessar a lista de transações. Tente novamente.")
                             .show();
-                } else {
-                    Log.d("json", retornoJson);
-                    lstHistorico = gson.fromJson(retornoJson, new TypeToken<List<Transacao>>() {
+                } else
+                {
+                    //Preenche a lista de transações com os dados JSON vindos do banco de dados
+                    lstHistorico = gson.fromJson(retornoJson, new TypeToken<List<Transacao>>()
+                    {
                     }.getType());
                     configurarAdapter();
                 }

@@ -31,13 +31,13 @@ import java.util.List;
 
 public class ContratacaoActivity extends AppCompatActivity
 {
+    static int condicaoHora = 0;
+    static TextView text_view_hora_fim, text_view_hora_inicio, text_view_data;
     Context context;
     ImageView img_data, img_hora_inicio;
     Spinner spinner_forma_pagamento, spinner_horas;
     List<String> lstFormaPagamento = new ArrayList<>();
     List<String> lstHoras = new ArrayList<>();
-    static int condicaoHora = 0;
-    static TextView text_view_hora_fim, text_view_hora_inicio, text_view_data;
     double valor, preco;
     Integer idBaba, horas;
     String metodoPagamento, dataServico, dataFinal, horaInicio;
@@ -69,6 +69,7 @@ public class ContratacaoActivity extends AppCompatActivity
 
     }
 
+    //Pega os dados do arquivo XML
     private void pegarView()
     {
         text_view_data = (TextView) findViewById(R.id.text_view_data);
@@ -76,6 +77,7 @@ public class ContratacaoActivity extends AppCompatActivity
         text_view_hora_fim = (TextView) findViewById(R.id.text_view_hora_fim);
     }
 
+    //Abre um fragmento de seleção de hora
     private void configurarSelecaoHora()
     {
         img_hora_inicio = (ImageView) findViewById(R.id.img_hora_inicio);
@@ -91,17 +93,18 @@ public class ContratacaoActivity extends AppCompatActivity
         });
     }
 
+    //Cria uma lista e preenche o spinner com os métodos de pagamento disponíveis
     private void preencherSpinnerPagamento()
     {
         spinner_forma_pagamento = (Spinner) findViewById(R.id.spinner_forma_pagamento);
         lstFormaPagamento.add("Crédito");
         lstFormaPagamento.add("Débito");
         lstFormaPagamento.add("Paypal");
-        lstFormaPagamento.add("Boleto");
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, lstFormaPagamento);
         spinner_forma_pagamento.setAdapter(adapter);
     }
 
+    //Cria uma lista e preenche o spinner com a seleção de horas de trabalho
     private void preencherSpinnerHoras()
     {
         spinner_horas = (Spinner) findViewById(R.id.spinner_horas);
@@ -117,6 +120,7 @@ public class ContratacaoActivity extends AppCompatActivity
     }
 
 
+    //Cria um fragmento de seleção de datas
     private void configurarBotaoCalendario()
     {
         img_data = (ImageView) findViewById(R.id.img_data);
@@ -131,6 +135,7 @@ public class ContratacaoActivity extends AppCompatActivity
         });
     }
 
+    //Configura o botão de confirmação
     private void configurarBotaoConfirmar()
     {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -143,7 +148,8 @@ public class ContratacaoActivity extends AppCompatActivity
                 statusData = true;
                 validarCampos();
 
-                if(!statusData)
+                //Verificação se a data e os campos estão preenchidos corretamente
+                if (!statusData)
                 {
                     new AlertDialog.Builder(context)
                             .setIcon(R.drawable.ic_warning_black_24dp)
@@ -164,6 +170,7 @@ public class ContratacaoActivity extends AppCompatActivity
                             .show();
                 }
 
+                //Caso os campos estejam preenchidos corretamente
                 if (statusValidacao && statusData)
                 {
                     metodoPagamento = spinner_forma_pagamento.getSelectedItem().toString();
@@ -173,6 +180,7 @@ public class ContratacaoActivity extends AppCompatActivity
                     preco = horas * valor;
 
                     horaInicio = text_view_hora_inicio.getText().toString();
+                    //Cria um AlertDialog para alertar o usuário da condição atual da transação
                     AlertDialog.Builder dialogFinalizar = new AlertDialog.Builder(context);
                     dialogFinalizar.setTitle("Contratação finalizada!")
                             .setIcon(R.drawable.done)
@@ -192,13 +200,13 @@ public class ContratacaoActivity extends AppCompatActivity
         });
     }
 
+    //Verifica se os campos estão vazios ou nulos, para inserção no banco de dados.
     private void validarCampos()
     {
         if (text_view_data == null || text_view_data.getText().toString().isEmpty())
         {
             statusValidacao = false;
-        }
-        else
+        } else
         {
             dataServico = text_view_data.getText().toString();
             String data[] = dataServico.split("/");
@@ -262,11 +270,13 @@ public class ContratacaoActivity extends AppCompatActivity
         public void onTimeSet(TimePicker view, int hourOfDay, int minute)
         {
             String text_hora = String.format("%02d:%02d", hourOfDay, minute);
+
+            //Variável condicaoHora indica o ícone selecionado para implementação de apenas um
+            //fragmento de seleção de tempo
             if (condicaoHora == 0)
             {
                 text_view_hora_inicio.setText(text_hora);
-            }
-            else if (condicaoHora == 1)
+            } else if (condicaoHora == 1)
             {
                 text_view_hora_fim.setText(text_hora);
             }
@@ -289,7 +299,6 @@ public class ContratacaoActivity extends AppCompatActivity
                     horaInicio,
                     horas
             );
-            Log.d("link", link);
             HttpConnection.get(link);
             return null;
         }

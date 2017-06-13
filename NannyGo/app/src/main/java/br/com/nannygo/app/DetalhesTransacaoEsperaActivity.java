@@ -37,6 +37,7 @@ public class DetalhesTransacaoEsperaActivity extends AppCompatActivity
         inserirCampos();
     }
 
+    //Insere os campos com os dados da transação
     private void inserirCampos()
     {
         text_view_nome.setText(nome);
@@ -50,6 +51,7 @@ public class DetalhesTransacaoEsperaActivity extends AppCompatActivity
         text_view_estado.setText(estado);
     }
 
+    //Formata as datas do formato yyyy-mm-dd para dd/mm/yyyy
     private void formatarDatas()
     {
         String dataServicoFormatado[] = dataServico.split("-");
@@ -59,6 +61,7 @@ public class DetalhesTransacaoEsperaActivity extends AppCompatActivity
         text_view_data_transacao.setText(String.format("%s/%s/%s", dataTransacaoFormatado[2], dataTransacaoFormatado[1], dataTransacaoFormatado[0]));
     }
 
+    //Pega os campos do arquivo XML
     private void pegarView()
     {
         text_view_nome = (TextView) findViewById(R.id.text_view_nome);
@@ -73,6 +76,7 @@ public class DetalhesTransacaoEsperaActivity extends AppCompatActivity
         text_view_estado = (TextView) findViewById(R.id.text_view_estado);
     }
 
+    //Pega os dados da intent provenientes da activity anterior
     public void pegarIntent()
     {
         Intent intent;
@@ -130,9 +134,11 @@ public class DetalhesTransacaoEsperaActivity extends AppCompatActivity
                 .show();
     }
 
-    private class AprovarTransacaoTask extends AsyncTask<Void, Void, Void> {
+    private class AprovarTransacaoTask extends AsyncTask<Void, Void, Void>
+    {
         @Override
-        protected Void doInBackground(Void... params) {
+        protected Void doInBackground(Void... params)
+        {
             String href = getResources().getString(R.string.linkLocal);
             String link = String.format("%saprovarTransacao.php?id_transacao=%s",
                     href,
@@ -143,15 +149,18 @@ public class DetalhesTransacaoEsperaActivity extends AppCompatActivity
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
+        protected void onPostExecute(Void aVoid)
+        {
             super.onPostExecute(aVoid);
             startActivity(new Intent(context, TransacoesEsperaActivity.class));
         }
     }
 
-    private class RejeitarTransacaoTask extends AsyncTask<Void, Void, Void> {
+    private class RejeitarTransacaoTask extends AsyncTask<Void, Void, Void>
+    {
         @Override
-        protected Void doInBackground(Void... params) {
+        protected Void doInBackground(Void... params)
+        {
             String href = getResources().getString(R.string.linkLocal);
             String link = String.format("%srejeitarTransacao.php?id_transacao=%s",
                     href,
@@ -162,7 +171,8 @@ public class DetalhesTransacaoEsperaActivity extends AppCompatActivity
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
+        protected void onPostExecute(Void aVoid)
+        {
             super.onPostExecute(aVoid);
             startActivity(new Intent(context, TransacoesEsperaActivity.class));
         }
